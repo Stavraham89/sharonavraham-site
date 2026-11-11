@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write to me, Sharon Avraham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="myc.css">
+<style>
+/* Contact: one route per door, each with who it is for */
+.c-head { display: grid; gap: 16px; max-width: 760px; padding-block: 40px 40px; }
+.c-head h1 { font-size: clamp(52px, 7vw, 100px); line-height: .93; letter-spacing: -.015em; }
+.c-head p { font: 400 21px/1.5 var(--serif); max-width: 52ch; }
+.routes { list-style: none; margin: 0 0 50px; padding: 0; border-top: 1px solid var(--rule); }
+.routes li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 6px 40px; padding-block: 22px; border-bottom: 1px solid var(--rule); scroll-margin-top: 24px; }
+.routes h2 { font: 400 clamp(26px, 2.6vw, 34px)/1.1 var(--serif); display: flex; gap: 12px; align-items: baseline; }
+.routes h2::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--dc); flex: none; transform: translateY(-3px); }
+.routes p { color: var(--muted); max-width: 52ch; }
+.routes p b { color: var(--ink); font-weight: 500; }
+.routes li[data-d="see"] { --dc: var(--see) } .routes li[data-d="build"] { --dc: var(--build) } .routes li[data-d="gather"] { --dc: var(--gather) } .routes li[data-d="tell"] { --dc: var(--tell) } .routes li[data-d="press"] { --dc: var(--ink) }
+.elsewhere { display: flex; flex-wrap: wrap; gap: 8px 26px; padding-bottom: 60px; font-size: 15px; }
+.elsewhere a { border-bottom: 1px solid var(--rule); }
+.elsewhere a:hover { border-color: var(--ink); }
+.cform { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; max-width: 760px; padding-bottom: 50px; }
+.cform label { display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
+.cform .wide { grid-column: 1 / -1; }
+.cform input, .cform select, .cform textarea { font: 400 16px/1.4 var(--sans); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 10px 0; border-radius: 0; }
+.cform select option { background: var(--paper); }
+.cform textarea { border: 1px solid var(--rule); padding: 12px; resize: vertical; }
+.cform input:focus-visible, .cform select:focus-visible, .cform textarea:focus-visible { outline: 1.5px solid #c8322a; outline-offset: 3px; border-color: var(--ink); }
+.c-head p a { border-bottom: 1px solid var(--rule); }
+.cform .send { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; font-size: 14px; color: var(--muted); }
+.cform .btn { font: 500 15px/1 var(--sans); color: var(--ink); border-bottom: 1.5px solid #c8322a; padding: 10px 2px; }
+.cform .btn:active { transform: scale(.97); }
+.cform .send a { color: var(--ink); border-bottom: 1px solid var(--rule); }
+@media (max-width: 700px) { .cform { grid-template-columns: 1fr; } }
+.pending { font-size: 13px; color: var(--muted); border-left: 2px solid var(--build); padding-left: 10px; margin-bottom: 26px; }
+@media (max-width: 700px) { .routes li { grid-template-columns: 1fr; } }
+</style></head>
+<body data-page="contact">
+<div class="wrap"><header class="top" id="top"></header>
+<main>
+  <section class="c-head"><h1>Write to me</h1><p>If something here landed with you, I want to hear about it. Tell me a little about what you are building, and which of these brought you here. Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a>.</p></section>
+  <form class="cform" id="cform">
+    <label>What is it about?<select name="about" id="about"><option value="see">About the work</option><option value="build">Partnering</option><option value="gather">Holding the space</option><option value="tell">Telling your story</option><option value="press">Press</option><option value="other">Something else</option></select></label>
+    <label>Your name<input name="name" autocomplete="name" required></label>
+    <label>Your email<input name="email" type="email" autocomplete="email" required></label>
+    <label class="wide">Your message<textarea name="msg" rows="6" required></textarea></label>
+    <div class="send wide"><button class="btn" type="submit">Send</button><span>Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a></span></div>
+  </form>
+  <ul class="routes">
+    <li data-d="see"><h2>About the work</h2><p><b>Curating a show, or looking for prints?</b> For curators, galleries, collectors and press: exhibitions, commissions and prints of the series.</p></li>
+    <li data-d="build"><h2>Partnering</h2><p><b>Building something people will gather in?</b> For funders, partners and NGOs: organisations, places and programs that need someone who has started them before.</p></li>
+    <li data-d="gather"><h2>Holding the space</h2><p><b>Hosting a group, a program or a festival?</b> For communities, institutes and festival hosts: facilitation, program design, talks.</p></li>
+    <li data-d="tell"><h2>Telling your story</h2><p><b>Doing good work that nobody sees yet?</b> For organisations: campaigns, reels, interviews and films.</p></li>
+    <li data-d="press"><h2>Press</h2><p><b>Writing about art, peace-building or community?</b> Ask for the press kit, photographs and a short bio.</p></li>
+  </ul>
+  <nav class="elsewhere" aria-label="Elsewhere"><a href="https://www.instagram.com/sharon.avraham_/" target="_blank" rel="noopener">Instagram</a><a href="https://jointogatherproject.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://sharonavraham.darkroom.com/" target="_blank" rel="noopener">Prints</a></nav>
+</main><footer class="foot"></footer></div>
+<script src="data.js"></script><script src="media.js"></script><script src="myc.js"></script><script src="site.js"></script>
+<script>trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "home.html" }, { label: "Write to me" }], "contact");
+// The door you came from picks the topic
+const f = document.getElementById("cform"), about = document.getElementById("about"), h = location.hash.slice(1);
+if ([...about.options].some(o => o.value === h)) about.value = h;
+// shortcut: no server yet, so Send opens the visitor's mail app with the message filled in; on launch, point the form at a form service (Formspree or a Cloudflare Pages function) so it sends directly
+f.addEventListener("submit", e => { e.preventDefault(); const d = new FormData(f), topic = about.options[about.selectedIndex].text;
+  location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(`${topic}, from ${d.get("name")}`)}&body=${encodeURIComponent(`${d.get("msg")}
+
+${d.get("name")}
+${d.get("email")}`)}`; });
+</script>
+</body></html>

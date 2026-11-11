@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About, Sharon Avraham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="myc.css"><link rel="stylesheet" href="map.css">
+<style>
+  .door-head h1.ask { font-size: clamp(44px, 6.2vw, 92px); max-width: 15ch; }
+  .name { font: 400 clamp(34px, 4vw, 52px)/1 var(--serif); margin: 0 0 22px; }
+  .name span { display: block; margin-top: 10px; font: 400 14px var(--sans); color: var(--muted); letter-spacing: 0; }
+  .portrait-wrap { position: relative; align-self: start; overflow: hidden; touch-action: pan-y; }
+  .portrait-wrap .colour { position: absolute; inset: 0; filter: none; opacity: 0; transition: opacity .6s cubic-bezier(.23,1,.32,1);
+    --g: #000 0%, rgba(0,0,0,.6) 55%, rgba(0,0,0,.15) 80%, transparent 100%;
+    -webkit-mask-image: radial-gradient(var(--rx0, 58%) var(--ry0, 48%) at var(--x0, 50%) var(--y0, 50%), var(--g)), radial-gradient(var(--rx1, 47%) var(--ry1, 39%) at var(--x1, 50%) var(--y1, 50%), var(--g)), radial-gradient(var(--rx2, 40%) var(--ry2, 33%) at var(--x2, 50%) var(--y2, 50%), var(--g));
+    mask-image: radial-gradient(var(--rx0, 58%) var(--ry0, 48%) at var(--x0, 50%) var(--y0, 50%), var(--g)), radial-gradient(var(--rx1, 47%) var(--ry1, 39%) at var(--x1, 50%) var(--y1, 50%), var(--g)), radial-gradient(var(--rx2, 40%) var(--ry2, 33%) at var(--x2, 50%) var(--y2, 50%), var(--g)); }
+  .portrait-wrap.lit .colour { opacity: 1; }
+</style>
+</head>
+<body data-page="about">
+<div class="wrap">
+  <header class="top"></header>
+  <main>
+    <section class="door-head">
+      <h1 class="ask">For twenty years I&rsquo;ve asked what brings people together</h1>
+      <div class="map-tools"><button id="toggle" aria-pressed="false">View as list</button><span class="note" id="hint"></span></div>
+    </section>
+
+    <figure class="myc" id="map"><svg id="myc" role="group" aria-label="Mycelium map: the four doors above ground, projects connected underground, all rooted in one question."></svg></figure>
+    <div id="asList" class="list" hidden></div>
+
+    <section class="two">
+      <div class="portrait-wrap" id="portrait">
+        <img class="portrait" src="img/p/about-1.jpg" alt="Portrait of Sharon Avraham">
+        <img class="portrait colour" src="img/p/about-1.jpg" alt="" aria-hidden="true">
+      </div>
+      <div class="prose">
+        <h2 class="name">Sharon Avraham <span>he/him &middot; lives between Portugal and Israel</span></h2>
+        <p>I photograph to understand the world around me. I build things to allow people to meet. Belonging, for me, is an elusive particle: something we have forgotten and have to relearn in the reality we live in now. Almost everything I have made grows out of that search.</p>
+        <p>I call myself an artivist. I believe the job of art is to aim a sharp lens at life, at society and at the self, and to make a statement. I move between conceptual and documentary work.</p>
+        <p>Burning Man was a turning point for me. I saw a world where the line between art and the people around it blends, and where that inspiration draws people together. I came home and was part of the core team that created Midburn in 2011. I built and led its art department, and with a group of talented artists I formed Fugara, a collective that made interactive installations out of wood, metal and light and carried them beyond the burn.</p>
+        <p>For over a decade I developed my family&rsquo;s farm in Ein Vered as a community lab. People came to make art, live together and learn how to run things themselves. It was the fertile ground that helped shape Midburn and Fugara, a place for meetings between Israelis and Palestinians, and a gathering place for people from all walks of life and from all around the world.</p>
+        <p>Since 2023 most of my work goes into shared life between Israelis and Palestinians. I&rsquo;m one of the co-founders of ELHAM, The Day After, an NGO focused on grassroots initiatives between Israel and Palestine and across the Middle East as a whole. And the camera is always with me: in the field, in the office and on the stage.</p>
+        <p>Today I visit intentional communities with ToGather, a research project that asks people how they actually stay together, and I write about it almost every week. I design community life programs at the Arava Institute, together with Israelis, Palestinians and people from all around the world. And I help projects I&rsquo;m aligned with share their story through social media.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2>What I talk about</h2>
+      <ul class="talks">
+        <li>Cultural peace-building</li><li>Creating cultural spaces</li><li>The role of artivism in activism</li>
+        <li>Community building</li><li>Community research</li><li>Israeli-Palestinian community building</li>
+        <li>Intentional communities</li><li>Building festivals as communities</li>
+      </ul>
+      <p><a class="btn" href="contact.html#gather" style="border-bottom:1.5px solid var(--gather);padding-bottom:3px">Invite me to speak</a></p>
+    </section>
+
+    <section class="sec">
+      <h2>Founded and co-founded</h2>
+      <ol class="tl">
+        <li><span class="y">2011</span><span><b><a href="project.html#midburn">Midburn</a></b><small>NGO, founding member and initiator</small></span><i class="dot build"></i></li>
+        <li><span class="y">2012</span><span><b><a href="project.html#farm">David's Farm</a></b><small>Community lab, founder</small></span><i class="dot build"></i></li>
+        <li><span class="y">2014</span><span><b><a href="project.html#fugara">Fugara</a></b><small>Art collective and NGO, co-founder</small></span><i class="dot build"></i></li>
+        <li><span class="y">2023</span><span><b><a href="project.html#elham">ELHAM, The Day After</a></b><small>NGO, one of 14 co-founders</small></span><i class="dot build"></i></li>
+        <li><span class="y">2023</span><span><b><a href="project.html#togather">ToGather</a></b><small>Research project, founder</small></span><i class="dot build"></i></li>
+      </ol>
+    </section>
+  </main>
+  <footer class="foot"></footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script><script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="data.js"></script><script src="media.js"></script><script src="series.js"></script><script src="myc.js"></script><script src="site.js"></script><script src="map.js"></script>
+<script>
+// Sharon: the mycelium is the main element of About. Phones open on the list, the map is one tap away.
+drawMycelium(document.getElementById("myc"));
+const list = document.getElementById("asList"), fig = document.getElementById("map"), btn = document.getElementById("toggle");
+document.getElementById("hint").textContent = matchMedia("(hover: hover)").matches ? "Point at a project to see what it feeds. Click to open it." : "Tap a project to see what it feeds, tap again to open it. Swipe sideways for more.";
+list.innerHTML = Object.entries(DOORS).map(([d, door]) => `<p class="eyebrow" style="padding:26px 0 10px;color:var(--${d})">${door.title}</p>` +
+  PROJECTS.filter(p => p.doors[0] === d).map(p => `<a class="row" href="${projUrl(p)}"><span class="yr">${esc(p.years)}</span><h3>${esc(p.title)}</h3>
+  <p class="ess">${esc(p.essence)}</p><span class="dots">${dots(p)}</span></a>`).join("")).join("");
+const show = asList => { list.hidden = !asList; fig.hidden = asList; btn.textContent = asList ? "View as mycelium" : "View as list"; btn.setAttribute("aria-pressed", asList); };
+btn.onclick = () => show(list.hidden);
+if (innerWidth < 700) show(true);
+
+// The portrait: hovering lets colour bleed through a soft, uneven shape (three blobs that trail the pointer at different speeds)
+(() => {
+  const wrap = document.getElementById("portrait"), still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const blobs = [{ k: .16, r: 58, ox: 0, oy: 0 }, { k: .09, r: 47, ox: 11, oy: -9 }, { k: .05, r: 40, ox: -10, oy: 10 }].map(b => ({ ...b, x: 50, y: 50 }));
+  let tx = 50, ty = 50, on = false, raf = 0;
+  const frame = now => {
+    blobs.forEach((b, i) => {
+      b.x += (tx + b.ox - b.x) * (still ? 1 : b.k); b.y += (ty + b.oy - b.y) * (still ? 1 : b.k);
+      const w = still ? 0 : Math.sin(now / (900 + i * 370) + i * 2) * 4;   // a slow wobble keeps the edge alive
+      wrap.style.setProperty(`--x${i}`, b.x.toFixed(2) + "%"); wrap.style.setProperty(`--y${i}`, b.y.toFixed(2) + "%");
+      wrap.style.setProperty(`--rx${i}`, (b.r + w).toFixed(2) + "%"); wrap.style.setProperty(`--ry${i}`, (b.r * .82 - w * .6).toFixed(2) + "%");
+    });
+    raf = on || blobs.some(b => Math.abs(b.x - tx - b.ox) > .2) ? requestAnimationFrame(frame) : 0;
+  };
+  const move = e => { const r = wrap.getBoundingClientRect(); tx = Math.min(78, Math.max(22, (e.clientX - r.left) / r.width * 100)); ty = Math.min(80, Math.max(20, (e.clientY - r.top) / r.height * 100));   // keep the shape inside the photo
+    if (!on) { on = true; wrap.classList.add("lit"); if (still) blobs.forEach(b => { b.x = tx + b.ox; b.y = ty + b.oy; }); } if (!raf) raf = requestAnimationFrame(frame); };
+  wrap.addEventListener("pointermove", move); wrap.addEventListener("pointerdown", move);
+  const off = () => { on = false; wrap.classList.remove("lit"); };
+  wrap.addEventListener("pointerleave", e => { if (e.pointerType !== "touch") off(); });
+  document.addEventListener("pointerdown", e => { if (on && !wrap.contains(e.target)) off(); });
+})();
+</script>
+</body></html>

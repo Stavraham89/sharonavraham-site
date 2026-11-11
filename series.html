@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Series, Sharon Avraham</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="site.css"><link rel="stylesheet" href="myc.css">
+<style>
+/* A series as a walk: photographs and words in a changing rhythm, one mycelium thread through every stop.
+   Photos sit small; any of them opens in a light viewer with a thread of thumbnails to travel by. */
+.s-head { display: grid; gap: 14px; max-width: 820px; padding-block: 40px 30px; }
+.s-meta { font-size: 13px; color: var(--muted); }
+.s-head h1 { font-size: clamp(52px, 7vw, 104px); line-height: .93; letter-spacing: -.015em; }
+.s-head .follow { justify-self: start; font-size: 14px; border-bottom: 1.5px solid var(--see); padding-bottom: 2px; }
+.s-head .follow:hover { color: var(--see); }
+.s-head .sub { font: italic 400 clamp(22px, 2.3vw, 28px)/1.25 var(--serif); color: var(--muted); }
+
+.walk { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: clamp(56px, 9vw, 120px); padding-block: 30px 90px; }
+.walk svg.thread { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.walk svg.thread path { fill: none; stroke: var(--muted); stroke-width: 1.1; stroke-linecap: round; opacity: .55; transition: stroke-dashoffset 1.6s cubic-bezier(.65,0,.25,1); }
+.walk svg.thread path.branch { stroke-width: .7; opacity: .35; transition-duration: 1s; }
+.walk svg.thread circle { fill: var(--see); opacity: 0; transition: opacity .6s .9s; }
+.walk svg.thread .on { stroke-dashoffset: 0 !important; }
+.walk svg.thread circle.on { opacity: 1; }
+.stop { position: relative; z-index: 1; margin: 0; }
+.stop img { width: 100%; height: auto; display: block; background: var(--soft); }
+.stop button { display: block; width: 100%; cursor: zoom-in; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+@media (hover: hover) and (pointer: fine) { .stop button:hover { transform: scale(1.012); } }
+.stop button:active { transform: scale(.985); }
+.stop figcaption { font-size: 12px; color: var(--muted); margin-top: 8px; font-variant-numeric: tabular-nums; }
+.stop figcaption b { font: 400 17px/1.3 var(--serif); color: var(--ink); }
+.stop.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; }
+.stop.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+.stop.words { align-self: center; }
+.stop.words p { font: 400 clamp(19px, 1.55vw, 22px)/1.6 var(--serif); max-width: 46ch; text-wrap: pretty; background: var(--paper); }
+.stop.quote blockquote { margin: 0; font: italic 400 clamp(24px, 2.5vw, 34px)/1.3 var(--serif); max-width: 30ch; background: var(--paper); }
+.stop.quote cite { display: block; font: 400 13px/1.4 var(--sans); font-style: normal; color: var(--muted); margin-top: 12px; }
+/* placements across a 12-column field */
+.p-l  { grid-column: 1 / span 5; } .p-r { grid-column: 8 / span 5; } .p-c { grid-column: 4 / span 5; }
+.p-ln { grid-column: 2 / span 3; } .p-rn { grid-column: 9 / span 3; } .p-cn { grid-column: 6 / span 3; }
+.p-wide { grid-column: 3 / span 8; } .p-full { grid-column: 2 / span 10; }
+.w-l { grid-column: 2 / span 5; } .w-r { grid-column: 7 / span 5; } .w-c { grid-column: 4 / span 6; }
+
+.s-after { border-top: 1px solid var(--rule); padding-block: 22px 60px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.s-after a { font: 400 26px/1.1 var(--serif); }
+.s-after a:hover { color: var(--see); }
+.s-after span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+
+/* The light viewer: the photograph large, a thread of small thumbnails to travel by */
+.lb { position: fixed; inset: 0; z-index: 30; background: var(--paper); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; padding: 16px max(16px, 2vw) 12px; }
+.lb[hidden] { display: none; }
+.lb .lb-bar { display: flex; justify-content: space-between; align-items: baseline; font-size: 13px; color: var(--muted); padding-bottom: 10px; }
+.lb .lb-bar b { font: 400 22px/1 var(--serif); color: var(--ink); margin-right: 12px; }
+.lb .lb-bar button { padding: 8px 2px; color: var(--ink); }
+.lb .stage { position: relative; display: grid; place-items: center; min-height: 0; overflow: hidden; }
+.lb .stage img { max-width: 100%; max-height: calc(100svh - 170px); object-fit: contain; box-shadow: 0 0 0 1px var(--rule); }
+.lb .hit { position: absolute; top: 0; bottom: 0; width: 35%; }
+.lb .prev { left: 0; cursor: w-resize; } .lb .next { right: 0; cursor: e-resize; }
+.lb .strip { position: relative; margin-top: 12px; overflow-x: auto; scrollbar-width: none; }
+.lb .strip::-webkit-scrollbar { display: none; }
+.lb .strip-in { position: relative; display: flex; gap: 10px; align-items: center; padding: 10px 2px 6px; width: max-content; margin-inline: auto; }
+.lb .strip svg { position: absolute; left: 0; top: 0; height: 100%; overflow: visible; pointer-events: none; }
+.lb .strip svg path { fill: none; stroke: var(--muted); stroke-width: 1; opacity: .5; }
+.lb .strip button { position: relative; height: 54px; flex: none; opacity: .45; transition: opacity .3s, transform .3s; }
+.lb .strip button img { height: 100%; width: auto; display: block; }
+.lb .strip button:hover { opacity: .8; }
+.lb .strip button[aria-current="true"] { opacity: 1; transform: translateY(-4px); }
+.lb .strip button[aria-current="true"]::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: var(--see); }
+
+@media (max-width: 760px) {
+  .walk { grid-template-columns: 1fr; row-gap: 46px; padding-left: 22px; }
+  .walk > .stop { grid-column: 1 !important; }
+  .stop.trio { grid-template-columns: 1fr 1fr; }
+  .lb .strip button { height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .walk svg.thread path, .walk svg.thread circle, .stop button, .lb .strip button { transition: none; } }
+</style></head>
+<body data-door="see">
+<div class="wrap"><header class="top" id="top"></header><main id="main"></main><footer class="foot"></footer></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lb-bar"><span><b id="lbT"></b><span id="lbN"></span></span><button id="lbX">Close</button></div>
+  <div class="stage"><img id="lbI" alt=""><button class="hit prev" aria-label="Previous photograph"></button><button class="hit next" aria-label="Next photograph"></button></div>
+  <div class="strip" id="lbS"><div class="strip-in" id="lbSI"></div></div>
+</div>
+<script src="data.js"></script><script src="media.js"></script><script src="series.js"></script><script src="myc.js"></script><script src="site.js"></script>
+<script>
+// Build the walk from series.js (words) and media.js (photographs)
+const RHYTHM = [1, 2, 1, 1, 3, 1, 2, 1];                        // how many photographs per stop, in turn
+const SINGLE = { wide: ["p-l", "p-r", "p-c", "p-wide"], tall: ["p-ln", "p-rn", "p-cn"] };
+let S, PH, lbAt = 0;
+
+function seriesPage() {
+  S = SER[location.hash.slice(1)];
+  if (!S) { trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "home.html" }, { label: "What I see", href: "see.html", door: "see" }], "see");
+    document.getElementById("main").innerHTML = `<header class="s-head"><h1>This series isn't here.</h1><p class="sub">The link may be old. <a href="see.html">See all the series</a> or <a href="contact.html">write to me</a>.</p></header>`; return; }
+  const SIB = SERIES_TEXT.filter(t => t.group === S.group), i = SIB.indexOf(S), GROUP = `see.html?group=${encodeURIComponent(S.group)}`;   // a walk stays inside its theme
+  PH = S.folders.flatMap(f => (MEDIA[f] || []).map(([file, w, h]) => ({ f, file, w, h })));
+  document.title = `${S.title}, Sharon Avraham`;
+  trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "home.html" }, { label: "What I see", href: "see.html", door: "see" }, { label: S.group, href: GROUP, door: "see" }, { label: S.title, door: "see" }], "see");
+
+  // words to weave in: every paragraph of the essay, and the attributed quote
+  const words = S.essay.map(t => ({ kind: "words", t }));
+  if (S.quotes[0]) words.splice(Math.min(2, words.length), 0, { kind: "quote", t: S.quotes[0] });
+  // photographs grouped by the rhythm; words spread evenly between the groups
+  const groups = []; let k = 0, r = 0;
+  while (k < PH.length) { const n = Math.min(RHYTHM[r++ % RHYTHM.length], PH.length - k); groups.push([...Array(n).keys()].map(j => k + j)); k += n; }
+  const every = Math.max(1, Math.floor(groups.length / (words.length + 1)));
+  const stops = []; let wi = 0, side = 0;
+  const who = n => S.people?.[PH[n].f]?.[PH[n].file.slice(0, 2)];   // [name, their own words] for people in the photographs
+  groups.forEach((g, gi) => {
+    stops.push({ kind: "photos", g });
+    g.forEach(n => { const p = who(n); if (p && p[1]) stops.push({ kind: "quote", t: [p[1], p[0]] }); });   // they speak right after their photograph
+    if (wi < words.length && (gi % every === every - 1 || gi === 0)) stops.push(words[wi++]);
+  });
+  while (wi < words.length) stops.push(words[wi++]);
+
+  const img = n => { const p = PH[n];
+    return `<button data-p="${n}" aria-label="Enlarge photograph ${n + 1}"><img src="img/w/${p.f}/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(S.title)}, photograph ${n + 1} of ${PH.length}" loading="${n < 2 ? "eager" : "lazy"}"></button>`; };
+  const cap = n => { const p = who(n); return p ? `<figcaption><b>${esc(p[0])}</b></figcaption>` : PH.length > 1 ? `<figcaption>${n + 1} / ${PH.length}</figcaption>` : ""; };
+  let lastPlace = "p-c";
+  const html = stops.map((st, si) => {
+    if (st.kind === "photos") {
+      const g = st.g;
+      if (g.length === 1) { const p = PH[g[0]], tall = p.h > p.w * 1.05, set = tall ? SINGLE.tall : SINGLE.wide;
+        lastPlace = si === 0 ? (tall ? "p-cn" : "p-wide") : set[side++ % set.length];
+        return `<figure class="stop ${lastPlace}">${img(g[0])}${cap(g[0])}</figure>`; }
+      lastPlace = g.length === 2 ? "p-wide" : "p-full";
+      return `<figure class="stop ${g.length === 2 ? "duo" : "trio"} ${lastPlace}">${g.map(n => `<div>${img(n)}${cap(n)}</div>`).join("")}</figure>`;
+    }
+    // words sit across from the photograph before them
+    const place = /p-l\b|p-ln/.test(lastPlace) ? "w-r" : /p-r\b|p-rn/.test(lastPlace) ? "w-l" : "w-c";
+    if (st.kind === "quote") return `<div class="stop quote ${place}"><blockquote>“${esc(st.t[0])}”<cite>${esc(st.t[1])}</cite></blockquote></div>`;
+    return `<div class="stop words ${place}"><p>${esc(st.t)}</p></div>`;
+  }).join("");
+
+  const prev = SIB[(i - 1 + SIB.length) % SIB.length], next = SIB[(i + 1) % SIB.length];
+  document.getElementById("main").innerHTML = `
+    <header class="s-head">
+      <p class="s-meta">${esc(S.group)}${S.place ? `, ${esc(S.place)}` : ""}${PH.length > 1 ? `. ${PH.length} photographs` : ""}.</p>
+      <h1>${esc(S.title)}</h1>
+      ${S.sub ? `<p class="sub">${esc(S.sub)}</p>` : ""}
+      ${S.link ? `<a class="follow" href="${S.link[1]}" target="_blank" rel="noopener">${esc(S.link[0])}</a>` : ""}
+      ${S.group === "ToGather" ? `<a class="follow" href="project.html#togather">Part of ToGather, my research on how communities hold together</a>` : ""}
+    </header>
+    <section class="walk" id="walk">${html}</section>
+    <section class="invite"><p>Curating a show, or looking for prints?</p><a class="btn" href="contact.html#see">Write to me about the work</a></section>
+    <nav class="s-after" aria-label="More series">
+      <a href="series.html#${prev.id}"><span>Previous</span>${esc(prev.title)}</a>
+      <a href="${GROUP}"><span>Back to</span>${esc(S.group)}</a>
+      <a href="series.html#${next.id}" style="text-align:right"><span>Next</span>${esc(next.title)}</a>
+    </nav>`;
+  scrollTo(0, 0);
+  requestAnimationFrame(threadWalk);
+}
+
+// One thread through every stop: it leaves each stop from the side facing the next and grows as you reach it
+let io;
+function threadWalk() {
+  const walk = document.getElementById("walk"); if (!walk) return;
+  walk.querySelector("svg.thread")?.remove();
+  const NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"); svg.classList.add("thread"); svg.setAttribute("aria-hidden", "true"); walk.prepend(svg);
+  const W = walk.getBoundingClientRect(), stops = [...walk.querySelectorAll(".stop")], narrow = innerWidth <= 760;
+  const box = el => { const b = el.getBoundingClientRect(); return { x: b.left - W.left, y: b.top - W.top, w: b.width, h: b.height }; };
+  const anchors = stops.map(el => { const b = box(el), mid = b.x + b.w / 2;
+    if (narrow) return { x: 9, y: b.y + Math.min(40, b.h / 2) };   // in the left gutter, clear of the door line
+    if (mid < W.width * .42) return { x: b.x + b.w + 14, y: b.y + b.h * .5 };
+    if (mid > W.width * .58) return { x: b.x - 14, y: b.y + b.h * .5 };
+    return { x: b.x + b.w * mycRnd(.3, .7), y: b.y - 18 };
+  });
+  io?.disconnect();
+  const segs = [];
+  for (let n = 0; n < anchors.length - 1; n++) {
+    const a = anchors[n], b = anchors[n + 1], g = document.createElementNS(NS, "g");
+    const pts = mycHypha(a, b, 14, .1, narrow ? 0 : mycRnd(-.18, .18));
+    const p = document.createElementNS(NS, "path"); p.setAttribute("d", mycSmooth(pts)); g.appendChild(p);
+    // a few fine side branches, as if the thread were feeling its way
+    for (let j = 0; j < (narrow ? 1 : 3); j++) { const s0 = pts[2 + Math.floor(Math.random() * (pts.length - 4))], ang = mycRnd(0, Math.PI * 2), l = mycRnd(16, 48);
+      const bp = document.createElementNS(NS, "path"); bp.classList.add("branch"); bp.setAttribute("d", mycSmooth(mycHypha(s0, { x: s0.x + Math.cos(ang) * l, y: s0.y + Math.sin(ang) * l }, 5, .2))); g.appendChild(bp); }
+    const c = document.createElementNS(NS, "circle"); c.setAttribute("cx", b.x); c.setAttribute("cy", b.y); c.setAttribute("r", 3); g.appendChild(c);
+    svg.appendChild(g);
+    g.querySelectorAll("path").forEach(path => { const L = path.getTotalLength(); path.style.strokeDasharray = L; path.style.strokeDashoffset = L; });
+    segs.push({ g, target: stops[n + 1] });
+  }
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { segs.forEach(s => s.g.querySelectorAll("path, circle").forEach(e => e.classList.add("on"))); return; }
+  io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return;
+    const s = segs.find(s => s.target === e.target); if (s) s.g.querySelectorAll("path, circle").forEach(el => el.classList.add("on")); io.unobserve(e.target); }), { rootMargin: "0px 0px -25% 0px" });
+  segs.forEach(s => io.observe(s.target));
+}
+
+// The light viewer: open any photograph, travel by arrows, keys, swipe or the thread of thumbnails
+const lb = document.getElementById("lb");
+function lbOpen(n) {
+  lbAt = (n + PH.length) % PH.length; const p = PH[lbAt];
+  document.getElementById("lbI").src = `img/w/${p.f}/${p.file}`;
+  document.getElementById("lbI").alt = `${S.title}, photograph ${lbAt + 1} of ${PH.length}`;
+  document.getElementById("lbT").textContent = S.title;
+  const person = S.people?.[p.f]?.[p.file.slice(0, 2)];
+  document.getElementById("lbN").textContent = (person ? person[0] + ", " : "") + `${lbAt + 1} of ${PH.length}`;
+  const si = document.getElementById("lbSI");
+  if (si.dataset.series !== S.id) {
+    si.dataset.series = S.id;
+    si.innerHTML = PH.map((q, j) => `<button data-t="${j}" aria-label="Photograph ${j + 1}"><img src="img/t/${q.f}/${q.file}" alt="" loading="lazy"></button>`).join("");
+  }
+  si.querySelectorAll("[data-t]").forEach(b => b.setAttribute("aria-current", +b.dataset.t === lbAt));
+  const wasHidden = lb.hidden;
+  if (wasHidden) { lb.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("lbX").focus(); requestAnimationFrame(stripThread); }
+  si.querySelector(`[data-t="${lbAt}"]`)?.scrollIntoView({ inline: "center", block: "nearest", behavior: wasHidden ? "auto" : "smooth" });
+}
+function lbClose() { lb.hidden = true; document.body.style.overflow = ""; document.querySelector(`[data-p="${lbAt}"]`)?.focus(); }
+// the thumbnails hang on one wandering thread
+function stripThread() {
+  const si = document.getElementById("lbSI"); si.querySelector("svg")?.remove();
+  const NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), w = si.scrollWidth, h = si.clientHeight;
+  svg.setAttribute("width", w); svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  const p = document.createElementNS(NS, "path"); p.setAttribute("d", mycSmooth(mycHypha({ x: 0, y: h * .55 }, { x: w, y: h * .55 }, Math.max(8, Math.round(w / 60)), .02)));
+  svg.appendChild(p); si.prepend(svg);
+}
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-p]"); if (p) return lbOpen(+p.dataset.p);
+  const t = e.target.closest("[data-t]"); if (t) return lbOpen(+t.dataset.t);
+  if (!lb.hidden) { if (e.target.closest(".prev")) lbOpen(lbAt - 1); else if (e.target.closest(".next")) lbOpen(lbAt + 1); else if (e.target.closest("#lbX")) lbClose(); }
+});
+document.addEventListener("keydown", e => { if (lb.hidden) return;
+  if (e.key === "Escape") lbClose(); if (e.key === "ArrowRight") lbOpen(lbAt + 1); if (e.key === "ArrowLeft") lbOpen(lbAt - 1); });
+let tx = null;
+lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) lbOpen(lbAt + (dx < 0 ? 1 : -1)); tx = null; });
+
+seriesPage();
+addEventListener("hashchange", seriesPage);
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(threadWalk, 200); });
+addEventListener("load", threadWalk);   // images settle the layout; redraw the thread to match
+</script>
+</body></html>
