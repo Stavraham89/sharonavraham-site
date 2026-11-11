@@ -1,6 +1,21 @@
 <!doctype html>
+<html lang="en">
 <meta charset="utf-8">
 <title>What I see, Sharon Avraham</title>
+<!-- seo: written by tools/seo.py -->
+<meta name="description" content="Photography by Sharon Avraham: artivism, photo stories, portraits and personal projects, from the Balfour protests in Jerusalem to the Dead Sea.">
+<link rel="canonical" href="https://sharonavraham.com/see.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sharon Avraham">
+<meta property="og:title" content="What I see, Sharon Avraham">
+<meta property="og:description" content="Photography by Sharon Avraham: artivism, photo stories, portraits and personal projects, from the Balfour protests in Jerusalem to the Dead Sea.">
+<meta property="og:url" content="https://sharonavraham.com/see.html">
+<meta property="og:image" content="https://sharonavraham.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e0e0d">
+<!-- /seo -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +213,7 @@ aside .side-top .name { visibility: hidden; }
 <div class="site">
   <aside>
     <div class="in">
-      <div class="side-top"><a class="name" href="home.html">Sharon Avraham</a><button class="close home-link" aria-label="Close the details">Close ✕</button></div>
+      <div class="side-top"><a class="name" href="./">Sharon Avraham</a><button class="close home-link" aria-label="Close the details">Close ✕</button></div>
       <nav class="index" aria-label="Series"></nav>
       <div class="pages">
         <a href="about.html">About</a>
@@ -597,7 +612,7 @@ size();
 offset = -setW - (setW - W) / 2; wrap(); apply();
 route();
 const themed = DOOR === "see" && THEME && SERIES.length && SERIES.every(s => s.group === THEME);
-trail($("top"), [{ label: "Sharon Avraham", href: "home.html" }, themed ? { label: DOORS.see.title, href: "see.html", door: "see" } : { label: DOORS[DOOR].title, door: DOOR }, ...(themed ? [{ label: THEME, door: "see" }] : [])], DOOR);
+trail($("top"), [{ label: "Sharon Avraham", href: "./" }, themed ? { label: DOORS.see.title, href: "see.html", door: "see" } : { label: DOORS[DOOR].title, door: DOOR }, ...(themed ? [{ label: THEME, door: "see" }] : [])], DOOR);
 document.title = `${themed ? THEME : DOORS[DOOR].title}, Sharon Avraham`;
 document.querySelector("#hello .line").textContent = themed ? THEME : DOORS[DOOR].title;
 document.querySelector("#hello .sub-line").textContent = themed ? (THEME_LINE[THEME] || DOORS.see.line) : DOORS[DOOR].line;

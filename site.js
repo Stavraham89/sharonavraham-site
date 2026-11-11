@@ -4,7 +4,7 @@ const here = location.pathname.split("/").pop() || "index.html";
 const projUrl = p => p.link && !p.link.startsWith("http") && p.link !== "#" ? p.link : `project.html#${p.ref || p.id}`;
 const dots = p => p.doors.map((d, i) => `<i class="dot ${d}${i ? " hollow" : ""}" title="${DOORS[d].name}"></i>`).join("");
 
-const HOME = { label: "Sharon Avraham", href: "home.html" };
+const HOME = { label: "Sharon Avraham", href: "./" };
 function chrome() {
   const top = document.querySelector("header.top"), page = document.body.dataset.page;
   const names = { about: "About", press: "Press", map: "Mycelium" };
@@ -56,7 +56,7 @@ const PROOF = {
 function projectPage() {
   const p = P[location.hash.slice(1)];
   if (!p) { trail(document.querySelector("header.top"), [HOME, { label: "Not found" }]);
-    document.querySelector("main").innerHTML = `<section class="case-head"><div><h1>This project isn't here.</h1><p class="ess">The link may be old. <a href="home.html">Go to the homepage</a> or <a href="contact.html">write to me</a>.</p></div></section>`; return; }
+    document.querySelector("main").innerHTML = `<section class="case-head"><div><h1>This project isn't here.</h1><p class="ess">The link may be old. <a href="./">Go to the homepage</a> or <a href="contact.html">write to me</a>.</p></div></section>`; return; }
   const d = p.doors[0];
   trail(document.querySelector("header.top"), [HOME, { label: DOORS[d].title, href: DOORS[d].url, door: d }, { label: p.title, door: d }], d);
   // photos from the old-site harvest when the project has a folder, otherwise the mockup photos

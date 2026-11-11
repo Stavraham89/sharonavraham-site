@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Series, Sharon Avraham</title>
+<!-- seo: written by tools/seo.py -->
+<meta name="description" content="A photo series by Sharon Avraham.">
+<link rel="canonical" href="https://sharonavraham.com/series.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sharon Avraham">
+<meta property="og:title" content="Series, Sharon Avraham">
+<meta property="og:description" content="A photo series by Sharon Avraham.">
+<meta property="og:url" content="https://sharonavraham.com/series.html">
+<meta property="og:image" content="https://sharonavraham.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0e0e0d">
+<!-- /seo -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="site.css"><link rel="stylesheet" href="myc.css">
@@ -90,12 +104,12 @@ let S, PH, lbAt = 0;
 
 function seriesPage() {
   S = SER[location.hash.slice(1)];
-  if (!S) { trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "home.html" }, { label: "What I see", href: "see.html", door: "see" }], "see");
+  if (!S) { trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "./" }, { label: "What I see", href: "see.html", door: "see" }], "see");
     document.getElementById("main").innerHTML = `<header class="s-head"><h1>This series isn't here.</h1><p class="sub">The link may be old. <a href="see.html">See all the series</a> or <a href="contact.html">write to me</a>.</p></header>`; return; }
   const SIB = SERIES_TEXT.filter(t => t.group === S.group), i = SIB.indexOf(S), GROUP = `see.html?group=${encodeURIComponent(S.group)}`;   // a walk stays inside its theme
   PH = S.folders.flatMap(f => (MEDIA[f] || []).map(([file, w, h]) => ({ f, file, w, h })));
   document.title = `${S.title}, Sharon Avraham`;
-  trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "home.html" }, { label: "What I see", href: "see.html", door: "see" }, { label: S.group, href: GROUP, door: "see" }, { label: S.title, door: "see" }], "see");
+  trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "./" }, { label: "What I see", href: "see.html", door: "see" }, { label: S.group, href: GROUP, door: "see" }, { label: S.title, door: "see" }], "see");
 
   // words to weave in: every paragraph of the essay, and the attributed quote
   const words = S.essay.map(t => ({ kind: "words", t }));
