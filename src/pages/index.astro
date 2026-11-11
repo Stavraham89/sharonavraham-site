@@ -1,0 +1,555 @@
+---
+// Homepage, ported unchanged from handover-2026-11-10/mockup/index.html (approved mockup v13).
+// shortcut: CSS and JS stay inline and verbatim; split into components when the door pages need to share them.
+---
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sharon Avraham</title>
+<meta name="description" content="Sharon Avraham: photographer, artivist, community builder. Artivist with passion for humans.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style is:global>
+/* Layout: opens as a clean page (name, one sentence, an endless accordion of series). Clicking a series slides in the index and its details. */
+:root {
+  --paper: #fbfbf9;
+  --ink: #141414;
+  --muted: #86867f;
+  --rule: #e3e3dd;
+  --mark: #c8322a;
+  --serif: "Instrument Serif", "Times New Roman", Georgia, serif;
+  --sans: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --see: #d9533f; --build: #c98a1c; --gather: #2f9b7f; --tell: #4f63d9;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #0e0e0d; --ink: #ecece8; --muted: #84847d; --rule: #262624; --mark: #ff5b4f; --see: #ff7a64; --build: #f0b245; --gather: #5cc9a9; --tell: #8b9bff; color-scheme: dark } }
+:root[data-theme="dark"] { --paper: #0e0e0d; --ink: #ecece8; --muted: #84847d; --rule: #262624; --mark: #ff5b4f; --see: #ff7a64; --build: #f0b245; --gather: #5cc9a9; --tell: #8b9bff; color-scheme: dark }
+
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+html, body { height: 100% }
+body { background: var(--paper); color: var(--ink); font: 14px/1.5 var(--sans); overflow: hidden; }
+a { color: inherit; text-decoration: none }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer }
+:focus-visible { outline: 1.5px solid var(--mark); outline-offset: 3px }
+
+.site { height: 100%; display: grid; grid-template-columns: 0px minmax(0, 1fr); transition: grid-template-columns .7s var(--ease); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.detail .site { grid-template-columns: 290px minmax(0, 1fr); }
+
+/* Sidebar: hidden on the clean homepage, slides in once a series is opened */
+aside { min-width: 0; min-height: 0; overflow: hidden; }
+aside .in { width: 290px; height: 100%; padding: 34px 28px 24px 4px; display: flex; flex-direction: column; gap: 30px; overflow-y: auto; opacity: 0; transform: translateX(-16px); transition: opacity .4s, transform .6s var(--ease); }
+.detail aside .in { opacity: 1; transform: none; transition-delay: .25s; }
+.side-top { display: flex; justify-content: space-between; align-items: baseline; }
+.name { font: 600 12px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; }
+.close { font-size: 12px; color: var(--muted); }
+.close:hover { color: var(--ink); }
+.side-line { font: 400 25px/1.15 var(--serif); margin: 0; text-wrap: balance; }
+em { font-style: italic; }
+nav.index { display: grid; gap: 20px; padding-left: 14px; }
+.group h2 { font: 500 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+.group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.group button { position: relative; font-size: 14px; color: var(--muted); transition: color .2s; text-align: left; }
+.group button::before { content: ""; position: absolute; left: -13px; top: calc(50% - 3px); width: 6px; height: 6px; border-radius: 50%; background: var(--mark); transform: scale(0); transition: transform .25s; }
+.group button:hover, .group button[aria-current="true"] { color: var(--ink); }
+.group button[aria-current="true"]::before { transform: scale(1); }
+.pages { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+.pages a { border-bottom: 1px solid transparent; }
+.pages a:hover { border-color: var(--ink); }
+.note { font-size: 11px; color: var(--muted); }
+
+/* Home */
+#home { min-width: 0; min-height: 0; display: grid; align-content: center; gap: 26px; padding-block: 28px; }
+.hello { text-align: center; display: grid; gap: 14px; justify-items: center; transition: opacity .4s; }
+.hello .line { font: 400 clamp(34px, 4.4vw, 62px)/1.08 var(--serif); margin: 0; text-wrap: balance; }
+.hello .name { font-size: clamp(13px, 1.1vw, 16px); letter-spacing: .22em; }
+.hello { padding: 28px 40px; margin: -28px auto; } /* a generous hover area around the words */
+
+/* "humans" breathes: a very slow swell and release */
+.hello .line em { display: inline-block; transform-origin: 50% 65%; animation: breathe 7s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.07) } }
+
+/* A colourful glow follows the mouse inside the letters only, and fades out when the mouse leaves */
+@property --g { syntax: "<number>"; inherits: true; initial-value: 0; }
+.hello { --g: 0; transition: --g .9s ease; }
+.hello.lit { --g: 1; transition: --g .5s ease; }
+.glow {
+  color: transparent; -webkit-background-clip: text; background-clip: text;
+  /* --r (size) breathes and --hue drifts, both driven from script; colours sit only right around the cursor */
+  background-image:
+    radial-gradient(circle var(--r, 70px) at var(--mx, -999px) var(--my, -999px),
+      hsl(var(--hue, 0) 95% 64% / var(--g)) 0%,
+      hsl(calc(var(--hue, 0) + 55) 95% 60% / calc(var(--g) * .9)) 38%,
+      hsl(calc(var(--hue, 0) + 140) 80% 60% / calc(var(--g) * .55)) 70%,
+      transparent 100%),
+    linear-gradient(var(--ink), var(--ink));
+}
+.detail .hello { display: none; }
+.hint { text-align: center; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.detail .hint { display: none; }
+
+/* The accordion carousel */
+.carousel { position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.carousel.dragging { cursor: grabbing; }
+.track { display: flex; gap: 6px; height: 100%; will-change: transform; }
+/* Slow, soft opening: ease-in-out so each photo starts gently and settles gently */
+.item { position: relative; flex: none; width: var(--s); height: 100%; overflow: hidden; transition: width 1.4s cubic-bezier(.65,0,.25,1); cursor: inherit; }
+.item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.05) brightness(.9); transition: filter 1.2s ease; pointer-events: none; }
+.label { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 16px 14px; display: grid; gap: 3px; color: #f4f4f0; background: linear-gradient(transparent, rgba(0,0,0,.55)); opacity: 0; transition: opacity .3s; white-space: nowrap; pointer-events: none; }
+.label b { font: 400 26px/1 var(--serif); }
+.label span { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+/* One photo at a time is open: "peek" on hover (clean homepage), "active" after a click. Set by script so it survives dragging. */
+.item.peek { width: var(--peek); }
+.item.active { width: var(--open); }
+.item.peek img, .item.active img { filter: none; }
+.item.peek .label { opacity: 1; transition: opacity .6s ease .7s; }
+.detail .carousel:not(.dragging) .item:not(.active):hover img { filter: grayscale(.3); }
+.item.active.opens { cursor: zoom-in; }
+
+.caption { display: none; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 28px; align-items: end; border-top: 1px solid var(--rule); padding-top: 14px; }
+.detail .caption { display: grid; animation: rise .6s var(--ease) .2s both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px) } }
+.caption h1 { font: 400 32px/1 var(--serif); margin: 0; }
+.caption h1 i { color: var(--muted); }
+.caption p { margin: 0; max-width: 64ch; color: var(--muted); grid-column: 1; }
+.meta { grid-column: 2; grid-row: 1 / span 2; text-align: right; display: grid; gap: 4px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; align-self: end; }
+.meta a { color: var(--ink); font-size: 13px; }
+.meta a:hover { color: var(--mark); }
+.meta a[aria-disabled="true"] { color: var(--muted); pointer-events: none; }
+.mobile-index { display: none; }
+
+/* Way out to the rest of the site: a small menu, always visible, and the four doors as one sentence under the strip */
+.topnav { position: fixed; top: 24px; right: max(28px, env(safe-area-inset-right, 0px)); z-index: 6; display: flex; gap: 6px 20px; flex-wrap: wrap; justify-content: flex-end; font-size: 13px; }
+.topnav a, .doorsline a { color: var(--muted); transition: color .3s; }
+.topnav a:hover { color: var(--ink); }
+.topnav .sep { width: 1px; background: var(--rule); }
+.doorsline { text-align: center; margin: -8px 0 0; font: 400 clamp(17px, 1.5vw, 21px)/1.4 var(--serif); color: var(--muted); animation: rise 1.6s var(--ease) 2.4s both; }
+.doorsline a { border-bottom: 1px solid var(--rule); }
+.topnav a[data-d="see"]:hover, .doorsline a[data-d="see"]:hover { color: var(--see) }
+.topnav a[data-d="build"]:hover, .doorsline a[data-d="build"]:hover { color: var(--build) }
+.topnav a[data-d="gather"]:hover, .doorsline a[data-d="gather"]:hover { color: var(--gather) }
+.topnav a[data-d="tell"]:hover, .doorsline a[data-d="tell"]:hover { color: var(--tell) }
+.detail .doorsline { display: none; }
+@media (max-width: 860px) { .topnav { position: static; justify-content: center; gap: 6px 14px; padding: 18px 16px 0; } .topnav .sep { display: none; } }
+@media (hover: none) { .hint .h { display: none; } }
+@media (hover: hover) { .hint .t { display: none; } }
+
+/* Series page */
+.series { display: block; min-width: 0; min-height: 0; overflow-y: auto; padding-block: 34px 60px; padding-right: 4px; }
+.series header { display: grid; gap: 14px; max-width: 760px; padding-bottom: 46px; }
+.crumb { font: 500 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
+.crumb a:hover { color: var(--ink); }
+.series h1 { font: 400 clamp(48px, 6vw, 84px)/.95 var(--serif); margin: 0; letter-spacing: -.01em; }
+.series h1 + .sub { font: italic 400 26px/1.2 var(--serif); color: var(--muted); margin: -4px 0 0; }
+.essay { font: 400 21px/1.5 var(--serif); max-width: 54ch; margin: 10px 0 0; text-wrap: pretty; }
+.seq { display: grid; gap: 56px; }
+.row { display: flex; gap: 14px; align-items: flex-start; }
+.row figure { margin: 0; min-width: 0; display: grid; gap: 8px; }
+.row figure button { display: block; width: 100%; cursor: zoom-in; }
+.row img { width: 100%; height: auto; display: block; background: var(--rule); }
+.row figcaption { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .06em; }
+.row.single figure { width: min(100%, 1100px); }
+.row.single.narrow figure { width: min(100%, 760px); margin-inline: auto; }
+.after { margin-top: 70px; border-top: 1px solid var(--rule); padding-top: 18px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.after a { font: 400 26px/1.1 var(--serif); }
+.after a:hover { color: var(--mark); }
+.after span { display: block; font: 500 11px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+
+/* Full-screen viewer */
+.viewer { position: fixed; inset: 0; z-index: 20; background: #0b0b0a; color: #e9e9e5; display: grid; grid-template-rows: auto minmax(0, 1fr); padding: max(14px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(14px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.viewer .bar { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .08em; padding-bottom: 12px; font-variant-numeric: tabular-nums; }
+.viewer .bar button { color: #e9e9e5; letter-spacing: .08em; }
+.viewer .frame { position: relative; display: grid; place-items: center; min-height: 0; }
+.viewer img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.viewer .hit { position: absolute; top: 0; bottom: 0; width: 40%; }
+.viewer .prev { left: 0; cursor: w-resize; }
+.viewer .next { right: 0; cursor: e-resize; }
+
+@media (max-width: 860px) {
+  body { overflow: auto; }
+  html, body { height: auto; }
+  .site, .detail .site { display: block; }
+  aside { display: none; }
+  #home { min-height: 100vh; }
+  .detail .hello { display: grid; }
+  .caption { grid-template-columns: 1fr; }
+  .meta { grid-column: 1; grid-row: auto; text-align: left; grid-auto-flow: column; justify-content: start; gap: 14px; }
+  .detail .mobile-index { display: grid; gap: 22px; padding-bottom: 32px; }
+  .mobile-index nav.index { padding-left: 14px; }
+  .series { overflow: visible; padding-block: 22px 40px; }
+  .row { flex-direction: column; gap: 32px; }
+  .row figure { width: 100% !important; flex: none !important; }
+  .seq { gap: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .site, .item, .item img, aside .in { transition: none } .hello .line em { animation: none } }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Main">
+  <a data-d="see" href="see.html">See</a><a data-d="build" href="build.html">Build</a><a data-d="gather" href="gather.html">Gather</a><a data-d="tell" href="tell.html">Tell</a>
+  <span class="sep"></span><a href="about.html">About</a><a href="press.html">Press</a><a href="map.html">Mycelium</a>
+</nav>
+<div class="site">
+  <aside>
+    <div class="in">
+      <div class="side-top"><a class="name home-link" href="#home">Sharon Avraham</a><button class="close home-link" aria-label="Back to the clean homepage">Close ✕</button></div>
+      <p class="side-line">Artivist with passion for <em>humans</em>.</p>
+      <nav class="index" aria-label="Series"></nav>
+      <div class="pages">
+        <a href="about.html">About</a>
+        <a href="build.html">How I build</a>
+        <a href="gather.html">How I gather</a>
+        <a href="tell.html">Stories I tell</a>
+        <a href="https://sharonavraham.darkroom.com/" target="_blank" rel="noopener">Prints ↗</a>
+        <a href="https://www.instagram.com/sharon.avraham_/" target="_blank" rel="noopener">Instagram ↗</a>
+      </div>
+      <span class="note">Homepage mockup · photos and words from sharonavraham.com</span>
+    </div>
+  </aside>
+
+  <main id="home">
+    <header class="hello" id="hello">
+      <a class="name home-link glow" href="#home">Sharon Avraham</a>
+      <p class="line glow">Artivist with passion for <em class="glow">humans</em>.</p>
+    </header>
+    <div class="carousel" id="carousel" aria-label="All series. Drag to explore, click a series to open it."><div class="track" id="track"></div></div>
+    <p class="hint"><span class="h">Hover to look · </span>Drag to explore · <span class="h">click</span><span class="t">tap</span> to open</p>
+    <p class="doorsline"><a data-d="see" href="see.html">What I see</a>, <a data-d="build" href="build.html">how I build</a>, <a data-d="gather" href="gather.html">how I gather</a>, <a data-d="tell" href="tell.html">the stories I tell</a>.</p>
+    <div class="caption" aria-live="polite">
+      <h1 id="title"></h1>
+      <p id="text"></p>
+      <div class="meta">
+        <span id="place"></span>
+        <span id="count"></span>
+        <a id="open" href="#">View series →</a>
+      </div>
+    </div>
+    <div class="mobile-index">
+      <nav class="index" aria-label="Series (list)"></nav>
+    </div>
+  </main>
+
+  <main class="series" id="series" hidden>
+    <header>
+      <div class="crumb"><a href="#home">All series</a><span>Personal projects</span><span>14 photographs</span></div>
+      <h1>Dead Sea</h1>
+      <p class="sub">Fragments of Salt · A Vanishing Landscape</p>
+      <p class="essay">The Dead Sea pulls me back again and again. A place where time slows, where the land itself transforms, disappearing beneath the weight of history and crisis. The salt formations rise like quiet sculptures, shifting, dissolving, revealing something new with every visit. I return to search for what remains, for the hidden stories etched in crystal and water. The beauty here is fragile, slipping away, yet in its slow disappearance, it leaves behind moments that feel eternal.</p>
+    </header>
+    <div class="seq" id="seq"></div>
+    <div class="after">
+      <a href="#home" data-go="0"><span>Back to</span>All series</a>
+      <a href="#home" data-go="11" style="text-align:right"><span>Next in Personal projects</span>Forgotten Realms →</a>
+    </div>
+  </main>
+</div>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-label="Photo viewer">
+  <div class="bar"><span id="vcount"></span><button id="vclose">Close ✕</button></div>
+  <div class="frame"><img id="vimg" alt=""><button class="hit prev" aria-label="Previous photo"></button><button class="hit next" aria-label="Next photo"></button></div>
+</div>
+
+<script is:inline>
+// Pixel size of each cover, so an open series shows at its true shape.
+const SIZE = { "dead-sea": [1800,1031], "auroville": [1760,1800], "rewilding": [1800,1129], "oorja": [1800,1477], "israeli-spring": [1800,1346], "adm": [1617,1000], "harun": [1397,1800], "red-brigade": [1500,1001], "forgotten-realms": [1118,1500], "color-in-motion": [1800,1202], "red-sea": [1800,1758], "matter": [1676,1800], "every-day-heroes": [1500,794], "nur": [1800,1152], "amir": [1800,1593], "weather-channel": [1800,1667] };
+// Covers are the "Recent Work" choices from the current site; captions use Sharon's own text, shortened.
+const SERIES = [
+  { id: "dead-sea", group: "Personal projects", title: "Dead Sea", sub: "Fragments of Salt", place: "Dead Sea", n: 14, text: "The Dead Sea pulls me back again and again. A place where time slows, where the land itself transforms." },
+  { id: "israeli-spring", group: "Artivism", title: "The Israeli Spring", sub: "Shield of Democracy", place: "Balfour Street, Jerusalem", n: 13, text: "A year of pandemic and weekly demonstrations, when resistance and resilience filled the streets." },
+  { id: "every-day-heroes", group: "Artivism", title: "Every Day Heroes", place: "Israel and Palestine", n: 9, text: "Israeli and Palestinian peace activists who dedicate their lives to non-violent resistance." },
+  { id: "harun", group: "Artivism", title: "Harun", sub: "Death of Moral", place: "Al-Rakeez, South Hebron Hills", n: 1, text: "Harun Abu Aram grew up in the small village of Al-Rakeez, under constant threat." },
+  { id: "red-brigade", group: "Artivism", title: "Red Brigade", n: 9, text: "Wrapped in red, faces painted pale, they turn public spaces into living installations." },
+  { id: "red-sea", group: "Artivism", title: "Red Sea", sub: "The Red Sea Act", n: 10, text: "Some works of art exist beyond the frame, beyond the captured image." },
+  { id: "auroville", group: "Photo stories", title: "Auroville", sub: "What does it mean to belong?", place: "Auroville, India", n: 47, text: "In Auroville, I found that belonging is a practice, cultivated through shared work and the simple act of being present." },
+  { id: "rewilding", group: "Photo stories", title: "Rewilding", place: "Intentional communities", n: 4, text: "A photo diary of communities searching for new ways to live in balance with nature." },
+  { id: "oorja", group: "Photo stories", title: "Oorja", sub: "Solar solutions for India’s farmers", place: "Uttar Pradesh, India", n: 25, text: "Sunbaked farmland, small village roads, and quiet moments between harvests." },
+  { id: "adm", group: "Photo stories", title: "ADM", n: 15, text: "A place where the rules bent just enough to let life in." },
+  { id: "weather-channel", group: "Photo stories", title: "Climate and the Syrian Exodus", sub: "for The Weather Channel", place: "Jordan", n: 13, text: "The impact of climate change on the Syrian civil war, focusing on refugees in Jordan." },
+  { id: "forgotten-realms", group: "Personal projects", title: "Forgotten Realms", n: 15, text: "Contemporary tribalism, explored through characters that transcend specific times and places." },
+  { id: "color-in-motion", group: "Personal projects", title: "Color in Motion", n: 16, text: "Movement, emotion and vulnerability, inspired by action painting." },
+  { id: "matter", group: "Personal projects", title: "Matter", n: 17, text: "The human form as living sculpture, transformed with clay, paint and expressive movement." },
+  { id: "nur", group: "Portraits", title: "Nur", n: 11, text: "Dance is how she thinks, how she communicates, how she takes up space." },
+  { id: "amir", group: "Portraits", title: "Amir", n: 7, text: "Amir sat in the light, steady and unshaken, his presence filling the frame." },
+];
+const GROUP_ORDER = ["Artivism", "Photo stories", "Personal projects", "Portraits"];
+const N = SERIES.length, COPIES = 6, GAP = 6;
+const $ = id => document.getElementById(id);
+const body = document.body, carousel = $("carousel"), track = $("track");
+let cur = 0;
+
+// Index (sidebar + mobile copy)
+const indexHTML = GROUP_ORDER.map(g => `
+  <div class="group"><h2>${g}</h2><ul>${SERIES.map((s, i) => s.group === g ? `<li><button data-i="${i}">${s.title}</button></li>` : "").join("")}</ul></div>`).join("");
+document.querySelectorAll("nav.index").forEach(n => n.innerHTML = indexHTML);
+
+// Track: the 16 series repeated so the loop never shows an edge
+track.innerHTML = Array.from({ length: COPIES * N }, (_, k) => { const s = SERIES[k % N];
+  return `<div class="item" data-k="${k}" data-s="${k % N}"><img src="img/${s.id}.jpg" alt="${s.title}" draggable="false"><div class="label"><span>${s.group}</span><b>${s.title}</b></div></div>`; }).join("");
+const items = [...track.children];
+
+// Sizes follow the carousel width, so proportions stay balanced on any window
+let W = 0, H = 0, S = 0, unit = 0, setW = 0, offset = 0;
+function size() {
+  W = carousel.clientWidth;
+  // Sizes come from the full page width, so they don't change (or jump) when the sidebar slides in
+  const W0 = W + (body.classList.contains("detail") && innerWidth > 860 ? 290 : 0);
+  H = Math.round(Math.min(W0 * (W0 < 700 ? 0.62 : 0.36), innerHeight * 0.6));
+  S = W0 < 700 ? 30 : Math.round(Math.max(30, Math.min(60, W0 * 0.04)));
+  S = Math.max(S, Math.ceil((W0 + 20) / N) - GAP); // one full loop is always wider than the view, so an open series never shows twice
+  unit = S + GAP; setW = N * unit;
+  carousel.style.height = H + "px";
+  items.forEach(el => { const [w, h] = SIZE[SERIES[+el.dataset.s].id];
+    const full = Math.min(H * w / h, W0 * (W0 < 700 ? 0.7 : 0.5));
+    el.style.setProperty("--s", S + "px");
+    el.style.setProperty("--open", Math.round(full) + "px");
+    el.style.setProperty("--peek", Math.round(Math.max(full * 0.7, S * 3)) + "px"); }); // hover opens ~70% of the full shape
+  wrap(); apply();
+}
+// One series is open at a time: "peek" on hover (clean homepage), "active" after a click.
+// It opens on every copy in the loop, so all copies stay identical and the endless wrap has no seam.
+let openS = -1, openCls = "";
+function setOpenSeries(s, cls) {
+  items.forEach(el => {
+    const on = +el.dataset.s === s;
+    el.classList.toggle("peek", on && cls === "peek");
+    el.classList.toggle("active", on && cls === "active");
+    el.classList.toggle("opens", on && cls === "active" && SERIES[s].id === "dead-sea");
+  });
+  openS = s; openCls = cls || "";
+}
+
+// Loop period = width of one full copy, measured live (copies animate in sync, so this stays exact mid-motion)
+const period = () => items[N].offsetLeft - items[0].offsetLeft;
+let anchor = null, anchorX = 0, anchorUntil = 0;
+function wrap() {
+  const P = period(); let sh = 0;
+  while (offset > -P) { offset -= P; sh++; }
+  while (offset <= -2 * P) { offset += P; sh--; }
+  if (sh && anchor) anchor = items[Math.max(0, Math.min(items.length - 1, +anchor.dataset.k + sh * N))];
+}
+function apply() { track.style.transform = `translate3d(${offset}px,0,0)`; }
+
+// While widths change, hold one photo still on screen so nothing slides away from the cursor
+function hold(el) {
+  anchor = el; anchorX = el.offsetLeft + offset; anchorUntil = performance.now() + 1600;
+  if (!holding) { holding = true; requestAnimationFrame(holdStep); }
+}
+let holding = false;
+function holdStep() {
+  if (!anchor) { holding = false; return; }
+  offset = anchorX - anchor.offsetLeft; wrap(); apply();
+  if (performance.now() < anchorUntil) requestAnimationFrame(holdStep); else { anchor = null; holding = false; }
+}
+
+let raf = 0, coasting = false;
+function animateTo(target, ms = 1100) { // eased glide; wraps once it lands
+  cancelAnimationFrame(raf); stopFollow(); anchor = null; coasting = true;
+  const from = offset, t0 = performance.now(), ease = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+  const step = t => { const p = Math.min(1, (t - t0) / ms); offset = from + (target - from) * ease(p); apply();
+    if (p < 1) raf = requestAnimationFrame(step); else { coasting = false; wrap(); apply(); } };
+  raf = requestAnimationFrame(step);
+}
+
+// Drag and swipe: the strip follows the pointer exactly; release keeps a little momentum
+let down = null, moved = false, vel = 0, lastX = 0, lastT = 0;
+carousel.addEventListener("pointerdown", e => {
+  if (e.button !== 0) return;
+  cancelAnimationFrame(raf); stopWheel(); stopFollow(); anchor = null; coasting = false;
+  down = { x: e.clientX, off: offset, item: e.target.closest(".item") }; moved = false; vel = 0; lastX = e.clientX; lastT = e.timeStamp;
+});
+addEventListener("pointermove", e => {
+  if (!down) return;
+  const dx = e.clientX - down.x;
+  if (!moved && Math.abs(dx) > 5) { moved = true; carousel.classList.add("dragging"); }
+  if (!moved) return;
+  const dt = Math.max(1, e.timeStamp - lastT); vel = (e.clientX - lastX) / dt; lastX = e.clientX; lastT = e.timeStamp;
+  const before = offset = down.off + dx;
+  wrap(); down.off += offset - before;
+  apply();
+});
+addEventListener("pointerup", () => {
+  if (!down) return;
+  const wasClick = !moved, it = down.item; down = null;
+  if (wasClick) { carousel.classList.remove("dragging"); if (it) choose(it); return; }
+  coasting = true;
+  let t0 = performance.now();
+  const step = t => { const dt = t - t0; t0 = t; offset += vel * dt; vel *= Math.pow(0.94, dt / 16); wrap(); apply();
+    if (Math.abs(vel) > 0.02) raf = requestAnimationFrame(step); else { coasting = false; carousel.classList.remove("dragging"); } };
+  raf = requestAnimationFrame(step);
+});
+
+// Mouse wheel: each notch adds distance that the strip glides through smoothly
+let pending = 0, wheelRaf = 0;
+function stopWheel() { cancelAnimationFrame(wheelRaf); wheelRaf = 0; pending = 0; }
+carousel.addEventListener("wheel", e => {
+  e.preventDefault(); cancelAnimationFrame(raf); stopFollow(); anchor = null; coasting = true; carousel.classList.add("dragging");
+  const d = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * (e.deltaMode === 1 ? 16 : 1);
+  pending -= d;
+  if (!wheelRaf) wheelRaf = requestAnimationFrame(wheelStep);
+}, { passive: false });
+function wheelStep() {
+  const step = pending * 0.12; pending -= step; offset += step; wrap(); apply();
+  if (Math.abs(pending) > 0.4) wheelRaf = requestAnimationFrame(wheelStep);
+  else { wheelRaf = 0; pending = 0; coasting = false; carousel.classList.remove("dragging"); }
+}
+
+// Hover peeks on the clean homepage (ignored while the strip is moving, so photos don't flicker past the cursor)
+let lastPeek = null;
+carousel.addEventListener("pointerover", e => {
+  if (body.classList.contains("detail") || down || coasting || e.pointerType === "touch") return;
+  const it = e.target.closest(".item");
+  if (!it || +it.dataset.s === openS) return;
+  hold(it); lastPeek = it; setOpenSeries(+it.dataset.s, "peek");
+});
+carousel.addEventListener("pointerleave", () => {
+  if (body.classList.contains("detail") || down || openS < 0) return;
+  if (lastPeek) hold(lastPeek);
+  setOpenSeries(-1);
+});
+
+// Centring after a click: a soft spring follows the photo's live centre while it opens and the sidebar slides in.
+// It starts from rest (no sudden speed) and settles gently, so everything moves as one motion.
+let follow = null, fVel = 0, fLast = 0, fRaf = 0;
+function followTo(el) {
+  cancelAnimationFrame(raf); stopWheel(); anchor = null; coasting = true;
+  follow = el; fVel = 0; fLast = performance.now();
+  cancelAnimationFrame(fRaf); fRaf = requestAnimationFrame(followStep);
+}
+function followStep(t) {
+  if (!follow) return;
+  const dt = Math.min(0.05, (t - fLast) / 1000); fLast = t;
+  const w = carousel.clientWidth, target = w / 2 - (follow.offsetLeft + follow.offsetWidth / 2);
+  const omega = 4.2; // spring stiffness: about 1.3 s to settle, critically damped (no bounce)
+  fVel += (omega * omega * (target - offset) - 2 * omega * fVel) * dt;
+  offset += fVel * dt; apply();
+  if (Math.abs(target - offset) < 0.4 && Math.abs(fVel) < 4 && !follow.getAnimations().length) {
+    follow = null; coasting = false; W = w; wrap(); apply(); return;
+  }
+  fRaf = requestAnimationFrame(followStep);
+}
+function stopFollow() { cancelAnimationFrame(fRaf); follow = null; }
+
+// Click on a series: open the detail view and centre it
+function choose(el) {
+  if (el.classList.contains("active") && el.classList.contains("opens")) { location.hash = "dead-sea"; return; }
+  cur = +el.dataset.s;
+  body.classList.add("detail");
+  update();
+  setOpenSeries(cur, "active");
+  followTo(el);
+}
+function chooseIndex(i) { // from the sidebar or arrow keys: the copy of i nearest the centre right now
+  cur = i; body.classList.add("detail"); update();
+  const w = carousel.clientWidth;
+  let best = N + i, bestD = Infinity;
+  for (let c = 1; c < COPIES - 1; c++) {
+    const el = items[c * N + i], d = Math.abs(el.offsetLeft + offset + el.offsetWidth / 2 - w / 2);
+    if (d < bestD) { bestD = d; best = c * N + i; }
+  }
+  setOpenSeries(i, "active");
+  followTo(items[best]);
+}
+
+function update() {
+  const s = SERIES[cur];
+  $("title").innerHTML = s.title + (s.sub ? ` <i>· ${s.sub}</i>` : "");
+  $("text").textContent = s.text;
+  $("place").textContent = s.place || "";
+  $("count").textContent = `${s.n} photograph${s.n === 1 ? "" : "s"} · ${String(cur + 1).padStart(2, "0")} / ${N}`;
+  const open = $("open");
+  if (s.id === "dead-sea") { open.href = "#dead-sea"; open.textContent = "View series →"; open.removeAttribute("aria-disabled"); }
+  else { open.removeAttribute("href"); open.textContent = "Series page not in mockup yet"; open.setAttribute("aria-disabled", "true"); }
+  document.querySelectorAll("nav.index [data-i]").forEach(b => b.setAttribute("aria-current", +b.dataset.i === cur));
+}
+
+function closeDetail() {
+  stopFollow();
+  // Hold the open photo nearest the centre still while it folds back, so the strip doesn't lurch
+  const w = carousel.clientWidth, act = items.filter(el => el.classList.contains("active"))
+    .sort((a, b) => Math.abs(a.offsetLeft + offset + a.offsetWidth / 2 - w / 2) - Math.abs(b.offsetLeft + offset + b.offsetWidth / 2 - w / 2))[0];
+  body.classList.remove("detail");
+  if (act) hold(act);
+  setOpenSeries(-1);
+}
+
+// Dead Sea series page
+const DS = [["01",1800,1031],["02",1424,1500],["03",1800,1015],["04",1800,1272],["05",1800,1048],["06",1800,1445],["07",1800,1283],["08",1800,1272],["09",1508,1800],["10",1800,1169],["11",1800,1440],["12",1800,1201],["13",1800,1440],["14",1800,1138]];
+const ROWS = [[0], [1, 2], [3], [4, 5], [6], [7, 8], [9], [10, 11], [12], [13]];
+const fig = i => { const [n, w, h] = DS[i];
+  return `<figure style="flex:${(w / h).toFixed(3)} 1 0"><button data-p="${i}" aria-label="Open photo ${i + 1}"><img src="img/dead-sea/${n}.jpg" width="${w}" height="${h}" alt="Dead Sea, photograph ${i + 1} of ${DS.length}" loading="lazy"></button><figcaption>${n} / ${DS.length}</figcaption></figure>`; };
+$("seq").innerHTML = ROWS.map(r => `<div class="row ${r.length === 1 ? "single" + (DS[r[0]][1] / DS[r[0]][2] < 1.3 ? " narrow" : "") : ""}">${r.map(fig).join("")}</div>`).join("");
+
+let vp = 0;
+const viewer = $("viewer");
+function view(i) { vp = (i + DS.length) % DS.length; $("vimg").src = `img/dead-sea/${DS[vp][0]}.jpg`; $("vcount").textContent = `Dead Sea · ${DS[vp][0]} / ${DS.length}`; viewer.hidden = false; }
+$("vclose").onclick = () => viewer.hidden = true;
+
+// Views: #home (default) and #dead-sea
+function route() {
+  const series = location.hash === "#dead-sea";
+  $("series").hidden = !series; $("home").hidden = series;
+  if (series) { body.classList.add("detail"); cur = 0; update(); $("series").scrollTop = 0; }
+  else if (body.classList.contains("detail")) setTimeout(() => chooseIndex(cur), 50);
+}
+addEventListener("hashchange", route);
+
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-p]");
+  if (p) { view(+p.dataset.p); return; }
+  if (!viewer.hidden) { if (e.target.closest(".prev")) view(vp - 1); if (e.target.closest(".next")) view(vp + 1); return; }
+  if (e.target.closest(".home-link")) { e.preventDefault(); if (location.hash === "#dead-sea") history.pushState(null, "", "#home"), route(); closeDetail(); return; }
+  const go = e.target.closest("[data-go]");
+  if (go) { cur = +go.dataset.go; return; }
+  const b = e.target.closest("nav.index [data-i]");
+  if (b) { if (location.hash === "#dead-sea") { cur = +b.dataset.i; location.hash = "home"; } else chooseIndex(+b.dataset.i); }
+});
+document.addEventListener("keydown", e => {
+  if (!viewer.hidden) {
+    if (e.key === "Escape") viewer.hidden = true;
+    if (e.key === "ArrowRight") view(vp + 1);
+    if (e.key === "ArrowLeft") view(vp - 1);
+    return;
+  }
+  if (location.hash === "#dead-sea") return;
+  if (e.key === "Escape" && body.classList.contains("detail")) closeDetail();
+  if (body.classList.contains("detail")) {
+    if (e.key === "ArrowRight") chooseIndex((cur + 1) % N);
+    if (e.key === "ArrowLeft") chooseIndex((cur - 1 + N) % N);
+  } else {
+    if (e.key === "ArrowRight") animateTo(offset - unit * 3, 600);
+    if (e.key === "ArrowLeft") animateTo(offset + unit * 3, 600);
+  }
+});
+addEventListener("resize", size);
+
+// Header glow: each word-block gets the mouse position in its own coordinates, so the gradient sits under the cursor
+const hello = $("hello"), glows = [...hello.querySelectorAll(".glow")];
+// The glow trails the mouse with a soft ease, breathes in size, and slowly drifts through colours, so it feels alive.
+let gx = 0, gy = 0, tx = 0, ty = 0, gRaf = 0, gUntil = 0, gOn = false;
+hello.addEventListener("pointermove", e => {
+  tx = e.clientX; ty = e.clientY;
+  if (!gOn) { gx = tx; gy = ty; gOn = true; }
+  hello.classList.add("lit"); gUntil = Infinity;
+  if (!gRaf) gRaf = requestAnimationFrame(glowStep);
+});
+hello.addEventListener("pointerleave", () => { hello.classList.remove("lit"); gUntil = performance.now() + 1000; });
+function glowStep(t) {
+  gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14;
+  hello.style.setProperty("--r", (64 + 12 * Math.sin(t / 650)) + "px");   // breathes about every 4 s
+  hello.style.setProperty("--hue", ((t / 45) % 360).toFixed(1));          // a full colour cycle about every 16 s
+  glows.forEach(el => { const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", (gx - r.left) + "px"); el.style.setProperty("--my", (gy - r.top) + "px"); });
+  if (performance.now() < gUntil) gRaf = requestAnimationFrame(glowStep); else { gRaf = 0; gOn = false; }
+}
+
+// Start centred on the full set
+size();
+offset = -setW - (setW - W) / 2; wrap(); apply();
+route();
+</script>
+</body>
+</html>
