@@ -33,6 +33,6 @@
 .myc svg.pre { visibility: hidden; }
 @media (max-width: 700px) {
   .myc svg { min-width: 1000px; }
-  .myc { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .myc { -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 }
 .myc .node:focus:not(:focus-visible) { outline: none; }

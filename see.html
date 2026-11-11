@@ -85,7 +85,7 @@ nav.index { display: grid; gap: 20px; padding-left: 14px; }
 .detail .hint { display: none; }
 
 /* The accordion carousel */
-.carousel { position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.carousel { position: relative; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .carousel.dragging { cursor: grabbing; }
 .track { display: flex; gap: 6px; height: 100%; will-change: transform; }
 /* Slow, soft opening: ease-in-out so each photo starts gently and settles gently */
@@ -373,12 +373,18 @@ carousel.addEventListener("pointerdown", e => {
   cancelAnimationFrame(raf); stopWheel(); stopFollow(); anchor = null; coasting = false;
   down = { x: e.clientX, off: offset, item: e.target.closest(".item") }; moved = false; vel = 0; lastX = e.clientX; lastT = e.timeStamp;
   try { carousel.setPointerCapture(e.pointerId); } catch {}
+  // touch: holding a photo opens it while the finger stays (letting go closes it); a quick tap still chooses it
+  clearTimeout(pressT); held = null;
+  if (e.pointerType === "touch" && down.item && !body.classList.contains("detail")) pressT = setTimeout(() => {
+    if (!down || moved) return; held = { s: +down.item.dataset.s, was: openS }; hold(down.item); setOpenSeries(held.s, "peek"); }, 220);
 });
+let pressT = 0, held = null;
+carousel.addEventListener("contextmenu", e => e.preventDefault());
 addEventListener("pointercancel", () => { if (down) { down = null; moved = false; carousel.classList.remove("dragging"); } });
 addEventListener("pointermove", e => {
   if (!down) return;
   const dx = e.clientX - down.x;
-  if (!moved && Math.abs(dx) > 5) { moved = true; carousel.classList.add("dragging"); }
+  if (!moved && Math.abs(dx) > 5) { moved = true; carousel.classList.add("dragging"); clearTimeout(pressT); }
   if (!moved) return;
   const dt = Math.max(1, e.timeStamp - lastT); vel = (e.clientX - lastX) / dt; lastX = e.clientX; lastT = e.timeStamp;
   const before = offset = down.off + dx;
@@ -387,7 +393,10 @@ addEventListener("pointermove", e => {
 });
 addEventListener("pointerup", () => {
   if (!down) return;
-  const wasClick = !moved, it = down.item; down = null;
+  const wasClick = !moved, it = down.item; down = null; clearTimeout(pressT);
+  if (held) { const h = held; held = null; carousel.classList.remove("dragging");
+    if (h.s !== h.was) { if (it) hold(it); setOpenSeries(-1); lastCentre = 0; }   // closes; the photo at the centre reopens
+    if (wasClick) return; }
   if (wasClick) { carousel.classList.remove("dragging"); if (it) choose(it); return; }
   coasting = true;
   let t0 = performance.now();

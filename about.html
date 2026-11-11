@@ -79,7 +79,7 @@ list.innerHTML = Object.entries(DOORS).map(([d, door]) => `<p class="eyebrow" st
   <p class="ess">${esc(p.essence)}</p><span class="dots">${dots(p)}</span></a>`).join("")).join("");
 const show = asList => { list.hidden = !asList; fig.hidden = asList; btn.textContent = asList ? "View as mycelium" : "View as list"; btn.setAttribute("aria-pressed", asList); };
 btn.onclick = () => show(list.hidden);
-if (innerWidth < 700) show(true);
+if (innerWidth < 700) requestAnimationFrame(() => { fig.scrollLeft = (fig.scrollWidth - fig.clientWidth) / 2; });   // phones: start at the question, swipe either way
 
 // The portrait: hovering lets colour bleed through a soft, uneven shape (three blobs that trail the pointer at different speeds)
 (() => {
