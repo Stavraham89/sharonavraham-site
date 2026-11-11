@@ -227,7 +227,7 @@ lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.cha
 
 seriesPage();
 addEventListener("hashchange", seriesPage);
-let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(threadWalk, 200); });
+let rz, rzW = innerWidth; addEventListener("resize", () => { if (innerWidth === rzW) return; rzW = innerWidth; clearTimeout(rz); rz = setTimeout(threadWalk, 200); });   // height-only = phone toolbar
 addEventListener("load", threadWalk);   // images settle the layout; redraw the thread to match
 </script>
 </body></html>

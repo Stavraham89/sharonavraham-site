@@ -213,3 +213,6 @@ footer.foot a:hover { color: var(--ink); }
 
 /* The project video takes the hero's place: full width, never cropped */
 video.hero.film { aspect-ratio: 16 / 9; height: auto; max-height: none; object-fit: contain; background: #000; }
+
+/* touch: colour arrives as the photo reaches mid-screen (myc.js adds .inview) */
+.yt.inview img, .comms a.inview img { filter: none; }

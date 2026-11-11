@@ -290,7 +290,7 @@ if (DOOR === "see" && THEME && SERIES.some(s => s.group === THEME)) SERIES.splic
 const GROUP_ORDER = DOOR === "see" ? ["Artivism", "Photo stories", "ToGather", "Personal projects", "Installations", "Portraits", "Events"] : [...new Set(SERIES.map(s => s.group))];
 const N = SERIES.length, COPIES = 6, GAP = 6;
 const $ = id => document.getElementById(id);
-const body = document.body, carousel = $("carousel"), track = $("track");
+const body = document.body, carousel = $("carousel"), track = $("track"), touchUI = matchMedia("(hover: none)").matches;
 let cur = 0;
 
 // Index (sidebar + mobile copy)
@@ -538,7 +538,8 @@ document.addEventListener("keydown", e => {
     if (e.key === "ArrowLeft") animateTo(offset + unit * 3, 600);
   }
 });
-addEventListener("resize", () => { capCut = 0; size(); fitCaption(); });
+let lastW = innerWidth;
+addEventListener("resize", () => { if (touchUI && innerWidth === lastW) return; lastW = innerWidth; capCut = 0; size(); fitCaption(); });   // phones: the toolbar sliding is not a resize
 // Short desktop windows: if the open caption (and its View link) runs past the bottom, shrink the carousel by the overflow
 function fitCaption() { requestAnimationFrame(() => { if (innerWidth <= 860 || !body.classList.contains("detail")) return;
   const over = Math.ceil(document.querySelector(".caption").getBoundingClientRect().bottom - innerHeight + 20); if (over > 0 && H - over >= 200) { capCut += over; size(); } }); }
@@ -555,6 +556,7 @@ hello.addEventListener("pointermove", e => {
 });
 hello.addEventListener("pointerleave", () => { hello.classList.remove("lit"); gUntil = performance.now() + 1000; });
 function glowStep(t) {
+  if (touchUI) { const r = hello.getBoundingClientRect(); tx = r.left + r.width * (.5 + .4 * Math.sin(t / 2100)); ty = r.top + r.height * (.5 + .3 * Math.sin(t / 1500)); }
   gx += (tx - gx) * 0.14; gy += (ty - gy) * 0.14;
   hello.style.setProperty("--r", (64 + 12 * Math.sin(t / 650)) + "px");   // breathes about every 4 s
   hello.style.setProperty("--hue", ((t / 45) % 360).toFixed(1));          // a full colour cycle about every 16 s
@@ -564,13 +566,20 @@ function glowStep(t) {
 }
 
 // Idle drift: about 18 px a second, paused while hovered, dragged, gliding, open, or when the visitor prefers less motion
-let overStrip = false, dPrev = 0;
+let overStrip = false, dPrev = 0, lastCentre = 0, stripSeen = true;
+new IntersectionObserver(([e]) => { stripSeen = e.isIntersecting; }).observe(carousel);
 carousel.addEventListener("pointerenter", () => overStrip = true);
 carousel.addEventListener("pointerleave", () => overStrip = false);
 const calm = matchMedia("(prefers-reduced-motion: reduce)");
+if (touchUI && !calm.matches) new IntersectionObserver(([e]) => { if (e.isIntersecting) { gOn = false; tx = innerWidth / 2; ty = 0; hello.classList.add("lit"); gUntil = Infinity; if (!gRaf) gRaf = requestAnimationFrame(glowStep); }
+  else { hello.classList.remove("lit"); gUntil = 0; } }).observe(hello);
 (function drift(t) {
   const dt = Math.min(50, t - (dPrev || t)); dPrev = t;
-  if (!calm.matches && !overStrip && !down && !coasting && !wheelRaf && !body.classList.contains("detail") && !document.hidden) { offset -= dt * 0.018; wrap(); apply(); }
+  if (stripSeen && !calm.matches && !overStrip && !down && !coasting && !wheelRaf && !body.classList.contains("detail") && !document.hidden) { offset -= dt * 0.018; wrap(); apply(); }
+  if (touchUI && stripSeen && !down && !coasting && !wheelRaf && !holding && !follow && !body.classList.contains("detail") && t - lastCentre > 250) { lastCentre = t;
+    const c = carousel.clientWidth / 2, d = el => Math.abs(el.offsetLeft + offset + el.offsetWidth / 2 - c);
+    const it = items.reduce((a, b) => d(b) < d(a) ? b : a);
+    if (+it.dataset.s !== openS) { setOpenSeries(+it.dataset.s, "peek"); followTo(it); } }
   requestAnimationFrame(drift);
 })(performance.now());
 

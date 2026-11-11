@@ -29,6 +29,7 @@ function mycSmartHeader(el) {
   if (el.dataset.smart) return; el.dataset.smart = "1"; el.classList.add("smart");
   let last = scrollY;
   addEventListener("scroll", () => { const y = scrollY, d = y - last;
+    if (y + innerHeight >= document.documentElement.scrollHeight - 4) { last = y; return; }   // iOS bottom bounce is not a scroll up
     if (y < 120 || d < -6) el.classList.remove("away"); else if (d > 6) el.classList.add("away");
     el.classList.toggle("lifted", y > 10); last = y; }, { passive: true });
   el.addEventListener("focusin", () => el.classList.remove("away"));   // keyboard users always see where focus is
@@ -81,3 +82,10 @@ function mycDrawn(door) {
   const c = { see: "#ff7a64", build: "#f0b245", gather: "#5cc9a9", tell: "#8b9bff" }[door] || "#ecece8";
   return "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 1000"><rect width="400" height="1000" fill="#171715"/><path d="M200 0 C150 180 260 320 190 480 S240 760 200 1000 M190 480 C120 520 80 560 40 640 M214 300 C280 340 320 360 370 420" fill="none" stroke="${c}" stroke-width="2" opacity=".7"/></svg>`);
 }
+
+// Touch screens have no hover: photos that turn to colour under the mouse turn to colour as they reach the middle of the screen
+if (matchMedia("(hover: none)").matches) addEventListener("DOMContentLoaded", () => {
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("inview", e.isIntersecting)), { rootMargin: "-30% 0px -30% 0px" });
+  const watch = () => document.querySelectorAll(".comms a, .yt").forEach(el => { if (!el.dataset.io) { el.dataset.io = 1; io.observe(el); } });
+  watch(); new MutationObserver(watch).observe(document.body, { childList: true, subtree: true });
+});

@@ -95,7 +95,7 @@ svg.threads g.rest { opacity: .22; }
 
 /* 1. Opening: one line, big and thick, filled with photographs; hover shows them in full colour */
 .open { position: relative; min-height: 84svh; display: grid; place-items: center; overflow-x: clip; }
-.line { position: relative; z-index: 2; width: min(100% - 32px, 1240px); text-align: center; }
+.line { position: relative; z-index: 2; width: min(100% - 32px, 1240px); text-align: center; touch-action: pan-y; }
 /* Opening face (chosen by Sharon): Hanken Grotesk 900, wide strokes so the photographs read inside the letters */
 .line { --face: 900 1em/.86 var(--sans); --k: 11.6vw; --ls: -.045em; }
 .line h1, .line .lit { font: var(--face); font-size: clamp(56px, var(--k), 220px); letter-spacing: var(--ls); text-wrap: balance; }
@@ -107,8 +107,10 @@ svg.threads g.rest { opacity: .22; }
   -webkit-mask-image: linear-gradient(transparent, transparent); mask-image: linear-gradient(transparent, transparent); }
 .line .lit .pp { filter: saturate(1.1) contrast(1.05); }
 /* "humans" breathes: a very slow swell and release, in both layers at once */
-.line .breathe { display: inline-block; transform-origin: 50% 70%; animation: breathe 7s ease-in-out infinite; }
+.line .breathe { display: inline-block; transform-origin: 50% 70%; animation: breathe 7s ease-in-out infinite; will-change: transform; }   /* own layer: the swell is composited, not repainted */
 @keyframes breathe { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.05) } }
+.line .lit.off { visibility: hidden; }
+.line.roam .breathe { animation-play-state: paused; }
 svg.down { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
 .skip { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .skip:focus { width: auto; height: auto; clip-path: none; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 13px; }
@@ -406,8 +408,9 @@ doors.forEach((d, i) => { const on = () => { const c = centre(rel(qh.querySelect
 
 let rt, lastSize = "";
 const relayout = () => { clearTimeout(rt); rt = setTimeout(() => { svg.innerHTML = ""; fruitsEl.innerHTML = ""; zone = -1; live = null; placeDoors(); if (seen) intro(); fit(); growDown(); }, 200); };
-addEventListener("resize", relayout);
-new ResizeObserver(([e]) => { const k = Math.round(e.contentRect.width) + "x" + Math.round(e.contentRect.height); if (k !== lastSize) { lastSize = k; relayout(); } }).observe(hero);
+let lastW = innerWidth;
+addEventListener("resize", () => { if (innerWidth !== lastW) { lastW = innerWidth; relayout(); } });   // height-only resizes are the phone toolbar sliding
+new ResizeObserver(([e]) => { const k = String(Math.round(e.contentRect.width)); if (k !== lastSize) { lastSize = k; relayout(); } }).observe(hero);
 // The question's own moment waits until you scroll to it
 let seen = false, pending = null;
 function whenSeen(fn) { if (seen) requestAnimationFrame(fn); else pending = fn; }
@@ -436,16 +439,17 @@ function fit() {
   });
 }
 lh.innerHTML = lineHTML;
-const lit = document.createElement("div"); lit.className = "lit"; lit.setAttribute("aria-hidden", "true"); lit.innerHTML = lineHTML; line.appendChild(lit);
+const lit = document.createElement("div"); lit.className = "lit off"; lit.setAttribute("aria-hidden", "true"); lit.innerHTML = lineHTML; line.appendChild(lit);
 // Organic reveal: the cursor leaves a short patches of soft, uneven patches that overlap and dissolve, like breath on glass.
 // No patch has a solid core or an edge, so the photograph surfaces without a visible circle.
 // Steady by design: patches fade in, age continuously (never jump), and the cursor path is smoothed, so nothing blinks.
-const LIFE = 1100, HOLD = 260, MAXR = 95, STEP = 15;
-let patches = [], raf = 0, hovering = false, target = null, pos = null, lastDrop = null;
+const LIFE = touch ? 1600 : 1100, HOLD = 260, MAXR = touch ? 125 : 95, STEP = 15;   // phones: bigger letters, a larger, longer-lasting glow
+let patches = [], raf = 0, hovering = false, target = null, pos = null, lastDrop = null, auto = false, finger = false, skip = 0;
 function drop(x, y, dx, dy) {
   const now = performance.now(), len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len;
   patches.push({ x, y, r: MAXR * (.8 + .2 * Math.sin(now / 170)), a: 1, t: now });
   // two satellites to either side of the movement roughen the outline without random jumps
+  if (auto && !finger) return;   // the wanderer moves smoothly on its own; satellites would only cost frames on a phone
   patches.push({ x: x + nx * 24, y: y + ny * 24, r: MAXR * .55, a: .6, t: now });
   patches.push({ x: x - nx * 18, y: y - ny * 18, r: MAXR * .45, a: .5, t: now });
   if (patches.length > 240) patches = patches.slice(-240); // far above a normal gesture, so live patches are never cut
@@ -453,7 +457,10 @@ function drop(x, y, dx, dy) {
 function paint(now) {
   // follow the cursor smoothly and lay patches every STEP pixels along the way
   if (hovering && target) {
-    pos = pos ? { x: pos.x + (target.x - pos.x) * .35, y: pos.y + (target.y - pos.y) * .35 } : { ...target };
+    const roam = auto && !finger;
+    if (roam) { const w = line.offsetWidth, h = line.offsetHeight; target = { x: w * (.5 + .42 * Math.sin(now / 2300)), y: h * (.5 + .4 * Math.sin(now / 1700 + 1)) }; }
+    const k = roam ? .06 : .35;   // the wanderer glides; a finger is followed closely
+    pos = pos ? { x: pos.x + (target.x - pos.x) * k, y: pos.y + (target.y - pos.y) * k } : { ...target };
     if (!lastDrop || Math.hypot(pos.x - lastDrop.x, pos.y - lastDrop.y) > STEP) {
       drop(pos.x, pos.y, lastDrop ? pos.x - lastDrop.x : 1, lastDrop ? pos.y - lastDrop.y : 0); lastDrop = { ...pos };
     }
@@ -461,6 +468,8 @@ function paint(now) {
     patches.slice(-3).forEach(q => { if (now - q.t > HOLD) q.t = now - HOLD; });
   }
   patches = patches.filter(q => now - q.t < LIFE);
+  if (auto && !finger && (++skip & 1)) { raf = requestAnimationFrame(paint); return; }   // roaming: repaint the mask at ~30 fps
+  lit.classList.toggle("off", !patches.length);
   const m = patches.length ? patches.map(q => { const g = now - q.t, k = 1 - g / LIFE, al = q.a * Math.pow(k, 1.4) * Math.min(1, g / 160);
       return `radial-gradient(circle ${q.r.toFixed(0)}px at ${q.x.toFixed(1)}px ${q.y.toFixed(1)}px, rgba(0,0,0,${al.toFixed(3)}) 0%, rgba(0,0,0,${(al * .75).toFixed(3)}) 35%, rgba(0,0,0,${(al * .25).toFixed(3)}) 70%, transparent 100%)`; }).join(",")
     : "linear-gradient(transparent, transparent)";
@@ -468,9 +477,12 @@ function paint(now) {
   raf = (patches.length || hovering) ? requestAnimationFrame(paint) : 0;
 }
 const reveal = e => { const r = line.getBoundingClientRect(); target = { x: e.clientX - r.left, y: e.clientY - r.top }; hovering = true; if (!raf) raf = requestAnimationFrame(paint); };
-line.addEventListener("pointerdown", reveal);
+line.addEventListener("pointerdown", e => { if (e.pointerType === "touch") finger = true; reveal(e); });
 line.addEventListener("pointermove", reveal);
-line.addEventListener("pointerleave", () => { hovering = false; target = null; pos = null; lastDrop = null; });
+line.addEventListener("pointerleave", e => { if (e.pointerType === "touch") finger = false; if (auto) return; hovering = false; target = null; pos = null; lastDrop = null; });
+addEventListener("pointercancel", () => { finger = false; });
+if (touch && !reduce) new IntersectionObserver(([e]) => { auto = e.isIntersecting; line.classList.toggle("roam", auto);
+  if (auto) { hovering = true; target = target || { x: 0, y: 0 }; if (!raf) raf = requestAnimationFrame(paint); } else { hovering = false; target = pos = lastDrop = null; } }, { threshold: .2 }).observe(line);
 
 // A mycelium thread grows down out of "humans", crosses into the next section and feeds the question with a fan of fine roots
 function growDown() {
