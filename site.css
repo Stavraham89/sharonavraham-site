@@ -216,3 +216,6 @@ video.hero.film { aspect-ratio: 16 / 9; height: auto; max-height: none; object-f
 
 /* touch: colour arrives as the photo reaches mid-screen (myc.js adds .inview) */
 .yt.inview img, .comms a.inview img { filter: none; }
+
+/* landscape phones: headers give the screen back to the work */
+@media (max-height: 500px) and (orientation: landscape) { .door-head { padding-block: 20px 18px; } .door-head h1 { font-size: clamp(40px, 7vw, 64px); } }

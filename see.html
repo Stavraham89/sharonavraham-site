@@ -9,11 +9,14 @@
 <meta property="og:site_name" content="Sharon Avraham">
 <meta property="og:title" content="What I see, Sharon Avraham">
 <meta property="og:description" content="Photography by Sharon Avraham: artivism, photo stories, portraits and personal projects, from the Balfour protests in Jerusalem to the Dead Sea.">
+<meta property="og:image:alt" content="Shield of Democracy: a woman raises a flag over protesters on Balfour Street, Jerusalem, staged after Delacroix">
 <meta property="og:url" content="https://sharonavraham.com/see.html">
 <meta property="og:image" content="https://sharonavraham.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#0e0e0d">
 <!-- /seo -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,6 +117,7 @@ nav.index { display: grid; gap: 20px; padding-left: 14px; }
 .item.active { width: var(--open); }
 .item.peek img, .item.active img { filter: none; }
 .item.peek .label { opacity: 1; transition: opacity .6s ease .7s; }
+.carousel.pressing .item { transition: width .55s cubic-bezier(.23,1,.32,1); } .carousel.pressing .item img { transition-duration: .45s; } .carousel.pressing .item.peek .label { transition-delay: .3s; }
 .detail .carousel:not(.dragging) .item:not(.active):hover img { filter: grayscale(.3); }
 .item.active.opens { cursor: zoom-in; }
 
@@ -194,6 +198,7 @@ nav.index { display: grid; gap: 20px; padding-left: 14px; }
   .row figure { width: 100% !important; flex: none !important; }
   .seq { gap: 32px; }
 }
+@media (max-height: 500px) and (orientation: landscape) { #home { padding-top: 8px; gap: 10px; } .hello { gap: 6px; padding-block: 10px; margin-block: -10px auto; } .hello .line { font-size: clamp(34px, 5.5vw, 52px); } .topnav { padding-top: 8px; } }
 @media (prefers-reduced-motion: reduce) { .site, .item, .item img, aside .in { transition: none } .hello .line em { animation: none } }
 /* Gallery page: the trail sits over the top; it steps aside while the sidebar is open */
 .gtop { position: fixed; top: 0; left: 0; right: 0; z-index: 7; padding-inline: max(16px, 2vw); pointer-events: none; }
@@ -324,7 +329,8 @@ function size() {
   W = carousel.clientWidth;
   // Sizes come from the full page width, so they don't change (or jump) when the sidebar slides in
   const W0 = W + (body.classList.contains("detail") && innerWidth > 860 ? 290 : 0);
-  H = Math.round(Math.max(200, Math.min(W0 * (W0 < 700 ? 0.62 : 0.36), innerHeight * 0.6, innerHeight - (W0 < 860 ? 0 : 290 + capCut))));   // leaves room for the caption and its link on short windows
+  H = Math.round(Math.max(200, Math.min(W0 * (W0 < 700 ? 1.05 : 0.36), innerHeight * 0.6, innerHeight - (W0 < 860 ? 0 : 290 + capCut))));
+  if (innerHeight < 500 && innerWidth > innerHeight) H = Math.max(160, Math.round(innerHeight - carousel.getBoundingClientRect().top - scrollY - 16));   // landscape phone: the strip fills the rest of the screen   // leaves room for the caption and its link on short windows
   S = W0 < 700 ? 30 : Math.round(Math.max(30, Math.min(60, W0 * 0.04)));
   S = Math.max(S, Math.ceil((W0 + 20) / N) - GAP); // one full loop is always wider than the view, so an open series never shows twice
   unit = S + GAP; setW = N * unit;
@@ -391,9 +397,9 @@ carousel.addEventListener("pointerdown", e => {
   // touch: holding a photo opens it while the finger stays (letting go closes it); a quick tap still chooses it
   clearTimeout(pressT); held = null;
   if (e.pointerType === "touch" && down.item && !body.classList.contains("detail")) pressT = setTimeout(() => {
-    if (!down || moved) return; held = { s: +down.item.dataset.s, was: openS }; hold(down.item); setOpenSeries(held.s, "peek"); }, 220);
+    if (!down || moved) return; held = { s: +down.item.dataset.s, was: openS }; carousel.classList.add("pressing"); clearTimeout(quickT); hold(down.item); setOpenSeries(held.s, "peek"); }, 220);
 });
-let pressT = 0, held = null;
+let pressT = 0, held = null, quickT = 0;
 carousel.addEventListener("contextmenu", e => e.preventDefault());
 addEventListener("pointercancel", () => { if (down) { down = null; moved = false; carousel.classList.remove("dragging"); } });
 addEventListener("pointermove", e => {
@@ -410,7 +416,8 @@ addEventListener("pointerup", () => {
   if (!down) return;
   const wasClick = !moved, it = down.item; down = null; clearTimeout(pressT);
   if (held) { const h = held; held = null; carousel.classList.remove("dragging");
-    if (h.s !== h.was) { if (it) hold(it); setOpenSeries(-1); lastCentre = 0; }   // closes; the photo at the centre reopens
+    anchor = null; quickT = setTimeout(() => carousel.classList.remove("pressing"), 1200);
+    if (h.s !== h.was) { setOpenSeries(-1); lastCentre = 0; }   // closes; the photo at the centre reopens at once
     if (wasClick) return; }
   if (wasClick) { carousel.classList.remove("dragging"); if (it) choose(it); return; }
   coasting = true;
@@ -613,6 +620,7 @@ offset = -setW - (setW - W) / 2; wrap(); apply();
 route();
 const themed = DOOR === "see" && THEME && SERIES.length && SERIES.every(s => s.group === THEME);
 trail($("top"), [{ label: "Sharon Avraham", href: "./" }, themed ? { label: DOORS.see.title, href: "see.html", door: "see" } : { label: DOORS[DOOR].title, door: DOOR }, ...(themed ? [{ label: THEME, door: "see" }] : [])], DOOR);
+if (innerHeight < 500 && innerWidth > innerHeight) { requestAnimationFrame(size); document.fonts.ready.then(size); }   // landscape: measure again once the header and fonts are in
 document.title = `${themed ? THEME : DOORS[DOOR].title}, Sharon Avraham`;
 document.querySelector("#hello .line").textContent = themed ? THEME : DOORS[DOOR].title;
 document.querySelector("#hello .sub-line").textContent = themed ? (THEME_LINE[THEME] || DOORS.see.line) : DOORS[DOOR].line;

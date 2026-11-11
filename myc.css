@@ -31,7 +31,7 @@
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .45s; }
 
-@media (max-width: 700px) { .qmenu { width: 100%; gap: 0 16px; } .qmenu a { padding-block: 10px; } .qmenu .sep { display: none; } .trail a, .trail [aria-current] { padding-block: 10px; } .trail .step.mid { display: none; } .rooted { padding-left: 22px; } .rooted svg.root { width: 22px; } }
+@media (max-width: 700px), (max-height: 500px) and (orientation: landscape) { .qmenu { width: 100%; gap: 0 16px; } .qmenu a { padding-block: 10px; } .qmenu .sep { display: none; } .trail a, .trail [aria-current] { padding-block: 10px; } .trail .step.mid { display: none; } .rooted { padding-left: 22px; } .rooted svg.root { width: 22px; } }
 @media (prefers-reduced-motion: reduce) { .trail svg.hy path { animation: none; stroke-dashoffset: 0; } ::view-transition-old(root), ::view-transition-new(root) { animation: none; } }
 
 /* Touch screens: every small link gets a comfortable hit area */
@@ -47,9 +47,12 @@
 .qmenu a.write { color: var(--ink); border-bottom: 1.5px solid var(--mark, #c8322a); }
 @media (prefers-reduced-motion: reduce) { .trailbar.smart { transition: none; } }
 /* Phones: the header stays one trail line and one swipeable menu line (audit: it took a quarter of the screen) */
-@media (max-width: 700px) {
+@media (max-width: 700px), (max-height: 500px) and (orientation: landscape) {
   .trailbar { padding-block: 6px; gap: 0 16px; }
   .qmenu { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; white-space: nowrap; gap: 0 clamp(8px, 2.6vw, 16px); font-size: 12.5px; justify-content: space-between; }
   .qmenu::-webkit-scrollbar { display: none; }
   .qmenu a, .trail a, .trail [aria-current] { padding-block: 11px; }
 }
+
+/* landscape phones: trail and menu share one line */
+@media (max-height: 500px) and (orientation: landscape) { .trailbar { flex-wrap: nowrap; } .qmenu { width: auto; flex: 1 1 auto; justify-content: flex-end; gap: 0 18px; } .trail .step.mid { display: none; } }

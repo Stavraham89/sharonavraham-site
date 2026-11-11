@@ -14,6 +14,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0e0e0d">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <!-- /seo -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
@@ -93,7 +95,11 @@ list.innerHTML = Object.entries(DOORS).map(([d, door]) => `<p class="eyebrow" st
   <p class="ess">${esc(p.essence)}</p><span class="dots">${dots(p)}</span></a>`).join("")).join("");
 const show = asList => { list.hidden = !asList; fig.hidden = asList; btn.textContent = asList ? "View as mycelium" : "View as list"; btn.setAttribute("aria-pressed", asList); };
 btn.onclick = () => show(list.hidden);
-if (innerWidth < 700) requestAnimationFrame(() => { fig.scrollLeft = (fig.scrollWidth - fig.clientWidth) / 2; });   // phones: start at the question, swipe either way
+const centreMap = () => { fig.scrollLeft = (fig.scrollWidth - fig.clientWidth) / 2; };   // phones: start at the question, swipe either way
+requestAnimationFrame(centreMap);
+let mapW = innerWidth; addEventListener("resize", () => { if (innerWidth !== mapW) { mapW = innerWidth; requestAnimationFrame(centreMap); } });
+fig.addEventListener("focusin", e => { const f = fig.getBoundingClientRect(), n = e.target.getBoundingClientRect();   // a tapped node near the edge comes into view
+  if (n.left < f.left + 40 || n.right > f.right - 40) fig.scrollBy({ left: n.left + n.width / 2 - (f.left + f.width / 2), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); });
 
 // The portrait: hovering lets colour bleed through a soft, uneven shape (three blobs that trail the pointer at different speeds)
 (() => {

@@ -89,3 +89,14 @@ if (matchMedia("(hover: none)").matches) addEventListener("DOMContentLoaded", ()
   const watch = () => document.querySelectorAll(".comms a, .yt").forEach(el => { if (!el.dataset.io) { el.dataset.io = 1; io.observe(el); } });
   watch(); new MutationObserver(watch).observe(document.body, { childList: true, subtree: true });
 });
+
+// Rotating a phone changes every height on the page: keep the thing you were looking at in the same place on screen
+(() => {
+  let mark = null, w = innerWidth, busy = 0;
+  const pick = () => { if (busy) return; const el = document.elementFromPoint(innerWidth / 2, innerHeight / 3)?.closest("section, figure, article, li, p, h1, h2, .acc, .row");
+    if (el) { const r = el.getBoundingClientRect(); mark = { el, k: (innerHeight / 3 - r.top) / (r.height || 1) }; } };
+  addEventListener("scroll", () => { clearTimeout(pick.t); pick.t = setTimeout(pick, 120); }, { passive: true });
+  addEventListener("resize", () => { if (innerWidth === w || !mark) return; w = innerWidth; clearTimeout(busy);
+    const put = () => { if (!mark.el.isConnected) return; const r = mark.el.getBoundingClientRect(); scrollBy(0, r.top + mark.k * r.height - innerHeight / 3); };
+    requestAnimationFrame(put); busy = setTimeout(() => { put(); busy = 0; }, 450); });   // again once the page has re-laid itself out
+})();
