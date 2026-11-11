@@ -9,16 +9,17 @@
 <link rel="canonical" href="https://sharonavraham.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Sharon Avraham">
-<meta property="og:title" content="Sharon Avraham">
-<meta property="og:description" content="Sharon Avraham is a photographer, artivist and community builder working between Portugal and Israel. Photographs, the things he has built, and the ways he gathers people.">
+<meta property="og:title" content="Sharon Avraham, artivist with passion for humans">
+<meta property="og:description" content="Photographer, artivist and community builder, between Portugal and Israel.">
+<meta property="og:image:alt" content="Shield of Democracy: a woman raises a flag over protesters on Balfour Street, Jerusalem, staged after Delacroix">
 <meta property="og:url" content="https://sharonavraham.com/">
 <meta property="og:image" content="https://sharonavraham.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0e0e0d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0e0e0d">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Sharon Avraham", "url": "https://sharonavraham.com/", "image": "https://sharonavraham.com/og.jpg", "jobTitle": "Photographer, artivist and community builder", "description": "Sharon Avraham is a photographer, artivist and community builder working between Portugal and Israel. Photographs, the things he has built, and the ways he gathers people.", "sameAs": ["https://www.instagram.com/sharon.avraham_/"]}</script>
 <!-- /seo -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -198,6 +199,7 @@ svg.down .branch { stroke: var(--muted); stroke-width: .8; opacity: .5; }
 
 <header class="bar wrap" id="top"></header>
 
+<main>
 <section class="open" id="open">
   <svg class="down" id="down" aria-hidden="true"></svg>
   <div class="line" id="line"><h1 id="lh"></h1></div>
@@ -218,6 +220,7 @@ svg.down .branch { stroke: var(--muted); stroke-width: .8; opacity: .5; }
 </section>
 
 <div id="strips"></div>
+</main>
 
 <footer class="close wrap"><p>If something here landed with you, I want to hear about it.</p><a href="contact.html">Write to me</a></footer>
 
@@ -241,10 +244,10 @@ const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const touch = matchMedia("(hover: none)").matches;
 if (touch) $("hint").textContent = "Tap a word in the question.";
 const NS = "http://www.w3.org/2000/svg";
+const small = () => matchMedia("(max-width: 760px), (max-height: 500px) and (orientation: landscape)").matches;   // phones in either orientation get the calm stacked layout
 let zone = -1;
 
 // Build the question: words in reading order feed the four doors in turn
-const small = () => matchMedia("(max-width: 760px), (max-height: 500px) and (orientation: landscape)").matches;   // phones in either orientation get the calm stacked layout
 function setQuestion(i) {
   const words = QUESTIONS[i].split(" ");
   const html = words.map((w, k) => `<span class="w" data-z="${Math.floor(k * 4 / words.length)}">${w}</span>`).join(" ");
