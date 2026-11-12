@@ -110,36 +110,42 @@ function projectPage() {
 // Moving between projects: a quiet rail in the right margin on wide screens, a small bar at the bottom on phones.
 // The thread from this project to the next grows as you read.
 function projNav(p, d) {
-  const had = document.activeElement?.closest?.(".pbar, .pnav") && document.activeElement.dataset.step;   // keyboard users keep their place
+  const ae = document.activeElement, had = ae?.closest?.(".pbar") ? ae.dataset.step : ae?.closest?.(".pnav") ? "rail" : null;   // keyboard users keep their place
   document.querySelectorAll(".pnav, .pbar").forEach(e => e.remove());
   projNav.ac?.abort(); const sig = { signal: (projNav.ac = new AbortController()).signal };   // listeners from the last project go with it
-  const list = doorProjects(d), i = list.indexOf(p), door = DOORS[d];
+  const list = doorProjects(d).filter(q => projUrl(q).startsWith("project.html")), i = list.indexOf(p), door = DOORS[d];
   if (i < 0) return;
   const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length], many = list.length > 1;
   const item = q => `<li${q === p ? ' class="here"' : ""}><a href="${projUrl(q)}"${q === p ? ' aria-current="page"' : ""}><i></i><span>${esc(q.title)}</span></a></li>`;
   const rail = document.createElement("nav"); rail.className = "pnav"; rail.setAttribute("aria-label", `Projects in ${door.title}`);
-  rail.innerHTML = `<a class="pn-door" href="${door.url}">${esc(door.name)}</a><ol>${list.map(item).join("")}<b class="pn-read" aria-hidden="true"></b></ol>`;
+  rail.innerHTML = `<a class="pn-door" href="${door.url}">${esc(door.name)}</a><ol>${list.map(item).join("")}</ol><b class="pn-read" aria-hidden="true"></b>`;
   const bar = document.createElement("nav"); bar.className = "pbar"; bar.setAttribute("aria-label", "Move between projects");
   bar.innerHTML = many ? `<a class="pb-step" data-step="prev" href="${projUrl(prev)}" aria-label="Previous project: ${esc(prev.title)}">Prev</a>
-    <button class="pb-mid" type="button" aria-expanded="false" aria-controls="pb-sheet"><i></i><span>${esc(door.name)}</span><small>${i + 1} of ${list.length}</small></button>
+    <button class="pb-mid" type="button" aria-expanded="false" aria-controls="pb-sheet" aria-label="Projects in ${esc(door.title)}, ${i + 1} of ${list.length}"><i></i><span>${esc(door.name)}</span><small>${i + 1} of ${list.length}</small></button>
     <div class="pb-sheet" id="pb-sheet" hidden><a class="pn-door" href="${door.url}">${esc(door.title)}</a><ol>${list.map(item).join("")}</ol></div>
     <a class="pb-step" data-step="next" href="${projUrl(next)}" aria-label="Next project: ${esc(next.title)}">Next</a>`
     : `<a class="pb-mid" href="${door.url}"><i></i><span>${esc(door.title)}</span></a>`;   // a door of one: just the way back
   document.body.append(rail, bar);
-  if (had) bar.querySelector(`[data-step="${had}"]`)?.focus({ preventScroll: true });
+  if (had === "rail") rail.querySelector("li.here a").focus({ preventScroll: true });
+  else if (had) bar.querySelector(`[data-step="${had}"]`)?.focus({ preventScroll: true });
   // the bar opens its list in place
   const mid = bar.querySelector("button.pb-mid"), sheet = bar.querySelector(".pb-sheet");
-  const open = on => { if (!sheet) return; sheet.hidden = !on; mid.setAttribute("aria-expanded", on); bar.classList.toggle("open", on); };
+  const open = on => { if (!sheet) return; sheet.hidden = !on; mid.setAttribute("aria-expanded", on); bar.classList.toggle("open", on);
+    if (on) sheet.querySelector(".here a")?.scrollIntoView({ block: "nearest" }); };   // the list opens on where you are
   mid?.addEventListener("click", () => open(sheet.hidden));
   addEventListener("keydown", e => { if (e.key === "Escape" && sheet && !sheet.hidden) { open(false); mid.focus(); } }, sig);
   document.addEventListener("click", e => { if (!bar.contains(e.target)) open(false); }, sig);
+  bar.addEventListener("focusout", e => { if (!bar.contains(e.relatedTarget)) open(false); }, sig);
   // a playing film keeps the screen to itself
-  document.addEventListener("play", e => { if (e.target.closest?.("main")) bar.classList.add("film"); }, { capture: true, ...sig });
-  document.addEventListener("pause", e => { if (e.target.closest?.("main")) bar.classList.remove("film"); }, { capture: true, ...sig });
+  const film = e => e.target.matches?.("video[controls]") && e.target.closest("main");
+  document.addEventListener("play", e => { if (film(e)) bar.classList.add("film"); }, { capture: true, ...sig });
+  document.addEventListener("pause", e => { if (film(e)) bar.classList.remove("film"); }, { capture: true, ...sig });
+  document.addEventListener("ytplay", e => { bar.classList.add("film");
+    new IntersectionObserver(([en], o) => { if (!en.isIntersecting) { bar.classList.remove("film"); o.disconnect(); } }).observe(e.detail); }, sig);
   // the rail's thread fills from the first project to this one, then on toward the next as you read
-  const read = rail.querySelector(".pn-read"), dots = [...rail.querySelectorAll("li")];
-  const thread = f => { const top = dots[0].offsetTop + dots[0].offsetHeight / 2, here = dots[i].offsetTop + dots[i].offsetHeight / 2,
-      to = dots[i + 1] ? dots[i + 1].offsetTop + dots[i + 1].offsetHeight / 2 : here; read.style.top = top + "px"; read.style.height = Math.max(0, here - top + (to - here) * f) + "px"; };
+  const read = rail.querySelector(".pn-read"), dots = [...rail.querySelectorAll("li")], ol = rail.querySelector("ol");
+  const thread = f => { const top = ol.offsetTop + dots[0].offsetTop + dots[0].offsetHeight / 2, here = ol.offsetTop + dots[i].offsetTop + dots[i].offsetHeight / 2,
+      to = dots[i + 1] ? ol.offsetTop + dots[i + 1].offsetTop + dots[i + 1].offsetHeight / 2 : here; read.style.top = top + "px"; read.style.height = Math.max(0, here - top + (to - here) * f) + "px"; };
   // the bar steps aside while you read down, and comes back when you scroll up or reach the end
   let last = scrollY, ticking = false;
   const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false;
@@ -293,7 +299,9 @@ function lightbox(root) {
 
 // Press play: swap the still for the video (nothing loads from YouTube until then)
 document.addEventListener("click", e => { const b = e.target.closest(".yt"); if (!b) return;
-  b.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.yt}?autoplay=1&rel=0" title="Film" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; });
+  const box = b.parentElement;
+  b.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.yt}?autoplay=1&rel=0" title="Film" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  document.dispatchEvent(new CustomEvent("ytplay", { detail: box })); });
 
 // The one orchestrated moment: the headline rises line by line out of a mask (the colour thread draws down in CSS)
 function intro(ready) {
