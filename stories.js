@@ -1447,8 +1447,8 @@ const STORY = {
 "t": "text",
 "h": "Why I go",
 "p": [
-"It started with a letter. For years I had built places for people to meet, and watched some of them crack anyway. So I went to ask the people who stayed: what holds you here?",
-"The first two pieces say why, and what I had wrong before I even started."
+"It started with a letter. I grew up in a workers' village, tried to turn my father's horse ranch into a shared place, went to Burning Man at twenty-one, and spent years building spaces for Israelis and Palestinians to meet. Again and again I learned the same thing: a big heart and good intentions were not enough to keep a community from cracking.",
+"The first two pieces say why I went to ask the people who stayed, and what I had wrong. I expected each place to have found a secret. Instead, the hard parts were the same everywhere: how decisions get made, who belongs, and money."
 ]
 },
 {
@@ -1481,8 +1481,8 @@ const STORY = {
 "t": "text",
 "h": "The conversation that breaks them",
 "p": [
-"After thirty-five communities one pattern was everywhere. The fight that ended a place was almost never settled. It was just postponed.",
-"So the next essays stay with conflict: why nobody taught us how to fight, and what I saw in the places that held through it."
+"After thirty-five communities one pattern was everywhere. The conversation about money was almost never settled, only postponed, until it arrived late, under pressure, with less trust in the room. And it was almost never about the money. It was about what the money stands for: security, and being seen.",
+"From there the essays stay with conflict. At Tamera, Samar and the Traditional Dream Factory I saw that the places that last are not calmer. They are braver: conflict does not kill communities, the refusal to face it does. The follow-up asks what they actually do, from a daily ritual to the Forum, and why every practice has to be lived into before the crisis comes."
 ]
 },
 {
@@ -1514,7 +1514,7 @@ const STORY = {
 {
 "t": "text",
 "p": [
-"The strange part is that the tools exist. Forum, Sociocracy, Nonviolent Communication, clear agreements about money. They mostly sit on the shelf until it is too late."
+"The strange part is that the tools exist, some of them for forty or fifty years: Sociocracy 3.0, Tamera's Forum, Liberating Structures, Elinor Ostrom's design principles, Mondragon's principles, the Mietshäuser Syndikat. What is missing is access and attention. So I started gathering them into a living library, and the essay ends with a small dare: pick one failure mode and one tool, and try it for six weeks."
 ]
 },
 {
@@ -1541,8 +1541,8 @@ const STORY = {
 "t": "text",
 "h": "Power nobody names",
 "p": [
-"Underneath conflict there is almost always power. Flat groups pretend they have none, and then someone quietly holds it. Other places hand it all to one person with a vision.",
-"These three ask what a leader owes the people around them, and what a participatory kind of leadership would take."
+"Underneath conflict there is almost always power. A group says it is flat, and the power simply goes where nobody can see it. I set Jo Freeman's 1970 essay, name the structure, against Cathy Levine's answer, build on friendship and unlearning, and watched communities that need both: the friendships fall without practice, the documents fall without trust.",
+"Then leadership itself: Louis at a community in Portugal naming his own shadow and repairing a rupture in a circle, and why so many places lean on one charismatic person for money, for the outside world and for the culture. Good leaders give the keys away. The group has to be willing to take them."
 ]
 },
 {
@@ -1582,7 +1582,8 @@ const STORY = {
 "t": "text",
 "h": "Finding your people is the easy part",
 "p": [
-"Shared living is booming, and most of it will not last a year. The hard part begins after the first good summer. Two of these begin with my own failure on my family's farm, where the wall I kept walking into was me."
+"Everyone is gathering again: run clubs, pottery nights, co-living. Gathering is the easy part. What lasts is the choice to stay, and the agreements a group writes before it needs them.",
+"These three ask why that is so hard for us. We were trained to be customers, and ghosting is a customer's exit aimed at people. And everyone wants a third place now, but the old ones held because of slow, cheap, unglamorous things: the dishes, the meals, honest structure, and a way to bring newcomers in. Two of them begin with my own failed community on my family's farm."
 ]
 },
 {
@@ -1615,7 +1616,8 @@ const STORY = {
 "t": "text",
 "h": "Money, and growing old",
 "p": [
-"Then the practical questions that decide everything: how a community pays for itself without money quietly taking over, as TDF, Spirala and Feytopia try to do, and how to build a place now that will still hold you when you are old."
+"Then the practical questions that decide everything. How a community pays for itself without money quietly taking over: the Traditional Dream Factory's tokens, Spirala writing its constitution before buying land, Feytopia turning down money that wanted the wheel. One move in three costumes: decide early what money may do to the people.",
+"And time. I thought community was a project for people in their twenties and thirties, until the older members at Samar and Tamera changed my mind. The community you build at forty is the one that holds you at eighty, if it writes its second decade on purpose."
 ]
 },
 {
@@ -1648,7 +1650,8 @@ const STORY = {
 "t": "text",
 "h": "Beyond one house",
 "p": [
-"The latest essays look outward. A weekend in Spain with the people who run a dozen of Europe's community hubs, whose stuck points turned out to be everyone's. And ADM in Amsterdam, evicted after decades, and what it teaches anyone building inside somebody else's backyard."
+"The latest essays look outward. A weekend near Barcelona with the people who run a dozen of Europe's community houses: every house had hit the same three walls, money, hidden power and belonging, which means the problem is structural, not personal.",
+"And the neighbours. ADM in Amsterdam refused to make a deal with the city and was evicted; other places brought their villages in, and the strongest deals are written down so they outlast the next mayor. Being loved by the people around you is not something you can assume."
 ]
 },
 {
@@ -1674,7 +1677,7 @@ const STORY = {
 "t": "text",
 "h": "Written for others",
 "p": [
-"Sometimes the writing goes to someone else's readers. In May I wrote a case study of Tamera for Supernuclear, with its founders and long-term residents."
+"Sometimes the writing goes to someone else's readers. In May I wrote a case study of Tamera for Supernuclear: how it began, how it treats love and money as political questions, its water landscape, and the new path to membership. I first met Tamera in 2019, at Defend the Sacred."
 ]
 },
 {
@@ -3620,7 +3623,7 @@ const STORY = {
 "t": "text",
 "h": "Another hand",
 "p": [
-"In July 2017 we built the main effigy for Borderland, the Nordic burn in Denmark: the work that stands at the heart of the event all week and burns at its end.",
+"In July 2017 I built the main effigy for Borderland, the Nordic burn in Denmark, together with Sean and Anutik: the work that stands at the heart of the event all week and burns at its end.",
 "It was a hand again, but not the hamsa we took to Burning Man four years earlier. This one was a human hand, rising from a tall lattice of wood, its fingers raised and open."
 ]
 },
@@ -3637,7 +3640,7 @@ const STORY = {
 "h": "Built to burn",
 "p": [
 "An effigy is built knowing that it will be gone in a few minutes. The whole week people climb around it, meet under it, leave things on it. Then on the last night the crowd forms a circle, and it goes up in a single breath of fire.",
-"We built it as we always did, as a crew: a structure simple enough for volunteers to raise, and strong enough to carry a hand several metres into the sky."
+"We built it the way I had learned to build at the burns: a structure simple enough for a small crew to raise, and strong enough to carry a hand several metres into the sky. I photographed it from the first lift to the last flame."
 ]
 },
 {
@@ -3692,7 +3695,7 @@ const STORY = {
 "t": "text",
 "h": "Built before we had a name",
 "p": [
-"I was leading Midburn's art department, and the temple was the piece the whole city would share. We raised part of the money with a crowdfunding video, and built the towers on build days in a green field months before the event, with many of the people who had built the Hand of Inspiration at Burning Man a year earlier.",
+"I was leading Midburn's art department, and the temple was the piece the whole city would share. We raised part of the money with a crowdfunding video I made, and built the towers on build days in a green field months before the event, with many of the people who had built the Hand of Inspiration at Burning Man a year earlier.",
 "A year later a core of that crew founded Fugara, to keep building together."
 ]
 },

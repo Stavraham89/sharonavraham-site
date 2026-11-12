@@ -48,6 +48,13 @@
 .cform .btn { font: 500 15px/1 var(--sans); color: var(--ink); border-bottom: 1.5px solid #c8322a; padding: 10px 2px; }
 .cform .btn:active { transform: scale(.97); }
 .cform .send a { color: var(--ink); border-bottom: 1px solid var(--rule); }
+/* WhatsApp: the same note, sent to my phone instead */
+.cform .send a.wa { display: inline-flex; align-items: center; gap: 8px; font: 500 14px/1 var(--sans); border: 1px solid var(--rule); border-radius: 999px; padding: 9px 14px 9px 11px; transition: border-color .2s, transform .16s cubic-bezier(.23,1,.32,1); }
+.cform .send a.wa[hidden] { display: none; }
+.cform .send a.wa svg { width: 18px; height: 18px; fill: none; stroke: #25d366; stroke-width: 1.6; stroke-linejoin: round; }
+.cform .send a.wa svg .f { fill: #25d366; stroke: none; }
+@media (hover: hover) { .cform .send a.wa:hover { border-color: #25d366; } }
+.cform .send a.wa:active { transform: scale(.97); }
 @media (max-width: 700px) { .cform { grid-template-columns: 1fr; } }
 .pending { font-size: 13px; color: var(--muted); border-left: 2px solid var(--build); padding-left: 10px; margin-bottom: 26px; }
 @media (max-width: 700px) { .routes li { grid-template-columns: 1fr; } }
@@ -99,7 +106,7 @@
     <label>Your name<input name="name" autocomplete="name" required></label>
     <label>Your email<input name="email" type="email" autocomplete="email" required></label>
     <label class="wide">Your message<textarea name="msg" rows="6" required></textarea></label>
-    <div class="send wide"><button class="btn" type="submit">Send</button><span>Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a></span></div>
+    <div class="send wide"><button class="btn" type="submit">Send</button><a class="wa" id="wa" href="#" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.2-.1.3 0 .5a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .6-.3 1.4-1 1.7-.6.3-1.4.4-3.3-.4a8.6 8.6 0 0 1-3.8-3.6c-.6-1-.8-1.9-.5-2.6z" class="f"/></svg>Message me on WhatsApp</a><span>Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a></span></div>
   </form>
   <ul class="routes">
     <li data-d="see"><h2>About the work</h2><p><b>Curating a show, or looking for prints?</b> For curators, galleries, collectors and press: exhibitions, commissions and prints of the series.</p></li>
@@ -145,13 +152,22 @@ const showPick = () => { pick.hidden = about.value !== "see"; f.msg.required = a
 about.addEventListener("change", showPick); showPick(); sum();
 
 // shortcut: no server yet, so Send opens the visitor's mail app with the message filled in; on launch, point the form at a form service (Formspree or a Cloudflare Pages function) so it sends directly
-f.addEventListener("submit", e => { e.preventDefault(); const d = new FormData(f), topic = about.options[about.selectedIndex].text, see = about.value === "see";
-  const k = see ? kinds() : [], w = see ? titles() : [];
-  const subject = k.length || w.length ? `${k.length ? list(k) : "The work"}: ${list(w) || "your photographs"}, from ${d.get("name")}` : `${topic}, from ${d.get("name")}`;
+// one note, two ways to send it: email (Send) or WhatsApp
+const compose = () => { const d = new FormData(f), topic = about.options[about.selectedIndex].text, see = about.value === "see";
+  const k = see ? kinds() : [], w = see ? titles() : [], name = d.get("name") || "";
+  const subject = k.length || w.length ? `${k.length ? list(k) : "The work"}: ${list(w) || "your photographs"}${name ? `, from ${name}` : ""}` : `${topic}${name ? `, from ${name}` : ""}`;
   const lines = see ? [k.length && `I am interested in: ${list(k)}`, projOnly && `- ${pr.title}: https://sharonavraham.com/project.html#${pr.id}`,
     ...chosen().map(t => `- ${t.title}: https://sharonavraham.com/series.html#${t.id}`)].filter(Boolean) : [];
+  return { d, subject, lines }; };
+f.addEventListener("submit", e => { e.preventDefault(); const { d, subject, lines } = compose();
   const body = [...lines, ...(lines.length ? [""] : []), d.get("msg"), "", d.get("name"), d.get("email")].join("\n");
   location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; });
+// WhatsApp: set WA to Sharon's number, international format, digits only (e.g. 9725...). Empty keeps the button hidden.
+const WA = "", wa = document.getElementById("wa");
+if (WA) { wa.hidden = false;
+  wa.addEventListener("click", () => { const { d, subject, lines } = compose(), msg = d.get("msg");
+    const text = [`Hi Sharon, I found you through your website. ${subject}.`, ...lines, msg ? `\n${msg}` : ""].filter(Boolean).join("\n");
+    wa.href = `https://wa.me/${WA}?text=${encodeURIComponent(text)}`; }); }
 }
 </script>
 </body></html>
