@@ -51,6 +51,38 @@
 @media (max-width: 700px) { .cform { grid-template-columns: 1fr; } }
 .pending { font-size: 13px; color: var(--muted); border-left: 2px solid var(--build); padding-left: 10px; margin-bottom: 26px; }
 @media (max-width: 700px) { .routes li { grid-template-columns: 1fr; } }
+/* Prints and shows: pick what you want and which work, in a few taps */
+.pick { grid-column: 1 / -1; display: grid; gap: 26px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.pick[hidden] { display: none; }
+.pick legend, .pick h3 { font: 400 clamp(22px, 2.2vw, 28px)/1.15 var(--serif); color: var(--ink); padding: 0; margin: 0 0 12px; }
+.kinds { display: flex; flex-wrap: wrap; gap: 10px; }
+.kinds label { display: block; cursor: pointer; }
+.kinds input, .grid input { position: absolute; opacity: 0; pointer-events: none; }
+.kinds span { display: inline-block; font: 500 14px/1 var(--sans); color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: 11px 16px; transition: background .2s, border-color .2s, color .2s, transform .16s cubic-bezier(.23,1,.32,1); }
+.kinds label:active span { transform: scale(.96); }
+.kinds input:checked + span { background: var(--see); border-color: var(--see); color: #fff; }
+.kinds input:focus-visible + span, .grid input:focus-visible + .tile { outline: 1.5px solid var(--see); outline-offset: 3px; }
+.came { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 20px; align-items: center; }
+.came[hidden] { display: none; }
+.came img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+.came p { font: 400 19px/1.45 var(--serif); color: var(--muted); max-width: 40ch; margin: 0; }
+.came p b { display: block; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.1; color: var(--ink); font-weight: 400; margin-bottom: 6px; }
+.works h4 { font: 500 12px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 10px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+.grid label { cursor: pointer; display: block; position: relative; }
+.tile { display: block; position: relative; overflow: hidden; transition: transform .35s cubic-bezier(.23,1,.32,1); }
+.tile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; filter: grayscale(1) brightness(.92); transition: filter .5s ease; }
+.tile b { position: absolute; inset: auto 0 0 0; padding: 22px 8px 7px; font: 500 12.5px/1.2 var(--sans); color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.72)); }
+.tile::after { content: ""; position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #fff; background: rgba(0,0,0,.25); transition: background-color .2s, transform .25s cubic-bezier(.23,1,.32,1); }
+@media (hover: hover) { .grid label:hover .tile { transform: scale(1.04); } .grid label:hover img { filter: none; } }
+.grid label:active .tile { transform: scale(.97); }
+.grid input:checked + .tile { box-shadow: 0 0 0 2px var(--see); }
+.grid input:checked + .tile img { filter: none; }
+.grid input:checked + .tile::after { background: var(--see) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.5l2.6 2.5L13 6.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center / 100% no-repeat; border-color: var(--see); transform: scale(1.12); }
+.summary { font: 400 18px/1.45 var(--serif); color: var(--ink); margin: 0; }
+.summary:empty { display: none; }
+@media (max-width: 700px) { .came { grid-template-columns: 110px minmax(0, 1fr); } .came p { font-size: 16px; } .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .tile, .kinds span, .tile::after { transition: none; } }
 </style></head>
 <body data-page="contact">
 <div class="wrap"><header class="top" id="top"></header>
@@ -58,6 +90,12 @@
   <section class="c-head"><h1>Write to me</h1><p>If something here landed with you, I want to hear about it. Tell me a little about what you are building, and which of these brought you here. Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a>.</p></section>
   <form class="cform" id="cform">
     <label>What is it about?<select name="about" id="about"><option value="see">About the work</option><option value="build">Partnering</option><option value="gather">Holding the space</option><option value="tell">Telling your story</option><option value="press">Press</option><option value="other">Something else</option></select></label>
+    <fieldset class="pick" id="pick" hidden>
+      <div><legend>What would you like?</legend><div class="kinds"><label><input type="checkbox" name="kind" value="Prints"><span>Prints</span></label><label><input type="checkbox" name="kind" value="An exhibition"><span>An exhibition</span></label><label><input type="checkbox" name="kind" value="A commission"><span>A commission</span></label><label><input type="checkbox" name="kind" value="Using a photograph"><span>Using a photograph</span></label></div></div>
+      <div class="came" id="came" hidden></div>
+      <div class="works"><h3 id="worksh">Which work?</h3><div id="works"></div></div>
+      <p class="summary" id="summary" aria-live="polite"></p>
+    </fieldset>
     <label>Your name<input name="name" autocomplete="name" required></label>
     <label>Your email<input name="email" type="email" autocomplete="email" required></label>
     <label class="wide">Your message<textarea name="msg" rows="6" required></textarea></label>
@@ -72,16 +110,48 @@
   </ul>
   <nav class="elsewhere" aria-label="Elsewhere"><a href="https://www.instagram.com/sharon.avraham_/" target="_blank" rel="noopener">Instagram</a><a href="https://jointogatherproject.substack.com" target="_blank" rel="noopener">Substack</a><a href="https://sharonavraham.darkroom.com/" target="_blank" rel="noopener">Prints</a></nav>
 </main><footer class="foot"></footer></div>
-<script src="data.js"></script><script src="media.js"></script><script src="myc.js"></script><script src="site.js"></script>
+<script src="data.js"></script><script src="media.js"></script><script src="myc.js"></script><script src="series.js"></script><script src="site.js"></script>
 <script>trail(document.getElementById("top"), [{ label: "Sharon Avraham", href: "./" }, { label: "Write to me" }], "contact");
-// The door you came from picks the topic
-const f = document.getElementById("cform"), about = document.getElementById("about"), h = location.hash.slice(1);
+// The door you came from picks the topic; ?w= names the project or series you were looking at
+const f = document.getElementById("cform"), about = document.getElementById("about"), h = location.hash.slice(1), from = new URLSearchParams(location.search).get("w");
 if ([...about.options].some(o => o.value === h)) about.value = h;
-// shortcut: no server yet, so Send opens the visitor's mail app with the message filled in; on launch, point the form at a form service (Formspree or a Cloudflare Pages function) so it sends directly
-f.addEventListener("submit", e => { e.preventDefault(); const d = new FormData(f), topic = about.options[about.selectedIndex].text;
-  location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(`${topic}, from ${d.get("name")}`)}&body=${encodeURIComponent(`${d.get("msg")}
 
-${d.get("name")}
-${d.get("email")}`)}`; });
+{ // a block, so these names do not collide with the shared scripts
+// Prints and shows: the series a curator or collector can ask about, grouped like the gallery
+const ART = ["Artivism", "Photo stories", "ToGather", "Personal projects", "Installations"];
+const first = t => (MEDIA[t.folders[0]] || [])[0];
+const SERIES = SERIES_TEXT.filter(first);
+// where the visitor came from: a series, or a project whose photos are a series
+const pr = from && P[from], fromSeries = SERIES.filter(t => t.id === from || (pr && (pr.media || []).some(m => t.folders.includes(m))));
+const shown = [...new Set([...fromSeries, ...SERIES.filter(t => ART.includes(t.group))])];
+const works = document.getElementById("works"), pick = document.getElementById("pick"), summary = document.getElementById("summary");
+works.innerHTML = [...new Set(shown.map(t => t.group))].map(g => `<h4>${esc(g)}</h4><div class="grid">${shown.filter(t => t.group === g).map(t =>
+  `<label><input type="checkbox" name="work" value="${t.id}"${fromSeries.includes(t) ? " checked" : ""}><span class="tile"><img src="img/t/${t.folders[0]}/${first(t)[0]}" alt="" loading="lazy"><b>${esc(t.title)}</b></span></label>`).join("")}</div>`).join("");
+const here = fromSeries[0], came = document.getElementById("came");
+if (here || (pr && pr.img)) {   // show them what they were looking at, already chosen
+  const big = here ? `img/w/${here.folders[0]}/${first(here)[0]}` : pr.img, title = here ? here.title : pr.title;
+  came.innerHTML = `<img src="${big}" alt=""><p><b>${esc(title)}</b>You came from here, so it is already in your note. Add any other work below.</p>`;
+  came.hidden = false; document.getElementById("worksh").textContent = "Add more work";
+}
+const chosen = () => [...f.querySelectorAll('input[name="work"]:checked')].map(i => SERIES.find(t => t.id === i.value));
+const kinds = () => [...f.querySelectorAll('input[name="kind"]:checked')].map(i => i.value);
+const list = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a.at(-1);
+const projOnly = pr && !fromSeries.length;   // a project with no photo series of its own stays in the note
+const titles = () => [...(projOnly ? [pr.title] : []), ...chosen().map(t => t.title)];
+function sum() { const k = kinds().map(x => x.toLowerCase()), w = titles();
+  summary.textContent = w.length || k.length ? `You are asking about ${k.length ? list(k) : "the work"}${w.length ? `: ${list(w)}` : ""}.` : ""; }
+pick.addEventListener("change", sum);
+const showPick = () => { pick.hidden = about.value !== "see"; f.msg.required = about.value !== "see"; };
+about.addEventListener("change", showPick); showPick(); sum();
+
+// shortcut: no server yet, so Send opens the visitor's mail app with the message filled in; on launch, point the form at a form service (Formspree or a Cloudflare Pages function) so it sends directly
+f.addEventListener("submit", e => { e.preventDefault(); const d = new FormData(f), topic = about.options[about.selectedIndex].text, see = about.value === "see";
+  const k = see ? kinds() : [], w = see ? titles() : [];
+  const subject = k.length || w.length ? `${k.length ? list(k) : "The work"}: ${list(w) || "your photographs"}, from ${d.get("name")}` : `${topic}, from ${d.get("name")}`;
+  const lines = see ? [k.length && `I am interested in: ${list(k)}`, projOnly && `- ${pr.title}: https://sharonavraham.com/project.html#${pr.id}`,
+    ...chosen().map(t => `- ${t.title}: https://sharonavraham.com/series.html#${t.id}`)].filter(Boolean) : [];
+  const body = [...lines, ...(lines.length ? [""] : []), d.get("msg"), "", d.get("name"), d.get("email")].join("\n");
+  location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; });
+}
 </script>
 </body></html>

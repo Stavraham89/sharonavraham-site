@@ -28,35 +28,45 @@ const PROJECTS = [
     quote: ["It isn't photojournalism. To me it's more a kind of protest art.", "Calcalist, 2020 (translated)"],
     links: ["elham", "falahi", "series"] },
   { id: "hand", title: "Hand of Inspiration", src: "self", years: "2013", role: "Project lead; artistic director of Midburn", place: "Black Rock City, Nevada",
-    doors: ["see"], img: "img/p/hand-1.jpg",
+    doors: ["see"], img: "img/p/install-1.jpg",
     essence: "A 20-foot hamsa of wood and light, with drums that sent light up its fingers: Midburn's first official project at Burning Man.",
     text: ["As Midburn's first CORE project, the Hand represented the Israeli community at Burning Man for the first time. About forty people built it: over six metres tall and lined with programmable light. It was seen by tens of thousands of participants, and then it burned."],
-    photos: ["img/p/hand-1.jpg", "img/p/hand-2.jpg", "img/p/hand-3.jpg", "img/p/hand-4.jpg"],
+    photos: ["img/p/install-1.jpg", "img/p/install-2.jpg", "img/w/midburn-story/10.jpg"],
     facts: [["6 m", "tall"], ["~40", "builders"]],
     quote: ["Sharon lead [sic] the team, pushing a professional designer and an engineer.", "Burning Man Journal, 2013"],
-    links: ["midburn", "installations", "fugara"] },
+    links: ["forest", "borderland", "midburn", "installations", "fugara"] },
+  { id: "forest", title: "Forest of Creation", src: "self", years: "2014", role: "Head of Midburn's art department; co-creator", place: "Midburn, the Negev desert",
+    doors: ["see"], img: "img/w/art-installations/08.jpg",
+    essence: "The first temple of Midburn: a forest of towers to climb, sit under and leave things in, burned at dawn on the last night.",
+    text: ["For the first Midburn in 2014 we built the temple as a forest of towers shaped like trees. Many of the Hand of Inspiration crew built it, a year before they founded Fugara."],
+    links: ["hand", "midburn", "fugara", "installations"] },
+  { id: "borderland", title: "Borderland Effigy", src: "self", years: "2017", role: "Artist, with the crew", place: "Borderland, Denmark",
+    doors: ["see"], img: "img/w/art-installations/01.jpg",
+    essence: "The main effigy of the Nordic burn: a wooden hand with its fingers raised, rising from a lattice tower, built to burn.",
+    text: ["In 2017 we built the main effigy for Borderland in Denmark: a human hand of wood, four years after the hamsa we took to Burning Man."],
+    links: ["hand", "fugara", "installations"] },
   { id: "installations", title: "Installations", years: "2013–2018", role: "Artist, project lead, co-creator", place: "Burning Man, Midburn, Jerusalem, Borderland (Denmark), Cascais (Portugal)", media: ["art-installations"],
     doors: ["see"], img: "img/p/install-2.jpg",
     essence: "Large works built with others, to be climbed, lit, played, gathered around and burned.",
     photos: ["img/p/install-2.jpg", "img/p/install-1.jpg", "img/p/install-3.jpg", "img/p/midburn-hand-1.jpg"],
-    links: ["hand", "midburn", "fugara"] },
+    links: ["hand", "forest", "borderland", "midburn", "fugara"] },
 
   // ---- Build
-  { id: "midburn", site: [["midburn.org", "https://midburn.org"]], title: "Midburn", years: "From 2011", role: "Co-founder; artistic director and founder of the art department", place: "Negev desert, Israel", media: ["midburn-story", "ev-midburn"], hero: "img/w/ev-midburn/01.jpg", skip: ["midburn-story/03.jpg","midburn-story/04.jpg","midburn-story/06.jpg","midburn-story/10.jpg","midburn-story/12.jpg","midburn-story/13.jpg"],   src: "self",   // Sharon: the event and the art, not portraits; 10, 12, 13 are Burning Man, not Midburn
+  { id: "midburn", site: [["midburn.org", "https://midburn.org"]], title: "Midburn", years: "From 2012", role: "Co-founder; artistic director and founder of the art department", place: "Negev desert, Israel", media: ["midburn-story", "ev-midburn"], hero: "img/w/ev-midburn/01.jpg", skip: ["midburn-story/03.jpg","midburn-story/04.jpg","midburn-story/06.jpg","midburn-story/10.jpg","midburn-story/12.jpg","midburn-story/13.jpg"],   src: "self",   // Sharon: the event and the art, not portraits; 10, 12, 13 are Burning Man, not Midburn
     doors: ["build", "gather"], img: "img/p/midburn-2.jpg",
     essence: "The Israeli burn: a city of art and volunteers that rises in the Negev for a week and disappears again. I co-founded it and built its art department.",
-    text: ["In September 2011 a few of us came home from Burning Man with one question: what would a burn of our own look like, here? We started meeting on my family's farm in Ein Vered, which became ground zero for the early work. Slowly a volunteer culture grew around the question, then an NGO, then a city that rises in the Negev for one week and disappears again.",
+    text: ["In 2011 I came home from my first Burning Man with one question: what would a burn of our own look like, here? In 2012 we founded Midburn. We started meeting on my family's farm in Ein Vered, which became ground zero for the early work. Slowly a volunteer culture grew around the question, then an NGO, then a city that rises in the Negev for one week and disappears again.",
       "I co-founded Midburn and started its art department. My work was helping people build the things the city gathers around: finding the artists, curating, giving out the art grants, and standing in the dust at night with a crew trying to finish a structure before the burn. In 2013 about forty of us built the Hand of Inspiration and took it to Burning Man, Midburn's first piece there.",
       "What I learned in those years I still practise: a community can govern itself when nobody is in charge, as long as enough people feel it is theirs. The Artists' Guild grew inside the art department. Later I stepped back from leading it, and kept building art and volunteering in other corners of the city."],
     photos: ["img/p/midburn-1.jpg", "img/p/midburn-2.jpg", "img/p/midburn-3.jpg", "img/p/midburn-4.jpg"],
-    facts: [["2011", "founded"], ["20", "artists given grants at the first city, 2014"], ["100+", "art projects funded while I led the art"]],
+    facts: [["2012", "founded"], ["20", "artists given grants at the first city, 2014"], ["100+", "art projects funded while I led the art"]],
     quote: ["Sharon lead [sic] the team, pushing a professional designer and an engineer.", "Burning Man Journal, 2013"],
     links: ["hand", "fugara", "farm", "forbidden"] },
-  { id: "fugara", title: "Fugara", years: "From 2014", role: "Co-founder", place: "Israel; works shown in Jerusalem, Denmark and Cascais",
+  { id: "fugara", title: "Fugara", years: "From 2015", role: "Co-founder", place: "Israel; works shown in Jerusalem, Denmark and Cascais",
     doors: ["build", "see"],
     essence: "A collective of artists, designers and makers building large interactive installations from wood, metal, electronics, light, sound and fire.",
     media: ["fugara"],   // from F:\Fugara: Fluid Self, build weekends, the team, Decom 2015, street light tests
-    text: ["Fugara grew out of the core of the young Midburn community in 2014: a place to keep building the big, immersive work we had started in the desert, for the burns and beyond.",
+    text: ["Fugara grew out of the core of the young Midburn community in 2015: a place to keep building the big, immersive work we had started in the desert, for the burns and beyond.",
       "We met for build weekends, cooked for each other and argued over sketches until something worth carrying to the desert came out of it, like Fluid Self, an interactive installation of light and fabric that stood at Midburn in 2015.",
       "Our lanterns, Swirl, lit the stone alleys of Jerusalem's Old City at the Light Festival in 2016, and travelled to Lumina, the light festival in Cascais, in 2018."],
     facts: [["2014", "founded"], ["2018", "Swirl at Lumina, Cascais"]],
@@ -118,7 +128,7 @@ const PROJECTS = [
     photos: ["img/p/compass-2.jpg", "img/p/compass-1.jpg", "img/p/compass-4.jpg", "img/p/compass-3.jpg"],
     facts: [["5", "days"], ["Aug", "2025"]],
     links: ["lab", "farm", "synesthesia"] },
-  { id: "lab", hero: "img/w/st-lab/02.jpg",   // no identifiable students at the top
+  { id: "lab",
     site: [["arava.org", "https://arava.org/academics/campus-life/extra-curricular-activities/"]], title: "The LAB", years: "2026–now", role: "Campus Life Director; designer of the LAB", place: "Arava Institute, Kibbutz Ketura",
     doors: ["gather"], src: "self", media: ["ev-lab"],
     essence: "Leadership, Action and Belonging: one semester that takes Israeli, Palestinian, Jordanian and international students from belonging, to finding a voice, to leading their own work.",
@@ -142,7 +152,7 @@ const PROJECTS = [
     text: ["Spank Al Yahood was our shared Israeli-Palestinian camp in the middle of Midburn. From 2019 we built it together: the shade, the kitchen, a tower, a little stage. During the week we cooked for whoever walked in, played music late into the night, and crossed the city together in costumes of our own.",
       "In a city of strangers it was a small place where Palestinians and Israelis were simply campmates."],
     links: ["kamelz", "midburn", "heroes"] },
-  { id: "falahi", skip: ["ev-falahi/04.jpg", "ev-falahi/05.jpg"], media: ["ev-falahi"], title: "Falahi", years: "From 2021", role: "Founding team", place: "Israel and Palestine", src: "self",
+  { id: "falahi", skip: ["ev-falahi/04.jpg", "ev-falahi/05.jpg"], media: ["ev-falahi"], title: "Falahi", years: "From 2021", role: "Founding team, with Jawdat Kassab", place: "Israel and Palestine", src: "self",
     doors: ["gather"],
     essence: "Weekends that celebrate Palestinian farming heritage: food, music, stories and healing, shared on the land by Palestinians, Israelis and friends.",
     text: ["Falahi is one of ELHAM's programmes: a day when Palestinian farmers share their songs, their stories, what they know about the land, and their harvest, with the people who come to sit with them. There is food and music, circles in the shade, and a market of what the land gave.",
@@ -180,7 +190,7 @@ const PROJECTS = [
 
   // ---- Tell
   { id: "substack", site: [["jointogatherproject.substack.com", "https://jointogatherproject.substack.com"], ["Guest post: Case Study: Tamera", "https://supernuclear.substack.com/p/case-study-tamera"]], title: "The Substack", years: "Since March 2026", role: "Writer", place: "Online",
-    doors: ["tell"], img: "img/w/samar/03.jpg",
+    doors: ["tell"], img: "img/w/auroville/42.jpg",
     essence: "Essays from the communities I visit, one person or one moment at a time.",
     quote: ["We're grateful to Sharon for this deep dive with insights from the founders and some long term residents.", "Gillian Morris, editor, Supernuclear, on Case Study: Tamera"],
     text: ["Every week I write one essay from the field. Each starts with a person or a moment from the communities I visit for ToGather, and follows one question to the end: how people decide, share money, fight and stay.",
@@ -205,7 +215,7 @@ const PROJECTS = [
     photos: ["img/p/tamera-1.jpg", "img/p/tamera-2.jpg", "img/p/tamera-3.jpg", "img/p/tamera-4.jpg"],
     facts: [["~1.13M", "views on six reels"], ["542", "people signed up to support in 22 days"]],
     links: ["togather", "arava"] },
-  { id: "arava", hero: "img/w/ketura/01.jpg",   // no identifiable students at the top
+  { id: "arava", hero: "img/w/ketura/01.jpg",
     site: [["arava.org", "https://arava.org"]], title: "Arava Institute", years: "2026–now", role: "Campus Life Director; reels and stories", place: "Kibbutz Ketura",
     doors: ["tell", "gather"], src: "self", media: ["arava-more", "ketura"],
     essence: "A desert campus where Israeli, Palestinian, Jordanian and international students live and learn together. I run its community life and tell its story.",
@@ -223,7 +233,7 @@ const DOOR_ITEMS = {
   tell: [["reel", "Films"], ["substack", "Writing"], ["instagram", "Social media"], ["tamera", "Campaigns"], ["arava", "Campaigns"]],
 };
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
-const DOOR_COVER = { build: { fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", lab: "img/w/st-lab/02.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
+const DOOR_COVER = { build: { fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what holds them there?";
 

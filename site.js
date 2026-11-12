@@ -96,9 +96,24 @@ function projectPage() {
     <section class="grows"><h2 class="sub">Grows into</h2><ul>${links.map(l =>
       `<li class="${l.doors[0]}"><a href="${projUrl(l)}"><span><b>${esc(l.title)}</b><span>${DOORS[l.doors[0]].title}</span></span></a></li>`).join("")}</ul></section>
     <section class="invite"><p>${INVITE[d][0]}</p><a class="btn" href="contact.html#${d}">${INVITE[d][1]}</a></section>`;
+  // the contact page opens on this project, so a curator does not have to name it again
+  document.querySelectorAll('main a[href^="contact.html#"]').forEach(a => a.href = a.getAttribute("href").replace("contact.html#", `contact.html?w=${p.id}#`));
   scrollTo(0, 0);
   intro();
-  const j = document.querySelector(".journey"); if (j) { growJourney(j); lightbox(j); }
+  const j = document.querySelector(".journey"); if (j) { growJourney(j); lightbox(j); phones(j); }
+}
+// Phone mockups: each feed glides to its next photo on its own clock, only while on screen; a tap moves it on by hand
+function phones(root) {
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  root.querySelectorAll(".phone").forEach((ph, n) => {
+    const imgs = [...ph.querySelectorAll(".ph-feed img")], bars = [...ph.querySelectorAll(".ph-bars i")]; let i = 0, t = 0, seen = false;
+    const go = k => { imgs[i].classList.remove("on"); i = (k + imgs.length) % imgs.length; imgs[i].classList.add("on");
+      bars.forEach((b, x) => { b.classList.toggle("done", x < i); b.classList.remove("run"); }); void bars[i].offsetWidth; if (!calm && seen) bars[i].classList.add("run"); };
+    const tick = () => { clearTimeout(t); if (!calm && seen && !document.hidden) t = setTimeout(() => { go(i + 1); tick(); }, 4200); };
+    ph.querySelector(".ph-feed").addEventListener("click", e => { const r = e.currentTarget.getBoundingClientRect(); go(e.clientX - r.left < r.width / 3 ? i - 1 : i + 1); tick(); });
+    new IntersectionObserver(([en]) => { seen = en.isIntersecting; if (seen) { setTimeout(() => { go(i); tick(); }, n * 700); } else clearTimeout(t); }, { threshold: .35 }).observe(ph);
+    document.addEventListener("visibilitychange", tick);
+  });
 }
 // The journey: a project told as text and photographs in turn, joined by a mycelium thread that grows as you read (stories.js)
 function journeyHTML(p, st, hero) {
@@ -123,6 +138,13 @@ function journeyHTML(p, st, hero) {
     cards: b => `${b.h ? `<h2>${esc(b.h)}</h2>` : ""}<div class="cards">${(b.items || []).map(c => { const ext = /^https?:/.test(c.href || ""), src = c.img ? (/^https?:/.test(c.img) ? c.img : `img/w/${c.img}`) : "";
       const tag = c.href ? "a" : "div";
       return `<${tag} class="card${c.href ? "" : " still"}"${c.href ? ` href="${esc(c.href)}"` : ""}${ext ? ' target="_blank" rel="noopener"' : ""}>${src ? `<span class="ci"><img src="${esc(src)}" alt="" loading="lazy"></span>` : ""}<span class="ct">${c.tag ? `<i>${esc(c.tag)}</i>` : ""}<b>${esc(c.title)}</b>${c.text ? `<span>${esc(c.text)}</span>` : ""}</span></${tag}>`; }).join("")}</div>`,
+    phones: b => `${b.h ? `<h2>${esc(b.h)}</h2>` : ""}<div class="phones">${(b.items || []).map(a => `<figure class="phone">
+      <div class="phx"><div class="ph-bars">${a.s.map(() => "<i></i>").join("")}</div>
+        <div class="ph-top"><span class="ph-av"><img src="img/t/${a.s[0]}" alt=""></span><b>${esc(a.handle)}</b></div>
+        <button class="ph-feed" type="button" aria-label="Next photo from ${esc(a.handle)}">${a.s.map((s, i) => `<img src="img/w/${s}" alt="" loading="lazy"${i ? "" : ' class="on"'}>`).join("")}</button>
+        <div class="ph-icons" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21 4 10 14M21 4l-7 17-4-7-7-4z"/></svg></div>
+        <p class="ph-cap"><b>${esc(a.handle)}</b> ${esc(a.cap || "")}</p></div>
+      <figcaption><b>${esc(a.name)}</b><span>${esc(a.note || "")}</span><a href="${esc(a.href)}" target="_blank" rel="noopener">Open on Instagram</a></figcaption></figure>`).join("")}</div>`,
     cta: b => `<h2>${esc(b.h)}</h2>${b.p ? `<p>${linked(b.p)}</p>` : ""}<div class="go">${(b.btn || []).map(([t, u]) => `<a class="btn" href="${u}"${u.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(t)}</a>`).join("")}</div>`,
   };
   let side = 0;   // photos and text step left and right down the page, so the thread has somewhere to wander
@@ -135,6 +157,7 @@ function growJourney(j) {
   const svg = j.querySelector(".jthread"), NS = "http://www.w3.org/2000/svg", still = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let main = null, L = 0, knots = [];
   const draw = () => {
+    if (!j.isConnected) return;   // a page re-rendered: this thread's journey is gone
     const W = j.offsetWidth, H = j.offsetHeight, x0 = Math.max(10, parseFloat(getComputedStyle(j).paddingLeft) * .42);
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.style.height = H + "px"; svg.innerHTML = "";
     const el = (n, a, parent = svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); parent.appendChild(e); return e; };

@@ -159,7 +159,7 @@ function seriesPage() {
       ${S.group === "ToGather" ? `<a class="follow" href="project.html#togather">Part of ToGather, my research on how communities hold together</a>` : ""}
     </header>
     <section class="walk" id="walk">${html}</section>
-    <section class="invite"><p>Curating a show, or looking for prints?</p><a class="btn" href="contact.html#see">Write to me about the work</a></section>
+    <section class="invite"><p>Curating a show, or looking for prints?</p><a class="btn" href="contact.html?w=${S.id}#see">Write to me about the work</a></section>
     <nav class="s-after" aria-label="More series">
       <a href="series.html#${prev.id}"><span>Previous</span>${esc(prev.title)}</a>
       <a href="${GROUP}"><span>Back to</span>${esc(S.group)}</a>

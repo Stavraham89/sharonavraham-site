@@ -13,7 +13,7 @@ const STORY = {
 "t": "text",
 "h": "After the Hand",
 "p": [
-"In 2013 about forty of us built the Hand of Inspiration and took it to Burning Man. When we came home, some of us did not want to stop. In 2014 a core of people from the young Midburn community founded Fugara, a collective to keep building big, interactive work together.",
+"In 2013 about forty of us built the Hand of Inspiration and took it to Burning Man. When we came home, some of us did not want to stop. In 2015 a core of people from the young Midburn community, among them Shlomi Mir, Matan Zohar, Amir Shalem and me, founded Fugara, a collective to keep building big, interactive work together.",
 "We were artists, designers, engineers and people who simply liked to make things. Our materials were wood, metal, electronics, light, sound and fire. What we cared about was the moment a person walks into a work and it answers them."
 ]
 },
@@ -51,7 +51,7 @@ const STORY = {
 "t": "text",
 "h": "What we built",
 "p": [
-"For the first Midburn in 2014 we built the Forest of Creation, the city's first temple. In 2015 came Fluid Self, an interactive installation of light and fabric. Then Swirl: five laser-cut stainless-steel cubes, each turning on a motor, throwing moving images of light onto the walls around them. It tells a story of evolution, from space to man to machine.",
+"Even before we had the name, for the first Midburn in 2014, many of us built the Forest of Creation, the city's first temple. In 2015 came Fluid Self, an interactive installation of light and fabric. Then Swirl: five laser-cut stainless-steel cubes, each turning on a motor, throwing moving images of light onto the walls around them. It tells a story of evolution, from space to man to machine.",
 "Swirl lit the stone alleys of Jerusalem's Old City at the light festival, and in September 2018 it travelled to Lumina, the light festival in Cascais, Portugal, where it moved with the crowd down Rua Marques Leal Pancada. In 2017 we built the main effigy for Borderland, the Nordic burn in Denmark."
 ]
 },
@@ -84,7 +84,7 @@ const STORY = {
 "title": "Forest of Creation",
 "text": "The first temple at Midburn, a forest of towers.",
 "img": "art-installations/08.jpg",
-"href": "https://www.youtube.com/watch?v=hl5x45I0wbI",
+"href": "project.html#forest",
 "tag": "2014"
 },
 {
@@ -102,10 +102,10 @@ const STORY = {
 "tag": "2016 to 2018"
 },
 {
-"title": "Main Effigy, Borderland",
+"title": "Borderland Effigy",
 "text": "A wooden effigy for the Nordic burn in Denmark.",
 "img": "art-installations/01.jpg",
-"href": "project.html#installations",
+"href": "project.html#borderland",
 "tag": "2017"
 }
 ]
@@ -670,7 +670,7 @@ const STORY = {
 "h": "Built by many hands",
 "p": [
 "For months before, we met on build weekends and made the art, the gate and the kitchen ourselves. We held an open meeting in Haifa. The village had teams for everything: kitchen, gate, build and strike, a temple, families, a café, and a safe zone for anyone who needed a quiet place. There were no phones and no single-use plastic, and no meat.",
-"We also prepared the Israelis who were coming, in Hebrew, with a guide called Being an Israeli in a Palestinian space. For many of them it was the first time they were guests, not hosts. I co-founded Al-Qarya and carried the logistics, the partnerships and the production."
+"We also prepared the Israelis who were coming, in Hebrew, with a guide called Being an Israeli in a Palestinian space. For many of them it was the first time they were guests, not hosts. I co-founded Al-Qarya with Saed Mansour and carried the logistics, the partnerships and the production."
 ]
 },
 {
@@ -922,8 +922,8 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"ev-falahi/05.jpg",
-"ev-falahi/06.jpg"
+"st-falahi/01.jpg",
+"st-falahi/02.jpg"
 ],
 "cap": "The community kitchen, and an exhibition of Palestinian life and art."
 },
@@ -938,9 +938,9 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"ev-falahi/07.jpg",
+"st-falahi/03.jpg",
 "ev-falahi/02.jpg",
-"ev-falahi/08.jpg"
+"st-falahi/04.jpg"
 ]
 },
 {
@@ -1067,7 +1067,7 @@ const STORY = {
 "t": "text",
 "h": "A farming course that became something else",
 "p": [
-"Resilient Roots began as a course about the land. With support from the Arava Institute's alumni fund we planned a programme on soil, heritage farming and shared living, taught in the Triangle by a permaculture teacher who also understood the politics of the place. We spent the summer of 2023 finding the right teacher and the right team.",
+"Resilient Roots began as a course about the land, which I started with Liel Maghen. With support from the Arava Institute's alumni fund we planned a programme on soil, heritage farming and shared living, taught in the Triangle by a permaculture teacher who also understood the politics of the place. We spent the summer of 2023 finding the right teacher and the right team.",
 "Then October 7 happened. The people we had built this with were grieving, frightened and cut off from each other. A course about soil was not what they needed first. So we changed it."
 ]
 },
@@ -1283,12 +1283,55 @@ const STORY = {
 ]
 },
 {
-"t": "photos",
+"t": "phones",
+"h": "Three feeds",
+"items": [
+{
+"handle": "togather.project",
+"name": "ToGather",
+"href": "https://instagram.com/togather.project",
+"note": "The communities from the research: portraits, a line from the kitchen table, a clip from a long conversation.",
+"cap": "What holds a community together when things get hard?",
 "s": [
-"st-togather/02.jpg",
-"st-togather/03.jpg"
-],
-"cap": "Nitzan at Spirala and Tonya at the Traditional Dream Factory. Portraits from the interviews become reels."
+"st-togather/03.jpg",
+"tamera-tg/04.jpg",
+"st-togather/05.jpg",
+"fey/08.jpg",
+"adm/07.jpg",
+"samar/14.jpg"
+]
+},
+{
+"handle": "aravainstitute",
+"name": "Arava Institute",
+"href": "https://www.instagram.com/aravainstitute/",
+"note": "'Meet [name]' reels and stories from the campus, where students from across the region live and learn together.",
+"cap": "A semester in the desert, told by the people living it.",
+"s": [
+"st-arava/01.jpg",
+"ev-lab/01.jpg",
+"st-lab/09.jpg",
+"arava-more/06.jpg",
+"st-lab/02.jpg",
+"st-arava/04.jpg"
+]
+},
+{
+"handle": "sharon.avraham_",
+"name": "My own",
+"href": "https://www.instagram.com/sharon.avraham_/",
+"note": "The photographs, the series, and the work while it is still in progress.",
+"cap": "I photograph to understand the world around me.",
+"s": [
+"dead-sea/01.jpg",
+"the-israeli-spring/01.jpg",
+"every-day-heroes/01.jpg",
+"forgotten-realms/01.jpg",
+"color-in-motion/01.jpg",
+"red-sea/01.jpg"
+]
+}
+]
 },
 {
 "t": "text",
@@ -1323,7 +1366,7 @@ const STORY = {
 {
 "t": "cta",
 "h": "Follow",
-"p": "The communities on one account, the photographs on the other.",
+"p": "The communities on one account, the photographs on the other, and the desert on the Institute's.",
 "btn": [
 [
 "@togather.project",
@@ -1332,6 +1375,10 @@ const STORY = {
 [
 "@sharon.avraham_",
 "https://www.instagram.com/sharon.avraham_/"
+],
+[
+"@aravainstitute",
+"https://www.instagram.com/aravainstitute/"
 ]
 ]
 }
@@ -1397,17 +1444,11 @@ const STORY = {
 ]
 },
 {
-"t": "photos",
-"s": [
-"samar/14.jpg"
-],
-"cap": "A community meeting at Kibbutz Samar. The photo that opens 'What 35 communities taught me'."
-},
-{
 "t": "text",
-"h": "Start here",
+"h": "Why I go",
 "p": [
-"Three pieces that say why the project exists and what the first interviews taught me."
+"It started with a letter. For years I had built places for people to meet, and watched some of them crack anyway. So I went to ask the people who stayed: what holds you here?",
+"The first two pieces say why, and what I had wrong before I even started."
 ]
 },
 {
@@ -1426,26 +1467,34 @@ const STORY = {
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fae088857-a893-47c0-a0ea-159454d633d8_3349x2038.jpeg",
 "href": "https://jointogatherproject.substack.com/p/what-i-got-wrong-about-intentional",
 "tag": "18 Mar 2026"
+}
+]
 },
+{
+"t": "photos",
+"s": [
+"samar/14.jpg"
+],
+"cap": "A community meeting at Kibbutz Samar. The photo that opens 'What 35 communities taught me'."
+},
+{
+"t": "text",
+"h": "The conversation that breaks them",
+"p": [
+"After thirty-five communities one pattern was everywhere. The fight that ended a place was almost never settled. It was just postponed.",
+"So the next essays stay with conflict: why nobody taught us how to fight, and what I saw in the places that held through it."
+]
+},
+{
+"t": "cards",
+"items": [
 {
 "title": "What 35 communities taught me about the conversation that breaks them",
 "text": "It was almost never settled. It was just postponed.",
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3e7bf464-7598-41a7-a1c6-3bf0c7de130a_3784x2000.jpeg",
 "href": "https://jointogatherproject.substack.com/p/what-35-communities-taught-me-about",
 "tag": "24 Mar 2026"
-}
-]
 },
-{
-"t": "text",
-"h": "Conflict, power and how people stay",
-"p": [
-"The question I ask in every interview is what happens when things get hard between people. These essays follow the answers, from Tamera's Forum to the leaders nobody can question."
-]
-},
-{
-"t": "cards",
-"items": [
 {
 "title": "Nobody taught us how to fight. That's why communities fall apart.",
 "text": "Conflict does not kill communities. The refusal to face it does.",
@@ -1459,20 +1508,52 @@ const STORY = {
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb44938b0-1670-4354-80b2-354cb2bbab30_2661x2000.jpeg",
 "href": "https://jointogatherproject.substack.com/p/what-i-took-from-watching-communities",
 "tag": "7 Apr 2026"
+}
+]
 },
 {
-"title": "The tyranny of structurelessness",
-"text": "What the women's liberation movement figured out about flat groups, and what we keep forgetting.",
-"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fede38108-798f-4815-8dc9-ce02022d180b_2000x1335.jpeg",
-"href": "https://jointogatherproject.substack.com/p/the-tyranny-of-structurelessness",
-"tag": "26 Apr 2026"
+"t": "text",
+"p": [
+"The strange part is that the tools exist. Forum, Sociocracy, Nonviolent Communication, clear agreements about money. They mostly sit on the shelf until it is too late."
+]
 },
+{
+"t": "cards",
+"items": [
 {
 "title": "The tools exist. We rarely use them.",
 "text": "The same things break intentional communities, and the toolkits usually stay on the shelf.",
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F26147a87-ae0f-4aa9-9e12-cb995f6d7ef0_2500x1387.jpeg",
 "href": "https://jointogatherproject.substack.com/p/the-tools-exist-we-rarely-use-them",
 "tag": "13 May 2026"
+}
+]
+},
+{
+"t": "photos",
+"s": [
+"tamera-tg/06.jpg",
+"tamera-tg/10.jpg"
+],
+"cap": "A circle at Tamera, and the wishes on its wall."
+},
+{
+"t": "text",
+"h": "Power nobody names",
+"p": [
+"Underneath conflict there is almost always power. Flat groups pretend they have none, and then someone quietly holds it. Other places hand it all to one person with a vision.",
+"These three ask what a leader owes the people around them, and what a participatory kind of leadership would take."
+]
+},
+{
+"t": "cards",
+"items": [
+{
+"title": "The tyranny of structurelessness",
+"text": "What the women's liberation movement figured out about flat groups, and what we keep forgetting.",
+"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fede38108-798f-4815-8dc9-ce02022d180b_2000x1335.jpeg",
+"href": "https://jointogatherproject.substack.com/p/the-tyranny-of-structurelessness",
+"tag": "26 Apr 2026"
 },
 {
 "title": "The shadows of leadership in community",
@@ -1493,16 +1574,15 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"auroville/42.jpg",
-"tamera-tg/10.jpg"
+"fey/08.jpg"
 ],
-"cap": "A shared meal in Auroville, and wishes on the wall at Tamera"
+"cap": "Dinner by candlelight at Feytopia, Burgundy."
 },
 {
 "t": "text",
-"h": "Money, land and the places we build",
+"h": "Finding your people is the easy part",
 "p": [
-"Shared living is booming. These essays ask what it costs, who pays, and why the old third places held when the new ones often don't. Two of them begin with my own failure on my family's farm."
+"Shared living is booming, and most of it will not last a year. The hard part begins after the first good summer. Two of these begin with my own failure on my family's farm, where the wall I kept walking into was me."
 ]
 },
 {
@@ -1514,20 +1594,6 @@ const STORY = {
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7304c9a6-a991-4327-93db-b7b29163b2c6_4775x2500.jpeg",
 "href": "https://jointogatherproject.substack.com/p/you-found-your-people-that-was-the",
 "tag": "17 Apr 2026"
-},
-{
-"title": "The community you build at forty is the one that holds you at eighty",
-"text": "On building a place to grow old in, through some living examples.",
-"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1e1aef04-4b55-4751-bb1d-fd4aad6c8197_2500x1769.jpeg",
-"href": "https://jointogatherproject.substack.com/p/the-community-you-build-at-forty",
-"tag": "19 May 2026"
-},
-{
-"title": "What happened when a dozen community hubs met for a weekend in Spain",
-"text": "The people who run Europe's community houses, and why their stuck points are everyone's.",
-"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c2226c2-a36a-4b67-98a2-7dca5e721787_4260x2500.jpeg",
-"href": "https://jointogatherproject.substack.com/p/what-happened-when-a-dozen-community",
-"tag": "30 May 2026"
 },
 {
 "title": "The uncooperative society",
@@ -1542,13 +1608,58 @@ const STORY = {
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F29f62708-2c90-416c-98eb-b3db08da6c1d_2000x1204.jpeg",
 "href": "https://jointogatherproject.substack.com/p/you-cannot-buy-a-third-place",
 "tag": "30 Jun 2026"
+}
+]
 },
+{
+"t": "text",
+"h": "Money, and growing old",
+"p": [
+"Then the practical questions that decide everything: how a community pays for itself without money quietly taking over, as TDF, Spirala and Feytopia try to do, and how to build a place now that will still hold you when you are old."
+]
+},
+{
+"t": "cards",
+"items": [
 {
 "title": "How do you build a community that can pay for itself?",
 "text": "TDF, Spirala and Feytopia bring money in without letting it quietly take over.",
 "img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F89d05d1a-c037-47d4-9e0d-d6d5e755a08a_3899x2500.jpeg",
 "href": "https://jointogatherproject.substack.com/p/how-do-you-build-a-community-that",
 "tag": "6 Jul 2026"
+},
+{
+"title": "The community you build at forty is the one that holds you at eighty",
+"text": "On building a place to grow old in, through some living examples.",
+"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1e1aef04-4b55-4751-bb1d-fd4aad6c8197_2500x1769.jpeg",
+"href": "https://jointogatherproject.substack.com/p/the-community-you-build-at-forty",
+"tag": "19 May 2026"
+}
+]
+},
+{
+"t": "photos",
+"s": [
+"adm/07.jpg"
+],
+"cap": "ADM, Amsterdam, before the eviction."
+},
+{
+"t": "text",
+"h": "Beyond one house",
+"p": [
+"The latest essays look outward. A weekend in Spain with the people who run a dozen of Europe's community hubs, whose stuck points turned out to be everyone's. And ADM in Amsterdam, evicted after decades, and what it teaches anyone building inside somebody else's backyard."
+]
+},
+{
+"t": "cards",
+"items": [
+{
+"title": "What happened when a dozen community hubs met for a weekend in Spain",
+"text": "The people who run Europe's community houses, and why their stuck points are everyone's.",
+"img": "https://substackcdn.com/image/fetch/w_600,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4c2226c2-a36a-4b67-98a2-7dca5e721787_4260x2500.jpeg",
+"href": "https://jointogatherproject.substack.com/p/what-happened-when-a-dozen-community",
+"tag": "30 May 2026"
 },
 {
 "title": "Make sure your project is even wanted",
@@ -1563,7 +1674,7 @@ const STORY = {
 "t": "text",
 "h": "Written for others",
 "p": [
-"Sometimes the writing goes to someone else's readers."
+"Sometimes the writing goes to someone else's readers. In May I wrote a case study of Tamera for Supernuclear, with its founders and long-term residents."
 ]
 },
 {
@@ -2039,6 +2150,13 @@ const STORY = {
 ]
 },
 {
+"t": "photos",
+"s": [
+"st-arava/02.jpg"
+],
+"cap": "Dinner outdoors under string lights, the first Thursday of orientation, September 2026."
+},
+{
 "t": "steps",
 "h": "Orientation week, Fall 2026",
 "items": [
@@ -2071,7 +2189,8 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"st-arava/02.jpg"
+"ev-lab/08.jpg",
+"st-arava/03.jpg"
 ],
 "cap": "Make Yourself at Home, sanding the swing bench; and Dr Oded Adomi Leshem's talk, Hope in Times of Crisis, 4 September 2026."
 },
@@ -2086,6 +2205,7 @@ const STORY = {
 {
 "t": "photos",
 "s": [
+"arava-more/02.jpg",
 "arava-more/06.jpg",
 "ev-lab/02.jpg"
 ],
@@ -2102,7 +2222,8 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"st-arava/03.jpg"
+"ev-lab/10.jpg",
+"st-arava/04.jpg"
 ],
 "cap": "A portrait in the desert at dusk; and the full moon rising over the Edom mountains, September 2026."
 },
@@ -2113,12 +2234,14 @@ const STORY = {
 {
 "title": "The LAB",
 "text": "Leadership, Action and Belonging: the programme I designed for the semester.",
+"img": "ev-lab/01.jpg",
 "href": "project.html#lab",
 "tag": "Programme"
 },
 {
 "title": "Instagram",
 "text": "How I make reels and carousels for organisations.",
+"img": "arava-more/01.jpg",
 "href": "project.html#instagram",
 "tag": "Telling"
 },
@@ -2228,7 +2351,7 @@ const STORY = {
 "t": "text",
 "h": "Why we started",
 "p": [
-"In 2019 I went back to Black Rock City with a group of activists from the Middle East. We set up camp at 8:45 and A and called it Kosmic Kamelz. People flew in from Israel, Palestine, Jordan, the Emirates, Egypt, Iran and Lebanon, with friends from Europe and the US. Many of us carry passports that would never let us visit each other at home.",
+"In 2019 I went back to Black Rock City with a group of activists from the Middle East. We set up camp at 8:45 and A and called it Kosmic Kamelz. People flew in from Israel, Palestine, Jordan, the Emirates, Egypt, Iran and Lebanon, with friends from Europe and the US. Many of us carry passports that would never let us visit each other at home. Mor Sidi, Natalie Lyla Ginsberg and Basel Shbita founded the camp, with Tal Sharabi on art, and I led it that first year.",
 "The aim was simple and big: to break down the painful, violent boundaries of our region, at least for one week, in the dust. In the desert of Nevada the borders that decide so much at home had very little to say."
 ]
 },
@@ -2377,6 +2500,13 @@ const STORY = {
 "lab": {
 "blocks": [
 {
+"t": "photos",
+"s": [
+"st-lab/01.jpg"
+],
+"cap": "A Majlis, the weekly circle of the whole cohort, September 2026."
+},
+{
 "t": "text",
 "h": "What the LAB is",
 "p": [
@@ -2419,6 +2549,7 @@ const STORY = {
 {
 "title": "Community Night",
 "text": "Sunday, 19:30. Informal and optional, and almost everyone comes: Master Chef, a talent show, craft night, a prom.",
+"img": "arava-more/09.jpg",
 "tag": "Sunday"
 },
 {
@@ -2436,11 +2567,13 @@ const STORY = {
 {
 "title": "Committees",
 "text": "Seven groups the students started themselves: media, culture, gardening, adventure, DIY, applied arts and AlumniPalooza.",
+"img": "st-lab/06.jpg",
 "tag": "From week four"
 },
 {
 "title": "Guests and trips",
 "text": "Outside facilitators, a mud-building day at Kibbutz Lotan, the Dialogue Forum trip, and the Negev trip.",
+"img": "arava-more/04.jpg",
 "tag": "Through the semester"
 }
 ]
@@ -2456,7 +2589,7 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"st-lab/01.jpg",
+"st-lab/02.jpg",
 "arava-more/05.jpg"
 ],
 "cap": "Units Master Chef, the first Community Night, 6 September 2026."
@@ -2475,6 +2608,15 @@ const STORY = {
 "by": "The Fall 2026 cohort, from the Community Bible they wrote at the first Majlis, 8 September 2026"
 },
 {
+"t": "photos",
+"s": [
+"ev-lab/01.jpg",
+"st-lab/03.jpg",
+"st-lab/04.jpg"
+],
+"cap": "Participatory Leadership with Maya Rimer, 15 September 2026: one idea per note on the floor, then clusters, then the map on the wall."
+},
+{
 "t": "text",
 "p": [
 "Maya Rimer, who also co-led The Spaceholder's Compass with me, ran an afternoon on what makes a group work. Communication and trust came out on top, the same things the cohort had written into its bible a week earlier.",
@@ -2485,6 +2627,14 @@ const STORY = {
 "t": "quote",
 "q": "Doocracy only works when your actions are truly a gift to the community.",
 "by": "Sharon, framing Majlis Three, 29 September 2026"
+},
+{
+"t": "photos",
+"s": [
+"st-lab/05.jpg",
+"st-lab/06.jpg"
+],
+"cap": "World Cafe, 29 September 2026: the round questions go up one at a time, and the Applied Arts committee writes its first step."
 },
 {
 "t": "text",
@@ -2503,8 +2653,9 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"st-lab/02.jpg",
-"st-lab/03.jpg"
+"st-lab/07.jpg",
+"arava-more/10.jpg",
+"st-lab/08.jpg"
 ],
 "cap": "Craft night, 4 October; Holding Grief, Celebrating Life under the thatched shade, 6 October; mud building at Kibbutz Lotan, 26 October 2026."
 },
@@ -2513,6 +2664,14 @@ const STORY = {
 "p": [
 "At an open circle in the middle of the month the cohort asked for more hands-on experience. So the rest of October had a pub quiz with the Open Day candidates, a Y2K prom, and three hours with our hands in the earth at the Center for Creative Ecology in Kibbutz Lotan, making mud bricks and plaster."
 ]
+},
+{
+"t": "photos",
+"s": [
+"st-lab/09.jpg",
+"arava-more/04.jpg"
+],
+"cap": "The talent show on the fake grass, 27 September, with the hype signs; and mud blocks at Lotan."
 },
 {
 "t": "text",
@@ -2525,7 +2684,8 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"st-lab/04.jpg"
+"st-lab/10.jpg",
+"st-lab/11.jpg"
 ],
 "cap": "Political Imagination with Liel Maghen, 3 November 2026."
 },
@@ -2536,21 +2696,25 @@ const STORY = {
 {
 "title": "Nonviolent Communication",
 "text": "Observation, feeling, need, request. Practised on real campus frictions, with its limits named.",
+"img": "st-lab/11.jpg",
 "tag": "October"
 },
 {
 "title": "Participatory leadership",
 "text": "Hosting a group: circles, World Cafe, the check-in and the check-out.",
+"img": "ev-lab/01.jpg",
 "tag": "September"
 },
 {
 "title": "Consent and doocracy",
 "text": "Deciding together without a vote, and permission to act.",
+"img": "st-lab/05.jpg",
 "tag": "September"
 },
 {
 "title": "Theory of change and storytelling",
 "text": "How to plan a change and make other people care about it.",
+"img": "st-lab/06.jpg",
 "tag": "November"
 }
 ]
@@ -2852,9 +3016,14 @@ const STORY = {
 "t": "text",
 "h": "A hamsa",
 "p": [
-"We built a hamsa, a hand that people across the Middle East recognise, Jews and Muslims alike. It stood over six metres tall, made of wood, with benches and a dance stage around its base.",
+"We built a hamsa, a hand that people across the Middle East recognise, Jews and Muslims alike. It stood over six metres tall, made of wood, with benches and a dance stage around its base. A sign everyone at home knows, carried into a city where nobody had to explain it.",
 "The hand was lined with programmable LED lights connected to drums around the stage. At night, sensors in the drums picked up every beat, and the light ran from the people playing through the stage and up the fingers. The more people drummed together, the more the Hand glowed."
 ]
+},
+{
+"t": "quote",
+"q": "The seats, drums and dance stage encourage approach and create interaction both between the installation and participants and between the participants themselves.",
+"by": "From my artist statement for the Hand, 2013"
 },
 {
 "t": "film",
@@ -2865,7 +3034,8 @@ const STORY = {
 "t": "text",
 "h": "Forty people",
 "p": [
-"About forty people built it. My childhood friend Itamar, just out of the army, led the build: he learned the construction methods from our engineer and taught them to everyone else. We designed the structure so that people who had never built anything could put it together, and we finished it in a workshop in Reno before driving it out to the desert.",
+"About forty people built it. My childhood friend Itamar Menczer, just out of the army, led the build: he learned the construction methods from our engineer, Nati Goldman, and taught them to everyone else. We designed the structure so that people who had never built anything could put it together, and we finished it in a workshop in Reno before driving it out to the desert.",
+"The Burning Man Journal named some of the crew that summer: Itamar and Nati, Yakir Rettig on media, Alon Bar on fire safety, Shlomie Mir, Oren Lederman, who took the photo at dawn, and many more who came to build and stayed for the burn.",
 "On the playa the Hand was seen by tens of thousands of people. People sat on its benches, danced on its stage and drummed it awake every night. At the end of the week, we burned it."
 ]
 },
@@ -2873,15 +3043,15 @@ const STORY = {
 "t": "photos",
 "s": [
 "art-installations/06.jpg",
-"midburn-story/10.jpg",
-"midburn-story/12.jpg"
+"midburn-story/10.jpg"
 ],
-"cap": "The Hand on the playa at dawn (photo: Oren Lederman), by day, and the night it burned."
+"cap": "The Hand on the playa at dawn (photo: Oren Lederman), and by day, with its benches."
 },
 {
 "t": "text",
 "p": [
-"The Hand taught me what I still believe about art in a community: build something people can touch, sit in and play, and they will make it theirs. Some of the crew kept building with me, in what became Fugara. At home, in Midburn's art department, I tried to make that possible for every artist who came to us."
+"The Hand taught me what I still believe about art in a community: build something people can touch, sit in and play, and they will make it theirs.",
+"A year later, for the first Midburn, many of the same hands built the Forest of Creation, the city's first temple. Some of the crew kept building with me in what became Fugara, and four years on we raised another hand, the Borderland Effigy in Denmark. At home, in Midburn's art department, I tried to make that possible for every artist who came to us."
 ]
 },
 {
@@ -2913,7 +3083,7 @@ const STORY = {
 "h": "A question we brought home",
 "p": [
 "I went to Burning Man for the first time in 2011 and camped with a crew called CRTT. It was a world where the line between an artwork and the people around it disappears. You do not watch the art. You climb it, light it, sit inside it, and at the end you burn it together.",
-"In September 2011 a few of us came home with one question: what would a burn of our own look like, here? We started meeting on my family's farm in Ein Vered, which became our base for the next years."
+"Back home, a few of us kept asking one question: what would a burn of our own look like, here? In 2012 we founded Midburn. We met on my family's farm in Ein Vered, which became our base for the next years."
 ]
 },
 {
@@ -2982,11 +3152,11 @@ const STORY = {
 "items": [
 [
 "2011",
-"My first Burning Man. In September a group of Israeli burners starts meeting at home, and on my family's farm."
+"My first Burning Man, with the CRTT camp. Back home, a group of Israeli burners starts to meet."
 ],
 [
 "2012",
-"Mama Burn on the beach (about 300 people), the MidBurn Project dome, and Octoburn, a three-day decompression for about 2,000. We become Burning Man's regional group in Israel."
+"We found Midburn, with my family's farm as our base. Mama Burn on the beach (about 300 people), the MidBurn Project dome, and Octoburn, a three-day decompression for about 2,000. We become Burning Man's regional group in Israel."
 ],
 [
 "2013",
@@ -3332,7 +3502,7 @@ const STORY = {
 "s": [
 "art-installations/01.jpg"
 ],
-"cap": "A wooden hand at dusk, before the burn."
+"cap": "The Borderland Effigy at dusk, Denmark, 2017."
 },
 {
 "t": "text",
@@ -3365,7 +3535,7 @@ const STORY = {
 "art-installations/04.jpg",
 "art-installations/02.jpg"
 ],
-"cap": "The Hand on the playa at dawn (photo: Oren Lederman), lifting a hand into place with a tractor, and the burn."
+"cap": "The Hand of Inspiration at dawn on the playa, 2013 (photo: Oren Lederman); and at Borderland in 2017, lifting the effigy into place with a tractor, and its burn."
 },
 {
 "t": "quote",
@@ -3387,7 +3557,7 @@ const STORY = {
 "title": "Forest of Creation",
 "text": "The first temple at Midburn: towers built as trees taken apart and joined again.",
 "img": "art-installations/08.jpg",
-"href": "https://www.youtube.com/watch?v=hl5x45I0wbI",
+"href": "project.html#forest",
 "tag": "2014 · Midburn"
 },
 {
@@ -3405,10 +3575,10 @@ const STORY = {
 "tag": "2016 Jerusalem · 2018 Cascais"
 },
 {
-"title": "Main Effigy",
-"text": "A wooden effigy for Borderland, the Nordic burn.",
+"title": "Borderland Effigy",
+"text": "A wooden hand with its fingers raised, built to burn at the Nordic burn.",
 "img": "art-installations/02.jpg",
-"href": "project.html#fugara",
+"href": "project.html#borderland",
 "tag": "2017 · Denmark"
 }
 ]
@@ -3439,6 +3609,138 @@ const STORY = {
 [
 "Fugara",
 "project.html#fugara"
+]
+]
+}
+]
+},
+"borderland": {
+"blocks": [
+{
+"t": "text",
+"h": "Another hand",
+"p": [
+"In July 2017 we built the main effigy for Borderland, the Nordic burn in Denmark: the work that stands at the heart of the event all week and burns at its end.",
+"It was a hand again, but not the hamsa we took to Burning Man four years earlier. This one was a human hand, rising from a tall lattice of wood, its fingers raised and open."
+]
+},
+{
+"t": "photos",
+"s": [
+"art-installations/03.jpg",
+"art-installations/04.jpg"
+],
+"cap": "The effigy beside the great barn, and lifting the hand onto its tower with a tractor, Borderland 2017."
+},
+{
+"t": "text",
+"h": "Built to burn",
+"p": [
+"An effigy is built knowing that it will be gone in a few minutes. The whole week people climb around it, meet under it, leave things on it. Then on the last night the crowd forms a circle, and it goes up in a single breath of fire.",
+"We built it as we always did, as a crew: a structure simple enough for volunteers to raise, and strong enough to carry a hand several metres into the sky."
+]
+},
+{
+"t": "photos",
+"s": [
+"art-installations/02.jpg"
+],
+"cap": "The burn."
+},
+{
+"t": "text",
+"p": [
+"The Borderland Effigy closed a circle that began with the Hand of Inspiration in Nevada and went through the Forest of Creation and Fugara at home: a crew that learned to build together in the desert, carrying that way of building to another burn, in another country."
+]
+},
+{
+"t": "cta",
+"h": "Build the next one",
+"p": "If you are planning an effigy or a large participatory work for a festival, write to me.",
+"btn": [
+[
+"See all installations",
+"project.html#installations"
+],
+[
+"Write to me",
+"contact.html#build"
+]
+]
+}
+]
+},
+"forest": {
+"blocks": [
+{
+"t": "text",
+"h": "The first temple",
+"p": [
+"Every burn has a temple: a quiet place in the middle of the noise, where people bring what they are carrying, grief, thanks, the names of the people they lost, and leave it there to burn.",
+"For the first Midburn, 3 to 7 June 2014 in the Negev, we built the temple as a forest. Tall towers shaped like trees, taken apart and joined again, around the theme of that first city: Genesis."
+]
+},
+{
+"t": "photos",
+"s": [
+"st-forest/01.jpg",
+"art-installations/08.jpg"
+],
+"cap": "The Forest of Creation lit at night, the first Midburn, June 2014."
+},
+{
+"t": "text",
+"h": "Built before we had a name",
+"p": [
+"I was leading Midburn's art department, and the temple was the piece the whole city would share. We raised part of the money with a crowdfunding video, and built the towers on build days in a green field months before the event, with many of the people who had built the Hand of Inspiration at Burning Man a year earlier.",
+"A year later a core of that crew founded Fugara, to keep building together."
+]
+},
+{
+"t": "photos",
+"s": [
+"midburn-story/11.jpg"
+],
+"cap": "Raising the towers on a build day, spring 2014."
+},
+{
+"t": "text",
+"h": "A forest you could climb",
+"p": [
+"It was made to be climbed, sat under and lingered in. By day it threw thin shade on the dust. At night the towers glowed green, red and blue, and people walked between them slowly, the way you walk in a real forest.",
+"On the last night of the city, just before dawn, we let it burn."
+]
+},
+{
+"t": "film",
+"yt": "hl5x45I0wbI",
+"cap": "Forest of Creation, Midburn 2014 (my video, 5:36)."
+},
+{
+"t": "photos",
+"s": [
+"st-midburn/07.jpg"
+],
+"cap": "The temple burns at dawn, 7 June 2014."
+},
+{
+"t": "text",
+"p": [
+"The forest was the bridge between the Hand of Inspiration and Fugara: the moment a crew that had built one piece abroad built the heart of its own city. Everything Midburn's art department did afterwards, the grants, the crews, the build weekends, grew from that year."
+]
+},
+{
+"t": "cta",
+"h": "Build a temple",
+"p": "If you are building a temple or a large shared work for a festival, I am glad to share how we did it.",
+"btn": [
+[
+"See all installations",
+"project.html#installations"
+],
+[
+"Write to me",
+"contact.html#build"
 ]
 ]
 }
