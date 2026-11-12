@@ -296,7 +296,7 @@ video.hero.film { aspect-ratio: 16 / 9; height: auto; max-height: none; object-f
 .ph-feed img.on { opacity: 1; transform: scale(1); }
 .ph-icons { display: flex; gap: 12px; padding: 10px 4px 6px; }
 .ph-icons svg { width: 20px; height: 20px; fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; }
-.ph-cap { font-size: 12.5px; line-height: 1.4; padding: 0 4px; margin: 0; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.ph-cap { font-size: 12.5px; line-height: 1.4; padding: 10px 4px 0; margin: 0; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .ph-cap b { color: var(--ink); font-weight: 600; }
 .phone figcaption { display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
 .phone figcaption b { font: 400 22px/1.15 var(--serif); color: var(--ink); }

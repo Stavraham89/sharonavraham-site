@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="site.css"><link rel="stylesheet" href="myc.css"><link rel="stylesheet" href="map.css">
 <style>
   .door-head h1.ask { font-size: clamp(44px, 6.2vw, 92px); max-width: 15ch; }
+  /* the person first, then the map of how it all connects */
+  .map-sec { border-top: 1px solid var(--rule); padding-top: 26px; margin-top: 56px; }
+  .map-sec .map-tools { margin-bottom: 18px; }
   .name { font: 400 clamp(34px, 4vw, 52px)/1 var(--serif); margin: 0 0 22px; }
   .name span { display: block; margin-top: 10px; font: 400 14px var(--sans); color: var(--muted); letter-spacing: 0; }
   .portrait-wrap { position: relative; align-self: start; overflow: hidden; touch-action: pan-y; }
@@ -39,11 +42,7 @@
   <main>
     <section class="door-head">
       <h1 class="ask">For twenty years I&rsquo;ve asked what brings people together</h1>
-      <div class="map-tools"><button id="toggle" aria-pressed="false">View as list</button><span class="note" id="hint"></span></div>
     </section>
-
-    <figure class="myc" id="map"><svg id="myc" role="group" aria-label="Mycelium map: the four doors above ground, projects connected underground, all rooted in one question."></svg></figure>
-    <div id="asList" class="list" hidden></div>
 
     <section class="two">
       <div class="portrait-wrap" id="portrait">
@@ -59,6 +58,12 @@
         <p>Since 2018, when I took part in the Middle East Jam, most of my work goes into shared life between Israelis and Palestinians. I&rsquo;m one of the co-founders of ELHAM, The Day After, an NGO focused on grassroots initiatives between Israel and Palestine and across the Middle East as a whole. And the camera is always with me: in the field, in the office and on the stage.</p>
         <p>Today I visit intentional communities with ToGather, a research project that asks people how they actually stay together, and I write about it almost every week. I design community life programmes at the Arava Institute, together with Israelis, Palestinians and people from all around the world. And I help projects I&rsquo;m aligned with share their story through social media.</p>
       </div>
+    </section>
+
+    <section class="map-sec">
+      <div class="map-tools"><button id="toggle" aria-pressed="false">View as list</button><span class="note" id="hint"></span></div>
+    <figure class="myc" id="map"><svg id="myc" role="group" aria-label="Mycelium map: the four doors above ground, projects connected underground, all rooted in one question."></svg></figure>
+    <div id="asList" class="list" hidden></div>
     </section>
 
     <section class="sec">

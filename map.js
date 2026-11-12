@@ -139,7 +139,7 @@ function drawMycelium(svg, { onOpen, compact } = {}) {
     a.addEventListener("click", e => { if (tapped === n.p.id && focused !== n.p.id) { e.preventDefault(); focus(n.p.id); } });
   }
   el("circle", { cx: ROOT.x, cy: ROOT.y, r: 6, fill: "var(--ink)" });
-  const q = el("text", { x: ROOT.x, y: ROOT.y + 44, "text-anchor": "middle", class: "root-label" }); q.textContent = "…and what holds them there?";
+  const q = el("text", { x: ROOT.x, y: ROOT.y + 44, "text-anchor": "middle", class: "root-label" }); q.textContent = "…and what keeps them there?";
 
   placeLabels();
   document.fonts?.ready.then(placeLabels);

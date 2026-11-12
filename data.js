@@ -235,7 +235,7 @@ const DOOR_ITEMS = {
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
 const DOOR_COVER = { build: { lighthouse: "img/w/ev-kamels/01.jpg", fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
-const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what holds them there?";
+const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what keeps them there?";
 
 const PRESS = [
   { y: "2023", outlet: "Life is a Festival", kind: "Podcast", title: "The prayers of an Israeli and a Palestinian burner, with Sami Awad", url: "https://www.eamonarmstrong.com/lifeisafestival/sharon-avraham-sami-awad" },
