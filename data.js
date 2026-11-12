@@ -95,7 +95,7 @@ const PROJECTS = [
     facts: [["14", "co-founders, Israeli and Palestinian"], ["3", "pillars: land, the day after, solidarity"]],
     links: ["lighthouse", "falahi", "healing", "togather"] },
   { id: "lighthouse", site: [["The Lighthouse on ELHAM", "https://www.elham-thedayafter.org/lighthouse"], ["Podcast: A Lighthouse for the Middle East", "https://www.eamonarmstrong.com/lifeisafestival/the-lighthouse"]], title: "The Lighthouse", years: "Idea from 2019, relaunched 2026", role: "Initiator of the 2026 relaunch", place: "The Mediterranean (site search in Catalonia)",
-    doors: ["build"], src: "self", hero: "img/w/fey/08.jpg",   // no deck or Facebook photos (Sharon); the community already gathering; the site search has its own labelled section   // source: The Lighthouse pitch deck, Nov 2026 (money, the named estate and contact details left out on purpose)
+    doors: ["build"], src: "self", hero: "img/w/st-lighthouse/01.jpg",   // no deck or Facebook photos (Sharon); the community already gathering; the site search has its own labelled section   // source: The Lighthouse pitch deck, Nov 2026 (money, the named estate and contact details left out on purpose)
     essence: "A residential home on the Mediterranean where artists, activists and peace workers from our region can rest, heal and build together. In the making, and looking for its founding team.",
     text: ["The Lighthouse is a home I am working to build on the Mediterranean: a place where artists, activists and peace workers from across our region can meet outside the borders that keep them apart. People come for a few weeks or a few months, to rest, to learn, and to heal what the work and the region ask them to carry.",
       "I see it as both a sanctuary and a working campus, rooted in the land and open to the region. It is one of ELHAM's programmes, and it grows out of what I learned with ToGather about places where people share daily life.",
@@ -233,7 +233,7 @@ const DOOR_ITEMS = {
   tell: [["reel", "Films"], ["substack", "Writing"], ["instagram", "Social media"], ["tamera", "Campaigns"], ["arava", "Campaigns"]],
 };
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
-const DOOR_COVER = { build: { lighthouse: "img/w/fey/08.jpg", fugara: "img/w/st-fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
+const DOOR_COVER = { build: { lighthouse: "img/w/st-lighthouse/01.jpg", fugara: "img/w/st-fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what keeps them there?";
 
