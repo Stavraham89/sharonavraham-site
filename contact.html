@@ -57,6 +57,10 @@
 .cform .send a.wa svg .f { fill: #25d366; stroke: none; }
 @media (hover: hover) { .cform .send a.wa:hover { border-color: var(--ink); } }
 @media (max-width: 700px) { .cform { grid-template-columns: 1fr; } }
+.cform .honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#sent { grid-column: 1 / -1; margin: 0; font: 400 18px/1.4 var(--serif); color: var(--muted); min-height: 1.4em; }
+#sent.ok { color: var(--ink); } #sent.err { color: var(--muted); }
+.cform .btn:disabled { opacity: .5; cursor: progress; }
 .pending { font-size: 13px; color: var(--muted); border-left: 2px solid var(--build); padding-left: 10px; margin-bottom: 26px; }
 @media (max-width: 700px) { .routes li { grid-template-columns: 1fr; } }
 /* Prints and shows: pick what you want and which work, in a few taps */
@@ -111,7 +115,9 @@
     <label>Your name<input name="name" autocomplete="name" required></label>
     <label>Your email<input name="email" type="email" autocomplete="email" required></label>
     <label class="wide">Your message<textarea name="msg" rows="6" required></textarea></label>
+    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="honey">
     <div class="send wide"><button class="btn" type="submit">Send</button><a class="wa" id="wa" href="#" target="_blank" rel="noopener" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.2c.2-.5.5-.5.8-.5h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.2-.1.3 0 .5a6 6 0 0 0 2.9 2.6c.2.1.4 0 .5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4 0 .6-.3 1.4-1 1.7-.6.3-1.4.4-3.3-.4a8.6 8.6 0 0 1-3.8-3.6c-.6-1-.8-1.9-.5-2.6z" class="f"/></svg>Or on WhatsApp</a><span>Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a></span></div>
+    <p id="sent" role="status" aria-live="polite"></p>
   </form>
   <ul class="routes">
     <li data-d="see"><h2>About the work</h2><p><b>Curating a show, or looking for prints?</b> For curators, galleries, collectors and press: exhibitions, commissions and prints of the series.</p></li>
@@ -164,9 +170,23 @@ const compose = () => { const d = new FormData(f), topic = about.options[about.s
   const lines = see ? [k.length && `I am interested in: ${list(k)}`, projOnly && `- ${pr.title}: https://sharonavraham.com/project.html#${pr.id}`,
     ...chosen().map(t => `- ${t.title}: https://sharonavraham.com/series.html#${t.id}`)].filter(Boolean) : [];
   return { d, subject, lines }; };
-f.addEventListener("submit", e => { e.preventDefault(); const { d, subject, lines } = compose();
-  const body = [...lines, ...(lines.length ? [""] : []), d.get("msg"), "", d.get("name"), d.get("email")].join("\n");
-  location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; });
+// Send: the note goes straight to Sharon's inbox through FormSubmit (no server of our own); if that fails, the visitor's mail app opens with it instead
+const status = document.getElementById("sent"), sendBtn = f.querySelector('button[type="submit"]');
+f.addEventListener("submit", async e => { e.preventDefault(); const { d, subject, lines } = compose();
+  if (d.get("_honey")) return;   // a bot filled the hidden field
+  const body = [...lines, ...(lines.length ? [""] : []), d.get("msg")].join("\n");
+  sendBtn.disabled = true; status.textContent = "Sending…";
+  try {
+    const r = await fetch("https://formsubmit.co/ajax/st.avraham@gmail.com", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ name: d.get("name"), email: d.get("email"), _replyto: d.get("email"), _subject: `Website: ${subject}`, message: body, _template: "box", _captcha: "false" }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || String(j.success) !== "true") throw new Error(j.message || r.status);
+    f.reset(); status.textContent = "Thank you. Your message is on its way, and I will write back soon."; status.className = "ok";
+  } catch (err) {
+    status.textContent = "Sending didn't work, so your mail app is opening with the message instead."; status.className = "err";
+    location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body + "\n\n" + d.get("name") + "\n" + d.get("email"))}`;
+  } finally { sendBtn.disabled = false; }
+});
 // WhatsApp: set WA to Sharon's number, international format, digits only (e.g. 9725...). Empty keeps the button hidden.
 const WA = "972546842268", wa = document.getElementById("wa");
 if (WA) { wa.hidden = false;
