@@ -1761,7 +1761,58 @@ const STORY = {
 "h": "The campaign",
 "p": [
 "In 2026 Tamera wanted to reach people who had never heard of it. From February to May I led its storytelling: reels, stories and posts for its own channels, and campaigns for its online courses and its Support Circle of donors.",
-"I had one rule. The people of Tamera tell the story, in their own words. Every reel script was built only from what members said in their interviews, with no paraphrasing, and no stock images. Bori, Peter and Ellen gave the voice to the reel that invited people into the Support Circle."
+"I had one rule. The people of Tamera tell the story, in their own words. Every reel script was cut only from what members said in their interviews, with the source clip and timecode noted for each line: no paraphrasing, no composite lines, no stock images. Bori, Peter and Ellen gave the voice to the reel that invited people into the Support Circle.",
+"Each reel had a job: to bring people to one of Tamera's online courses, to its Summer University, or into the Support Circle of people who back its work every month. Tap a phone below to turn the sound on."
+]
+},
+{
+"t": "phones",
+"h": "Four of the reels",
+"items": [
+{
+"handle": "tamerahealingbiotope",
+"name": "Building community in times of crisis",
+"views": "347K views",
+"v": "files/tamera-reel-1.mp4",
+"poster": "files/tamera-reel-1.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "In July 2025, over 200 people from intentional communities came to Tamera.",
+"note": "An invitation to the Summer University, April 2026. The most watched reel of the spring."
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "Raising free children",
+"views": "288K views",
+"v": "files/tamera-reel-2.mp4",
+"poster": "files/tamera-reel-2.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "Most of us lost something growing up.",
+"note": "For the online course on raising children, March 2026. Most of its views came on Facebook."
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "Join the Support Circle",
+"views": "167K views",
+"v": "files/tamera-reel-3.mp4",
+"poster": "files/tamera-reel-3.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "So you are the one who is sponsoring peace.",
+"note": "Voiced by Bori, Peter and Ellen, cut only from their own words. It opened the 22-day call for supporters."
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "When the rain came",
+"views": "165K views",
+"v": "files/tamera-reel-4.mp4",
+"poster": "files/tamera-reel-4.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "Recent floods across Portugal...",
+"note": "How Tamera's lakes hold the rain, posted during the March floods. The most saved and shared piece of the spring."
+}
 ]
 },
 {
@@ -1773,19 +1824,27 @@ const STORY = {
 },
 {
 "t": "steps",
-"h": "What happened",
+"h": "The campaign in numbers",
 "items": [
 [
-"March",
-"A reel about the floods across Portugal showed how Tamera's lakes hold water. It was the most saved and shared piece of the spring."
+"4 months",
+"1 February to 20 May 2026: strategy, filming, about fifteen reels, and twelve paid campaigns on Instagram and Facebook."
 ],
 [
-"March to April",
-"Six reels reached about 1.13 million views on Instagram and Facebook."
+"~1.13M",
+"views on the six most watched reels, most of them on Facebook, some helped by paid promotion."
 ],
 [
-"April to May",
-"In 22 days, 542 people signed up to the Support Circle through one reel made from members' own words."
+"192,000+",
+"clicks through to Tamera's courses and pages, and close to 18,000 visits to its landing pages."
+],
+[
+"542",
+"people joined the Support Circle list in three weeks, at under two euros each."
+],
+[
+"44",
+"people paid for eight online courses on Tamera's course platform during the campaign."
 ],
 [
 "May",
