@@ -39,9 +39,11 @@
 .cform { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; max-width: 760px; padding-bottom: 50px; }
 .cform label { display: grid; gap: 8px; font-size: 13px; color: var(--muted); }
 .cform .wide { grid-column: 1 / -1; }
-.cform input, .cform select, .cform textarea { font: 400 16px/1.4 var(--sans); color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--rule); padding: 10px 0; border-radius: 0; }
+.cform input, .cform select, .cform textarea { font: 400 16px/1.4 var(--sans); color: var(--ink); background: color-mix(in srgb, var(--ink) 8%, var(--paper)); border: 1px solid color-mix(in srgb, var(--ink) 16%, var(--paper)); padding: 12px 14px; border-radius: 0; transition: border-color .2s, background .2s; }
+.cform input:hover, .cform select:hover, .cform textarea:hover { border-color: color-mix(in srgb, var(--ink) 30%, var(--paper)); }
+.cform input:focus, .cform select:focus, .cform textarea:focus { background: color-mix(in srgb, var(--ink) 11%, var(--paper)); }
 .cform select option { background: var(--paper); }
-.cform textarea { border: 1px solid var(--rule); padding: 12px; resize: vertical; min-height: 9em; }
+.cform textarea { resize: vertical; min-height: 9em; }
 .cform input:focus-visible, .cform select:focus-visible, .cform textarea:focus-visible { outline: 1.5px solid #c8322a; outline-offset: 3px; border-color: var(--ink); }
 .c-head p a { border-bottom: 1px solid var(--rule); }
 .cform .send { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; font-size: 14px; color: var(--muted); }
@@ -97,7 +99,7 @@
 <body data-page="contact">
 <div class="wrap"><header class="top" id="top"></header>
 <main>
-  <section class="c-head"><h1>Write to me</h1><p>If something here landed with you, I want to hear about it. Tell me a little about what you are building, and which of these brought you here. Or write straight to <a href="mailto:st.avraham@gmail.com">st.avraham@gmail.com</a>.</p></section>
+  <section class="c-head"><h1>Write to me</h1><p>If something here landed with you, I want to hear about it. Tell me a little about what you are building, and which of these brought you here.</p></section>
   <form class="cform" id="cform">
     <label>What is it about?<select name="about" id="about"><option value="see">About the work</option><option value="build">Partnering</option><option value="gather">Holding the space</option><option value="tell">Telling your story</option><option value="press">Press</option><option value="other">Something else</option></select></label>
     <fieldset class="pick" id="pick" hidden>
