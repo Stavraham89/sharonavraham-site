@@ -163,7 +163,7 @@ f.addEventListener("submit", e => { e.preventDefault(); const { d, subject, line
   const body = [...lines, ...(lines.length ? [""] : []), d.get("msg"), "", d.get("name"), d.get("email")].join("\n");
   location.href = `mailto:st.avraham@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; });
 // WhatsApp: set WA to Sharon's number, international format, digits only (e.g. 9725...). Empty keeps the button hidden.
-const WA = "", wa = document.getElementById("wa");
+const WA = "972546842268", wa = document.getElementById("wa");
 if (WA) { wa.hidden = false;
   wa.addEventListener("click", () => { const { d, subject, lines } = compose(), msg = d.get("msg");
     const text = [`Hi Sharon, I found you through your website. ${subject}.`, ...lines, msg ? `\n${msg}` : ""].filter(Boolean).join("\n");
