@@ -3136,6 +3136,14 @@ const STORY = {
 ]
 },
 {
+"t": "photos",
+"s": [
+"st-hand/02.jpg",
+"st-hand/03.jpg"
+],
+"cap": "My first sketches of the Hand, April 2013: the eye, the fingers, and the benches around it."
+},
+{
 "t": "quote",
 "q": "The seats, drums and dance stage encourage approach and create interaction both between the installation and participants and between the participants themselves.",
 "by": "From my artist statement for the Hand, 2013"
@@ -3158,9 +3166,10 @@ const STORY = {
 "t": "photos",
 "s": [
 "art-installations/06.jpg",
-"midburn-story/10.jpg"
+"midburn-story/10.jpg",
+"st-hand/01.jpg"
 ],
-"cap": "The Hand on the playa at dawn (photo: Oren Lederman), and by day, with its benches."
+"cap": "The Hand on the playa at dawn (photo: Oren Lederman), by day with its benches, and the night it burned."
 },
 {
 "t": "text",
@@ -3799,9 +3808,9 @@ const STORY = {
 "t": "photos",
 "s": [
 "st-forest/01.jpg",
-"art-installations/08.jpg"
+"st-forest/02.jpg"
 ],
-"cap": "The Forest of Creation lit at night, the first Midburn, June 2014."
+"cap": "The Forest of Creation lit at night: at the first Midburn, June 2014, and a tower tested in the field before the event."
 },
 {
 "t": "text",
@@ -3814,9 +3823,34 @@ const STORY = {
 {
 "t": "photos",
 "s": [
+"st-forest/08.jpg",
+"st-forest/03.jpg"
+],
+"cap": "An early sketch of a tree-tower, and the first frame standing on build day one."
+},
+{
+"t": "text",
+"p": [
+"We built on weekends in a field of yellow flowers: sanding, drilling, roping, sitting in a circle at the end of the day to decide what came next, and working on into the night under a tarp when the date came close."
+]
+},
+{
+"t": "photos",
+"s": [
+"st-forest/06.jpg",
+"st-forest/07.jpg",
+"st-forest/09.jpg"
+],
+"cap": "Build days: sanding the panels, the crew's circle, and working on into the night before Midburn."
+},
+{
+"t": "photos",
+"s": [
+"st-forest/04.jpg",
+"st-forest/05.jpg",
 "midburn-story/11.jpg"
 ],
-"cap": "Raising the towers on a build day, spring 2014."
+"cap": "Raising the towers on build days, spring 2014."
 },
 {
 "t": "text",
@@ -3829,7 +3863,7 @@ const STORY = {
 {
 "t": "film",
 "yt": "hl5x45I0wbI",
-"cap": "Forest of Creation, Midburn 2014 (my video, 5:36)."
+"cap": "The crowdfunding video I made for the temple, spring 2014 (5:36)."
 },
 {
 "t": "photos",
