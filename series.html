@@ -132,7 +132,7 @@ function seriesPage() {
 
   const img = n => { const p = PH[n];
     return `<button data-p="${n}" aria-label="Enlarge photograph ${n + 1}"><img src="img/w/${p.f}/${p.file}" width="${p.w}" height="${p.h}" alt="${esc(S.title)}, photograph ${n + 1} of ${PH.length}" loading="${n < 2 ? "eager" : "lazy"}"></button>`; };
-  const cap = n => { const p = who(n); return p ? `<figcaption><b>${esc(p[0])}</b></figcaption>` : PH.length > 1 ? `<figcaption>${n + 1} / ${PH.length}</figcaption>` : ""; };
+  const cap = n => { const p = who(n); return p ? `<figcaption><b>${esc(p[0])}</b></figcaption>` : ""; };
   let lastPlace = "p-c";
   const html = stops.map((st, si) => {
     if (st.kind === "photos") {

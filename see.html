@@ -320,7 +320,7 @@ document.querySelectorAll("nav.index").forEach(n => n.innerHTML = indexHTML);
 
 // Track: the 16 series repeated so the loop never shows an edge
 track.innerHTML = Array.from({ length: COPIES * N }, (_, k) => { const s = SERIES[k % N];
-  return `<div class="item" data-k="${k}" data-s="${k % N}"><img src="${s.cover}" alt="${s.title}" draggable="false"><div class="label"><span>${s.group}</span><b>${s.title}</b></div></div>`; }).join("");
+  return `<div class="item" data-k="${k}" data-s="${k % N}"><img src="${s.cover}" alt="${s.title}" width="${s.size[0]}" height="${s.size[1]}" decoding="async" draggable="false"><div class="label"><span>${s.group}</span><b>${s.title}</b></div></div>`; }).join("");
 const items = [...track.children];
 
 // Sizes follow the carousel width, so proportions stay balanced on any window
@@ -525,7 +525,7 @@ function closeDetail() {
 const DS = [["01",1800,1031],["02",1424,1500],["03",1800,1015],["04",1800,1272],["05",1800,1048],["06",1800,1445],["07",1800,1283],["08",1800,1272],["09",1508,1800],["10",1800,1169],["11",1800,1440],["12",1800,1201],["13",1800,1440],["14",1800,1138]];
 const ROWS = [[0], [1, 2], [3], [4, 5], [6], [7, 8], [9], [10, 11], [12], [13]];
 const fig = i => { const [n, w, h] = DS[i];
-  return `<figure style="flex:${(w / h).toFixed(3)} 1 0"><button data-p="${i}" aria-label="Open photo ${i + 1}"><img src="img/dead-sea/${n}.jpg" width="${w}" height="${h}" alt="Dead Sea, photograph ${i + 1} of ${DS.length}" loading="lazy"></button><figcaption>${n} / ${DS.length}</figcaption></figure>`; };
+  return `<figure style="flex:${(w / h).toFixed(3)} 1 0"><button data-p="${i}" aria-label="Open photo ${i + 1}"><img src="img/dead-sea/${n}.jpg" width="${w}" height="${h}" alt="Dead Sea, photograph ${i + 1} of ${DS.length}" loading="lazy"></button></figure>`; };
 $("seq").innerHTML = ROWS.map(r => `<div class="row ${r.length === 1 ? "single" + (DS[r[0]][1] / DS[r[0]][2] < 1.3 ? " narrow" : "") : ""}">${r.map(fig).join("")}</div>`).join("");
 
 let vp = 0;

@@ -58,11 +58,10 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"fugara/02.jpg",
 "fugara/03.jpg",
 "fugara/10.jpg"
 ],
-"cap": "Swirl in the Old City of Jerusalem, and light-and-fabric works at Midburn."
+"cap": "Light-and-fabric works at Midburn."
 },
 {
 "t": "film",
@@ -185,7 +184,7 @@ const STORY = {
 "h": "Balfour, 2020",
 "p": [
 "During the pandemic, Balfour Street in Jerusalem filled every week with people protesting against Prime Minister Benjamin Netanyahu. I was there with my camera, week after week.",
-"In the middle of it I staged Delacroix's Liberty Leading the People with the protesters: a woman holding an Israeli flag, people rising around her. I wanted the people on the street to see themselves with some pride. Shield of Democracy became a symbol of the protest and broke sharing records on Facebook."
+"In the middle of it I staged Delacroix's Liberty Leading the People with the protesters: a woman holding an Israeli flag, people rising around her. I wanted the people on the street to see themselves with some pride. Shield of Democracy became a symbol of the protest and was shared widely on Facebook."
 ]
 },
 {
@@ -465,8 +464,8 @@ const STORY = {
 "t": "text",
 "h": "Worlds we build together",
 "p": [
-"In other series I build the image with the person in front of the camera. Forgotten Realms invents characters who could belong to any time or place, to ask what tribal identity and ritual still mean to us. In Color in Motion the body becomes the canvas and the paint follows the movement. In MATTER we cover bodies in clay and let them move.",
-"It only works when the person feels safe enough to let go, so most of the work is building that trust before I lift the camera. Color in Motion was my solo show at Beit Kandinof in Tel Aviv in 2018. [Forgotten Realms](series.html#forgotten-realms), [Color in Motion](series.html#color-in-motion), [MATTER](series.html#matter)."
+"In other series I build the image with the person in front of the camera. Forgotten Realms invents characters who could belong to any time or place, to ask what tribal identity and ritual still mean to us. In Colour in Motion the body becomes the canvas and the paint follows the movement. In MATTER we cover bodies in clay and let them move.",
+"It only works when the person feels safe enough to let go, so most of the work is building that trust before I lift the camera. Colour in Motion was my solo show at Beit Kandinof in Tel Aviv in 2018. [Forgotten Realms](series.html#forgotten-realms), [Colour in Motion](series.html#color-in-motion), [MATTER](series.html#matter)."
 ]
 },
 {
@@ -476,7 +475,7 @@ const STORY = {
 "color-in-motion/04.jpg",
 "matter/04.jpg"
 ],
-"cap": "Forgotten Realms, Color in Motion and MATTER"
+"cap": "Forgotten Realms, Colour in Motion and MATTER"
 },
 {
 "t": "text",
@@ -752,7 +751,7 @@ const STORY = {
 "elham/02.jpg",
 "elham/04.jpg"
 ],
-"cap": "Circles in the years before October 2023. Photos: Sharon Avraham."
+"cap": "Circles in the years before October 2023."
 },
 {
 "t": "text",
@@ -873,7 +872,7 @@ const STORY = {
 "elham/07.jpg",
 "elham/06.jpg"
 ],
-"cap": "Solidarity days on Palestinian farmland, around 2021. Photos: Sharon Avraham."
+"cap": "Solidarity days on Palestinian farmland, around 2021."
 },
 {
 "t": "text",
@@ -1142,7 +1141,7 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"lighthouse/05.jpg",
+"ev-kamels/02.jpg",
 "ev-spank/12.jpg"
 ],
 "cap": "The people are already gathering: Kosmic Kamelz at Burning Man, and Spank Al Yahood at Midburn."
@@ -1239,7 +1238,7 @@ const STORY = {
 {
 "t": "photos",
 "s": [
-"lighthouse/02.jpg",
+"ev-kamels/03.jpg",
 "ev-falahi/08.jpg",
 "jam/13.jpg"
 ],
@@ -2106,11 +2105,11 @@ const STORY = {
 "st-togather/13.jpg",
 "st-togather/14.jpg"
 ],
-"cap": "Cooking, building with straw, and an afternoon on the lawn. Feytopia at Château de Fey, France, 2026"
+"cap": "Cooking, building with straw, and an afternoon on the lawn. Feytopia at Château du Feÿ, Burgundy, 2026"
 },
 {
 "t": "text",
-"h": "Feytopia, Château de Fey, France",
+"h": "Feytopia, Château du Feÿ, Burgundy",
 "p": [
 "A community that lives for a few months each year in a château in Burgundy. Poli calls their way of deciding a membrane: no one is formally in charge. He told me about a visitor who heard this and asked, 'Can you bring me to the person that makes sure that there is no person in charge.' Shared leadership still needs someone to hold it, and the work becomes easy to miss.",
 "In 2026 the journey also took me to a weekend with a dozen community hubs at Casa Tilo in Spain, and to the GEN Europe gathering in Germany. One gathering can hold the stories of many communities at once."
@@ -2571,7 +2570,7 @@ const STORY = {
 "title": "Black Rock City",
 "text": "The first camp in 2019 at 8:45 and A, then the Multicultural Neighborhood in 2022, and again in 2023.",
 "img": "kamels-more/02.jpg",
-"tag": "Nevada, 2019 to 2023"
+"tag": "Nevada, 2019 to 2022"
 },
 {
 "title": "Somewhere",
@@ -3299,7 +3298,7 @@ const STORY = {
 "Midburn grows past 10,000 people and hundreds of installations. I step back from leading the art and keep building and photographing."
 ],
 [
-"2019 to 2023",
+"2019 to 2022",
 "Spank Al Yahood, a joint Israeli and Palestinian camp at Midburn that I co-produced with Sami Awad."
 ],
 [
@@ -3413,7 +3412,7 @@ const STORY = {
 "text": "An Israeli and Palestinian camp at Midburn.",
 "img": "st-midburn/11.jpg",
 "href": "project.html#forbidden",
-"tag": "2019 to 2023"
+"tag": "2019 to 2022"
 }
 ]
 },
@@ -3659,7 +3658,7 @@ const STORY = {
 "art-installations/04.jpg",
 "art-installations/02.jpg"
 ],
-"cap": "The Hand of Inspiration at dawn on the playa, 2013 (photo: Oren Lederman); and at Borderland in 2017, lifting the effigy into place with a tractor, and its burn."
+"cap": "The Hand of Inspiration at dawn, 2013 (photo: Oren Lederman). The Borderland Effigy lifted into place by tractor, 2017, and its burn."
 },
 {
 "t": "quote",

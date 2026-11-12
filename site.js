@@ -53,7 +53,7 @@ const PROOF = {
   see: "Twenty years of photography, forty-three galleries, and one image that became the symbol of the Balfour protest.",
   build: "Three NGOs co-founded, eleven years of an open farm, and an archive of 35 communities.",
   gather: "Burners from eight countries in one camp, young Muslim and Jewish leaders in France, festivals in the Portuguese hills.",
-  tell: "Six Tamera reels, about 1.13 million views (my own report). Sixteen ToGather conversations on YouTube.",
+  tell: "Six Tamera reels, about 1.13 million views (my own report). ToGather conversations on YouTube.",
 };
 
 // Project page: same template for everything, filled from data.js
@@ -66,6 +66,7 @@ function projectPage() {
   // photos from the old-site harvest when the project has a folder, otherwise the mockup photos
   const DIM = {};   // width and height per photo, so the page reserves space before images load
   const media = (p.media || []).flatMap(f => ((typeof MEDIA !== "undefined" && MEDIA[f]) || []).map(([file, w, h]) => { const u = `img/w/${f}/${file}`; DIM[u] = [w, h]; return u; })).filter(u => !(p.skip || []).some(k => u.endsWith(k)));
+  const heroDim = u => { const [f, n] = u.replace(/^img\/w\//, "").split("/"), m = ((typeof MEDIA !== "undefined" && MEDIA[f]) || []).find(r => r[0] === n); return m ? ` width="${m[1]}" height="${m[2]}"` : ""; };
   const pics = (media.length ? media : (p.photos || [])).slice(0, p.reel ? 5 : 13), hero = p.hero || media[0] || p.img || (p.nophoto ? "" : mycDrawn(d));   // a drawn mycelium stands in until Sharon sends photos
   document.body.dataset.door = d;
   document.title = `${p.title}, Sharon Avraham`;
@@ -77,11 +78,11 @@ function projectPage() {
         <dt>Doors</dt><dd class="sites">${p.doors.map(x => `<a href="${DOORS[x].url}"><i class="dot ${x}"></i> ${DOORS[x].title}</a>`).join("")}</dd>
         ${(p.site || []).length ? `<dt>Links</dt><dd class="sites">${p.site.map(([t, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join("")}</dd>` : ""}</dl></section>
     ${p.film ? `<video class="hero film" controls playsinline preload="none" poster="${p.film[1]}" aria-label="${esc(p.film[2])}"><source src="${p.film[0]}" type="video/mp4"></video>`
-      : hero ? `<img class="hero" src="${hero}" alt="${esc(p.title)}">` : ""}
+      : hero ? `<img class="hero" src="${hero}" alt="${esc(p.title)}"${heroDim(hero)} fetchpriority="high">` : ""}
     ${st ? journeyHTML(p, st, p.film ? "" : hero) : `<section class="body">
             <div class="text">${(p.text || []).map(t => `<p>${esc(t)}</p>`).join("")}</div>
       ${p.quote ? `<blockquote class="pull">“${esc(p.quote[0])}”<cite>${esc(p.quote[1])}</cite></blockquote>` : ""}
-      ${p.src === "self" ? `<p class="flag">Mockup note: some facts here come only from your own materials. We add a source before publishing.</p>` : ""}
+      ${p.src === "self" ? `<p class="flag">Some of the facts on this page come from my own records and have not been published elsewhere.</p>` : ""}
     </section>`}
     ${p.list ? `<section class="follow"><h2 class="sub">${esc(p.list[0])}</h2><ul>${p.list[1].map(([n, sub, u]) => { const ext = u && u.startsWith("http");
       return `<li>${u ? `<a href="${u}"${ext ? ' target="_blank" rel="noopener"' : ""}>` : '<div class="li">'}<b>${esc(n)}</b><span>${esc(sub)}</span>${u ? "</a>" : "</div>"}</li>`; }).join("")}</ul></section>` : ""}
@@ -120,10 +121,10 @@ function projNav(p, d) {
   const rail = document.createElement("nav"); rail.className = "pnav"; rail.setAttribute("aria-label", `Projects in ${door.title}`);
   rail.innerHTML = `<a class="pn-door" href="${door.url}">${esc(door.name)}</a><ol>${list.map(item).join("")}</ol><b class="pn-read" aria-hidden="true"></b>`;
   const bar = document.createElement("nav"); bar.className = "pbar"; bar.setAttribute("aria-label", "Move between projects");
-  bar.innerHTML = many ? `<a class="pb-step" data-step="prev" href="${projUrl(prev)}" aria-label="Previous project: ${esc(prev.title)}">Prev</a>
-    <button class="pb-mid" type="button" aria-expanded="false" aria-controls="pb-sheet" aria-label="Projects in ${esc(door.title)}, ${i + 1} of ${list.length}"><i></i><span>${esc(door.name)}</span><small>${i + 1} of ${list.length}</small></button>
+  bar.innerHTML = many ? `<a class="pb-step" data-step="prev" href="${projUrl(prev)}" aria-label="Prev: ${esc(prev.title)}">Prev</a>
+    <button class="pb-mid" type="button" aria-expanded="false" aria-controls="pb-sheet"><i></i><span>${esc(door.name)}</span><small>${i + 1} of ${list.length}</small></button>
     <div class="pb-sheet" id="pb-sheet" hidden><a class="pn-door" href="${door.url}">${esc(door.title)}</a><ol>${list.map(item).join("")}</ol></div>
-    <a class="pb-step" data-step="next" href="${projUrl(next)}" aria-label="Next project: ${esc(next.title)}">Next</a>`
+    <a class="pb-step" data-step="next" href="${projUrl(next)}" aria-label="Next: ${esc(next.title)}">Next</a>`
     : `<a class="pb-mid" href="${door.url}"><i></i><span>${esc(door.title)}</span></a>`;   // a door of one: just the way back
   document.body.append(rail, bar);
   if (had === "rail") rail.querySelector("li.here a").focus({ preventScroll: true });

@@ -21,7 +21,7 @@ const PROJECTS = [
   { id: "heroes", title: "Artivism", years: "2015–now", role: "Artist", place: "Jerusalem, Eilat, the West Bank, Tel Aviv",
     doors: ["see", "tell"], img: "img/p/spring-1.jpg",
     essence: "Shield of Democracy, Every Day Heroes, Harun, Red Brigade, the Red Sea Act: art made in the street, and for it.",
-    text: ["Artivism is my word for engaging with the world through art: to challenge, to reveal and to connect. In the summer of 2020, during the Balfour demonstrations against Netanyahu, I staged Delacroix's Liberty Leading the People with the protesters. Shield of Democracy became the symbol of the protest and broke sharing records on Facebook.",
+    text: ["Artivism is my word for engaging with the world through art: to challenge, to reveal and to connect. In the summer of 2020, during the Balfour demonstrations against Netanyahu, I staged Delacroix's Liberty Leading the People with the protesters. Shield of Democracy became the symbol of the protest and was shared widely on Facebook.",
       "Every Day Heroes portrays Israeli and Palestinian activists who give their lives to non-violent resistance. Harun tells the story of one young man from the South Hebron Hills."],
     photos: ["img/p/spring-1.jpg", "img/p/spring-2.jpg", "img/p/spring-3.jpg"],
     facts: [["2020", "Balfour, Jerusalem"], ["2022", "Seeds of Peace Artivism Fellow"]],
@@ -48,7 +48,7 @@ const PROJECTS = [
   { id: "installations", title: "Installations", years: "2013–2018", role: "Artist, project lead, co-creator", place: "Burning Man, Midburn, Jerusalem, Borderland (Denmark), Cascais (Portugal)", media: ["art-installations"],
     doors: ["see"], img: "img/p/install-2.jpg",
     essence: "Large works built with others, to be climbed, lit, played, gathered around and burned.",
-    photos: ["img/p/install-2.jpg", "img/p/install-1.jpg", "img/p/install-3.jpg", "img/p/midburn-hand-1.jpg"],
+    photos: ["img/p/install-2.jpg", "img/p/install-1.jpg", "img/p/install-3.jpg"],
     links: ["hand", "forest", "borderland", "midburn", "fugara"] },
 
   // ---- Build
@@ -69,7 +69,7 @@ const PROJECTS = [
     text: ["Fugara grew out of the core of the young Midburn community in 2015: a place to keep building the big, immersive work we had started in the desert, for the burns and beyond.",
       "We met for build weekends, cooked for each other and argued over sketches until something worth carrying to the desert came out of it, like Fluid Self, an interactive installation of light and fabric that stood at Midburn in 2015.",
       "Our lanterns, Swirl, lit the stone alleys of Jerusalem's Old City at the Light Festival in 2016, and travelled to Lumina, the light festival in Cascais, in 2018."],
-    facts: [["2014", "founded"], ["2018", "Swirl at Lumina, Cascais"]],
+    facts: [["2015", "founded"], ["2018", "Swirl at Lumina, Cascais"]],
     links: ["midburn", "installations", "hand"] },
   { id: "farm", title: "David's Farm", years: "2012–2023", role: "Founder of the community lab, host", place: "Ein Vered, Israel", media: ["farm-life"],   // Sharon: one drone view, one with the horses, then mostly the events and people
    
@@ -94,8 +94,8 @@ const PROJECTS = [
       ["Kosmic Kamelz and Spank Al Yahood", "Theme camps at Burning Man and Midburn.", "project.html#kamelz"]]],
     facts: [["14", "co-founders, Israeli and Palestinian"], ["3", "pillars: land, the day after, solidarity"]],
     links: ["lighthouse", "falahi", "healing", "togather"] },
-  { id: "lighthouse", site: [["The Lighthouse on ELHAM", "https://www.elham-thedayafter.org/lighthouse"], ["Podcast: A Lighthouse for the Middle East", "https://www.eamonarmstrong.com/lifeisafestival/the-lighthouse"], ["The Lighthouse deck (PDF)", "files/the-lighthouse.pdf"]], title: "The Lighthouse", years: "Idea from 2019, relaunched 2026", role: "Initiator of the 2026 relaunch", place: "The Mediterranean (site search in Catalonia)",
-    doors: ["build"], src: "self", media: ["lighthouse"],   // photos: the community already gathering; the site search has its own labelled section   // source: The Lighthouse pitch deck, Nov 2026 (money, the named estate and contact details left out on purpose)
+  { id: "lighthouse", site: [["The Lighthouse on ELHAM", "https://www.elham-thedayafter.org/lighthouse"], ["Podcast: A Lighthouse for the Middle East", "https://www.eamonarmstrong.com/lifeisafestival/the-lighthouse"]], title: "The Lighthouse", years: "Idea from 2019, relaunched 2026", role: "Initiator of the 2026 relaunch", place: "The Mediterranean (site search in Catalonia)",
+    doors: ["build"], src: "self", hero: "img/w/ev-kamels/01.jpg",   // no deck or Facebook photos (Sharon); the community already gathering; the site search has its own labelled section   // source: The Lighthouse pitch deck, Nov 2026 (money, the named estate and contact details left out on purpose)
     essence: "A residential home on the Mediterranean where artists, activists and peace workers from our region can rest, heal and build together. In the making, and looking for its founding team.",
     text: ["The Lighthouse is a home I am working to build on the Mediterranean: a place where artists, activists and peace workers from across our region can meet outside the borders that keep them apart. People come for a few weeks or a few months, to rest, to learn, and to heal what the work and the region ask them to carry.",
       "I see it as both a sanctuary and a working campus, rooted in the land and open to the region. It is one of ELHAM's programmes, and it grows out of what I learned with ToGather about places where people share daily life.",
@@ -135,7 +135,7 @@ const PROJECTS = [
     text: ["At the Arava Institute, in Kibbutz Ketura, students from Israel, Palestine, Jordan and further away live, study and eat together for a semester in the desert. As Campus Life Director I build the community part of that life: the LAB, short for Leadership, Action and Belonging.",
       "Its weekly rhythm is the Majlis, the Pods and Community Night: circles, small groups, and evenings the students make together. In between we go out into the dunes and the mountains."],
     links: ["arava", "compass", "lighthouse"] },
-  { id: "healing", media: ["ev-healing", "healing-more"], skip: ["ev-healing/03.jpg", "ev-healing/04.jpg", "healing-more/01.jpg", "healing-more/02.jpg"], title: "Resilient Roots", years: "2023–2024", role: "Initiator, organiser", place: "Israel and the West Bank", src: "self",   // healing work: no faces without consent
+  { id: "healing", media: ["ev-healing", "healing-more"], skip: ["ev-healing/02.jpg", "ev-healing/03.jpg", "ev-healing/04.jpg", "healing-more/01.jpg", "healing-more/02.jpg"], title: "Resilient Roots", years: "2023–2024", role: "Initiator, organiser", place: "Israel and the West Bank", src: "self",   // healing work: no faces without consent
     doors: ["gather"], essence: "Weekends of resilience and trauma healing for Israelis and Palestinians together, after October 7.",
     text: ["After October 7 we brought Israelis and Palestinians into the same room, four times over the first months of 2024, to work with what the war had left in their bodies. A team of six facilitators held the weekends: therapists, a doctor, educators.",
       "We met in different places: on my farm, in the West Bank and around Israel. The workshop films stay private until everyone in them agrees."],
@@ -154,11 +154,11 @@ const PROJECTS = [
     links: ["kamelz", "midburn", "heroes"] },
   { id: "falahi", skip: ["ev-falahi/04.jpg", "ev-falahi/05.jpg"], media: ["ev-falahi"], title: "Falahi", years: "From 2021", role: "Founding team, with Jawdat Kassab", place: "Israel and Palestine", src: "self",
     doors: ["gather"],
-    essence: "Weekends that celebrate Palestinian farming heritage: food, music, stories and healing, shared on the land by Palestinians, Israelis and friends.",
+    essence: "Days that celebrate Palestinian farming heritage: food, music, stories and healing, shared on the land by Palestinians, Israelis and friends.",
     text: ["Falahi is one of ELHAM's programmes: a day when Palestinian farmers share their songs, their stories, what they know about the land, and their harvest, with the people who come to sit with them. There is food and music, circles in the shade, and a market of what the land gave.",
       "Jawdat Kassab started it. I supported him and was part of the founding team."],
     links: ["elham", "heroes"] },
-  { id: "mjc", media: ["ev-mjc"], site: [["mjconference.org", "https://mjconference.org"]], title: "Muslim Jewish Conference", years: "2018", role: "Convener, MJC 2018", place: "Château du Feÿ, near Paris",
+  { id: "mjc", media: ["ev-mjc"], site: [["mjconference.org", "https://mjconference.org"]], title: "Muslim Jewish Conference", years: "2018", role: "Convener, MJC 2018", place: "Château du Feÿ, Burgundy",
     doors: ["gather"], img: "img/p/conf-1.jpg",
     essence: "Five days of dialogue for young Muslim and Jewish leaders, near Paris, December 2018.",
     text: ["In December 2018 the Muslim Jewish Conference met in France, at the Château du Feÿ, together with the Connecting Actions symposium. Young Muslim and Jewish leaders from many countries spent five days in circles, workshops and long dinners, and danced in the evenings.",
@@ -167,7 +167,7 @@ const PROJECTS = [
   { id: "synesthesia", skip: ["ev-synesthesia/07.jpg"], media: ["ev-synesthesia"], title: "Synesthesia", years: "2024", role: "Host; cultural director of The Garden", place: "The Garden, Deão, northern Portugal", src: "self",
     doors: ["gather"],
     essence: "A week-long, burn-inspired festival of the five senses on a river-valley estate in northern Portugal: no alcohol, nothing for sale, everyone part of the crew.",
-    facts: [["~150", "participants"], ["7", "days"]],
+    facts: [["257", "signed up, 2024"], ["7", "days"]],
     text: ["Synesthesia happens at The Garden, an estate in the Lima river valley in the north of Portugal. For a week everything is made by the people who come. Everyone works shifts, chefs cook for everyone, and there is no alcohol and nothing for sale. The festival is built around the five senses, each with its own guild of artists and makers.",
       "I was one of the hosts of its second edition, and cultural director of The Garden. My part was the art and the people: inviting artists, shaping the programme, and holding the space so that strangers could become a crew."],
     links: ["somewhere", "compass", "alqarya"] },
@@ -233,7 +233,7 @@ const DOOR_ITEMS = {
   tell: [["reel", "Films"], ["substack", "Writing"], ["instagram", "Social media"], ["tamera", "Campaigns"], ["arava", "Campaigns"]],
 };
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
-const DOOR_COVER = { build: { fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
+const DOOR_COVER = { build: { lighthouse: "img/w/ev-kamels/01.jpg", fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what holds them there?";
 
@@ -244,7 +244,7 @@ const PRESS = [
   { y: "2020", outlet: "Calcalist", kind: "Interview, Hebrew", title: "“I wanted to create a sense of pride among the protesters”", url: "https://www.calcalist.co.il/articles/0,7340,L-3848732,00.html" },
   { y: "2020", outlet: "Local Testimony", kind: "Exhibition", title: "Liberty at Paris Square, Jerusalem", url: "https://www.edutmekomit.co.il/copy-of-images-all-1/1fcf487f-a287-41a8-b330-aed87b6a78a8" },
   { y: "2019", outlet: "Inbodied Life", kind: "Podcast", title: "Burning Man as activism for the Middle East", url: "https://uk.player.fm/series/inbodied-life-with-lauren-taus/burning-man-as-activism-for-the-middle-east-conversations-with-sharon-avraham" },
-  { y: "2018", outlet: "Muslim Jewish Conference", kind: "Profile", title: "Convener, MJC 2018 / Connecting Actions", url: "https://legacy.mjconference.org/mjc-2018/hosts/" },
+  { y: "2018", outlet: "Muslim Jewish Conference", kind: "Profile", title: "Convener, MJC 2018 / Connecting Actions", url: "https://mjconference.org" },
   { y: "2018", outlet: "Beit Kandinof", kind: "Solo show", title: "Colour in Motion", url: "" },
   { y: "2014", outlet: "Tablet Magazine", kind: "Article", title: "Israel's first Burning Man, one mile from Ben Gurion's grave", url: "https://www.tabletmag.com/jewish-arts-and-culture/theater-and-dance/183050/burning-man-israel" },
   { y: "2014", outlet: "Tablet Magazine", kind: "Photo essay", title: "Burning Man Israel", url: "https://tabletmag.com/sections/news/articles/burning-man-israel-2" },

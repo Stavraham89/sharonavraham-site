@@ -387,12 +387,12 @@ const SERIES_TEXT = [
  },
  {
   "id": "color-in-motion",
-  "title": "Color in Motion",
+  "title": "Colour in Motion",
   "group": "Personal projects",
   "place": "",
   "sub": "",
   "essay": [
-   "Color in Motion started from action painting. The body becomes the canvas, and the paint follows the movement. It only works when the person feels safe enough to let go, so most of my work here is building that trust before I lift the camera. Then I follow them."
+   "Colour in Motion started from action painting. The body becomes the canvas, and the paint follows the movement. It only works when the person feels safe enough to let go, so most of my work here is building that trust before I lift the camera. Then I follow them."
   ],
   "quotes": [],
   "folders": [
