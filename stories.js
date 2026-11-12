@@ -111,26 +111,44 @@ const STORY = {
 },
 {
 "t": "text",
-"h": "Rooms full of art",
+"h": "Nights of our own",
 "p": [
-"Fugara also made its own nights. Fugara Chronicles, in 2017, filled an old building with the work of our members. The Fugara Experiment nights turned empty spaces into places to make art together: music, painting and light, with no stage between artist and guest."
+"Fugara also made its own nights. The Fugara Experiment turned an empty building into a place to make art together for one night: music, painting, body paint under ultraviolet light, installations you could sit inside, and no stage between artist and guest."
 ]
 },
 {
 "t": "photos",
 "s": [
-"st-fugara/01.jpg",
 "st-fugara/02.jpg"
 ],
-"cap": "Fugara Chronicles, 2017."
+"cap": "The Fugara Experiment, November 2018."
 },
 {
 "t": "photos",
 "s": [
-"st-fugara/03.jpg",
+"st-fugara/03.jpg"
+],
+"cap": "An installation you could sit inside, the Experiment, 2018."
+},
+{
+"t": "text",
+"p": [
+"In June 2020 the fourth Experiment filled an abandoned building with candlelight and music."
+]
+},
+{
+"t": "photos",
+"s": [
 "st-fugara/04.jpg"
 ],
-"cap": "The Fugara Experiment, 2018, and Experiment 4, 2020."
+"cap": "Experiment 4, June 2020."
+},
+{
+"t": "photos",
+"s": [
+"st-fugara/05.jpg"
+],
+"cap": "Lighting the candles, Experiment 4."
 },
 {
 "t": "text",

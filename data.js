@@ -62,7 +62,7 @@ const PROJECTS = [
     facts: [["2012", "founded"], ["20", "artists given grants at the first city, 2014"], ["100+", "art projects funded while I led the art"]],
     quote: ["Sharon lead [sic] the team, pushing a professional designer and an engineer.", "Burning Man Journal, 2013"],
     links: ["hand", "fugara", "farm", "forbidden"] },
-  { id: "fugara", title: "Fugara", years: "From 2015", role: "Co-founder", place: "Israel; works shown in Jerusalem, Denmark and Cascais",
+  { id: "fugara", hero: "img/w/st-fugara/01.jpg", title: "Fugara", years: "From 2015", role: "Co-founder", place: "Israel; works shown in Jerusalem, Denmark and Cascais",
     doors: ["build", "see"],
     essence: "A collective of artists, designers and makers building large interactive installations from wood, metal, electronics, light, sound and fire.",
     media: ["fugara"],   // from F:\Fugara: Fluid Self, build weekends, the team, Decom 2015, street light tests
@@ -233,7 +233,7 @@ const DOOR_ITEMS = {
   tell: [["reel", "Films"], ["substack", "Writing"], ["instagram", "Social media"], ["tamera", "Campaigns"], ["arava", "Campaigns"]],
 };
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
-const DOOR_COVER = { build: { lighthouse: "img/w/ev-kamels/01.jpg", fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
+const DOOR_COVER = { build: { lighthouse: "img/w/ev-kamels/01.jpg", fugara: "img/w/st-fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what keeps them there?";
 
