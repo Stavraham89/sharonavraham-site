@@ -23,11 +23,15 @@ const INVITE = {
   gather: ["Hosting a group, a programme or a festival?", "Invite me to hold the space"],
   tell: ["Doing good work that nobody sees yet?", "Let's tell your story"],
 };
+const DOOR_ORDER = { build: ["midburn", "fugara", "farm", "elham", "togather", "lighthouse"],
+  gather: ["midburn", "futureplay", "mjc", "alqarya", "synesthesia", "healing", "lab", "forbidden", "kamelz", "compass", "elham", "falahi", "somewhere"],
+  tell: ["togather", "tamera", "arava", "reel"] };
+// the projects whose home is this door, in the door page's own order
+const doorProjects = d => { const ord = (DOOR_ORDER[d] || []).map(id => P[id]).filter(p => p && p.doors[0] === d);
+  return [...ord, ...PROJECTS.filter(p => p.doors[0] === d && !ord.includes(p))]; };
 function doorPage(d) {
   // each door lists its projects in a deliberate order (Sharon's priorities), then whatever else grows there
-  const ORDER = { build: ["midburn", "fugara", "farm", "elham", "togather", "lighthouse"],
-    gather: ["midburn", "futureplay", "mjc", "alqarya", "synesthesia", "healing", "lab", "forbidden", "kamelz", "compass", "elham", "falahi", "somewhere"],
-    tell: ["togather", "tamera", "arava", "reel"] };
+  const ORDER = DOOR_ORDER;
   const door = DOORS[d], ord = (ORDER[d] || []).map(id => P[id]).filter(Boolean);
   const home = ord.length ? ord : PROJECTS.filter(p => p.doors[0] === d), also = PROJECTS.filter(p => p.doors.includes(d) && !home.includes(p));
   const withImg = [...home, ...also].filter(p => p.img).slice(0, 7);
@@ -101,6 +105,51 @@ function projectPage() {
   scrollTo(0, 0);
   intro();
   const j = document.querySelector(".journey"); if (j) { growJourney(j); lightbox(j); phones(j); }
+  projNav(p, d);
+}
+// Moving between projects: a quiet rail in the right margin on wide screens, a small bar at the bottom on phones.
+// The thread from this project to the next grows as you read.
+function projNav(p, d) {
+  const had = document.activeElement?.closest?.(".pbar, .pnav") && document.activeElement.dataset.step;   // keyboard users keep their place
+  document.querySelectorAll(".pnav, .pbar").forEach(e => e.remove());
+  projNav.ac?.abort(); const sig = { signal: (projNav.ac = new AbortController()).signal };   // listeners from the last project go with it
+  const list = doorProjects(d), i = list.indexOf(p), door = DOORS[d];
+  if (i < 0) return;
+  const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length], many = list.length > 1;
+  const item = q => `<li${q === p ? ' class="here"' : ""}><a href="${projUrl(q)}"${q === p ? ' aria-current="page"' : ""}><i></i><span>${esc(q.title)}</span></a></li>`;
+  const rail = document.createElement("nav"); rail.className = "pnav"; rail.setAttribute("aria-label", `Projects in ${door.title}`);
+  rail.innerHTML = `<a class="pn-door" href="${door.url}">${esc(door.name)}</a><ol>${list.map(item).join("")}<b class="pn-read" aria-hidden="true"></b></ol>`;
+  const bar = document.createElement("nav"); bar.className = "pbar"; bar.setAttribute("aria-label", "Move between projects");
+  bar.innerHTML = many ? `<a class="pb-step" data-step="prev" href="${projUrl(prev)}" aria-label="Previous project: ${esc(prev.title)}">Prev</a>
+    <button class="pb-mid" type="button" aria-expanded="false" aria-controls="pb-sheet"><i></i><span>${esc(door.name)}</span><small>${i + 1} of ${list.length}</small></button>
+    <div class="pb-sheet" id="pb-sheet" hidden><a class="pn-door" href="${door.url}">${esc(door.title)}</a><ol>${list.map(item).join("")}</ol></div>
+    <a class="pb-step" data-step="next" href="${projUrl(next)}" aria-label="Next project: ${esc(next.title)}">Next</a>`
+    : `<a class="pb-mid" href="${door.url}"><i></i><span>${esc(door.title)}</span></a>`;   // a door of one: just the way back
+  document.body.append(rail, bar);
+  if (had) bar.querySelector(`[data-step="${had}"]`)?.focus({ preventScroll: true });
+  // the bar opens its list in place
+  const mid = bar.querySelector("button.pb-mid"), sheet = bar.querySelector(".pb-sheet");
+  const open = on => { if (!sheet) return; sheet.hidden = !on; mid.setAttribute("aria-expanded", on); bar.classList.toggle("open", on); };
+  mid?.addEventListener("click", () => open(sheet.hidden));
+  addEventListener("keydown", e => { if (e.key === "Escape" && sheet && !sheet.hidden) { open(false); mid.focus(); } }, sig);
+  document.addEventListener("click", e => { if (!bar.contains(e.target)) open(false); }, sig);
+  // a playing film keeps the screen to itself
+  document.addEventListener("play", e => { if (e.target.closest?.("main")) bar.classList.add("film"); }, { capture: true, ...sig });
+  document.addEventListener("pause", e => { if (e.target.closest?.("main")) bar.classList.remove("film"); }, { capture: true, ...sig });
+  // the rail's thread fills from the first project to this one, then on toward the next as you read
+  const read = rail.querySelector(".pn-read"), dots = [...rail.querySelectorAll("li")];
+  const thread = f => { const top = dots[0].offsetTop + dots[0].offsetHeight / 2, here = dots[i].offsetTop + dots[i].offsetHeight / 2,
+      to = dots[i + 1] ? dots[i + 1].offsetTop + dots[i + 1].offsetHeight / 2 : here; read.style.top = top + "px"; read.style.height = Math.max(0, here - top + (to - here) * f) + "px"; };
+  // the bar steps aside while you read down, and comes back when you scroll up or reach the end
+  let last = scrollY, ticking = false;
+  const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false;
+      const max = document.documentElement.scrollHeight - innerHeight, f = max > 0 ? Math.min(1, scrollY / max) : 1;
+      if (rail.getClientRects().length) thread(f);   // only while the rail is shown
+      const y = scrollY, end = y > max - 200, busy = bar.classList.contains("open") || bar.contains(document.activeElement);
+      if (y > last + 4 && y > 300 && !end && !busy) bar.classList.add("away");
+      else if (y < last - 4 || end || y < 300) bar.classList.remove("away");   // tiny moves change nothing
+      last = y; }); };
+  addEventListener("scroll", onScroll, { passive: true, ...sig }); addEventListener("resize", onScroll, sig); onScroll();
 }
 // Phone mockups: each feed glides to its next photo on its own clock, only while on screen; a tap moves it on by hand
 function phones(root) {

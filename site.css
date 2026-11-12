@@ -311,6 +311,51 @@ video.hero.film { aspect-ratio: 16 / 9; height: auto; max-height: none; object-f
 .phone.loud .ph-snd { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.8'%3E%3Cpath d='M4 9v6h4l5 4V5L8 9z'/%3E%3Cpath d='M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12'/%3E%3C/svg%3E"); }
 @media (max-width: 760px) { .phones, .phones:has(> .phone:nth-child(4)) { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 76%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: none; } .phone { scroll-snap-align: center; } }
 @media (prefers-reduced-motion: reduce) { .ph-feed img { transition: opacity .2s; transform: none; } }
+/* Between projects. Wide screens: a thread of dots in the right margin, names only on hover or focus. Phones and smaller screens: a bar at the bottom. */
+.pnav { position: fixed; right: max(16px, calc((100vw - 1240px) / 2 - 64px)); top: 50%; transform: translateY(-50%); z-index: 15; display: none; font: 400 13px/1.2 var(--sans); }
+.pnav::before { content: ""; position: absolute; inset: -14px -12px -14px -250px; background: color-mix(in srgb, var(--paper) 94%, transparent); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.pnav:hover::before, .pnav:focus-within::before { opacity: 1; }
+.pnav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; position: relative; }
+.pnav ol::before { content: ""; position: absolute; right: 7px; top: 12px; bottom: 12px; width: 1px; background: var(--rule); }
+.pn-read { position: absolute; right: 7px; width: 1px; background: var(--c); transition: height .25s linear; }
+.pnav li { position: relative; z-index: 1; }
+.pnav a { display: flex; flex-direction: row-reverse; align-items: center; justify-content: flex-start; gap: 10px; padding: 5px 0; color: var(--muted); text-decoration: none; position: relative; }
+.pnav a i { flex: none; width: 15px; height: 15px; display: grid; place-items: center; }
+.pnav a i::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.3px solid var(--muted); background: var(--paper); transition: transform .3s cubic-bezier(.23,1,.32,1), background .2s, border-color .2s; }
+.pnav span { position: absolute; right: 24px; opacity: 0; transform: translateX(6px); white-space: nowrap; pointer-events: none; transition: opacity .2s ease, transform .3s cubic-bezier(.23,1,.32,1); }
+.pnav:hover span, .pnav:focus-within span { opacity: 1; transform: none; pointer-events: auto; }
+.pnav a:hover, .pnav a:focus-visible { color: var(--ink); }
+.pnav a:hover i::before, .pnav a:focus-visible i::before { transform: scale(1.35); border-color: var(--c); }
+.pnav li.here a { color: var(--ink); }
+.pnav li.here a i::before { width: 9px; height: 9px; background: var(--c); border-color: var(--c); }
+.pnav .pn-door { display: block; position: relative; text-align: right; color: var(--muted); margin: 0 0 10px; padding-right: 1px; text-decoration: none; }
+.pnav .pn-door:hover, .pnav .pn-door:focus-visible { color: var(--c); }
+@media (min-width: 1440px) and (hover: hover) { .pnav { display: block; } .pbar { display: none !important; } }
+.pbar { position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom, 0px)); z-index: 16; display: flex; align-items: center; gap: 2px; padding: 3px;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; transform: translateX(-50%); transition: transform .45s cubic-bezier(.23,1,.32,1), opacity .3s; font: 500 13px/1 var(--sans); }
+.pbar.away, .pbar.film { transform: translate(-50%, calc(100% + 24px)); opacity: 0; pointer-events: none; }
+.pbar:focus-within { transform: translateX(-50%); opacity: 1; pointer-events: auto; }
+.pb-step { min-width: 52px; height: 44px; padding: 0 12px; display: grid; place-items: center; border-radius: 999px; color: var(--muted); text-decoration: none; transition: background .2s, color .2s, transform .14s ease-out; }
+.pb-mid { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border: 0; border-radius: 999px; background: none; color: var(--ink); font: inherit; cursor: pointer; text-decoration: none; transition: background .2s, transform .14s ease-out; }
+.pb-step:active, .pb-mid:active { transform: scale(.95); }
+.pb-mid i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.pb-mid span, .pb-mid small { white-space: nowrap; }
+.pb-mid small { color: var(--muted); font-size: 12px; }
+@media (hover: hover) { .pb-step:hover, .pb-mid:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); } }
+.pb-sheet { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%); width: min(300px, calc(100vw - 32px)); max-height: min(60vh, 480px); overflow: auto; padding: 16px 8px 8px;
+  background: var(--paper); border: 1px solid var(--rule); transform-origin: 50% 100%; animation: sheet .28s cubic-bezier(.23,1,.32,1); }
+@keyframes sheet { from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(.97); } }
+.pb-sheet .pn-door { display: block; padding: 0 12px 10px; font: 400 21px/1.1 var(--serif); color: var(--ink); text-decoration: none; }
+.pb-sheet ol { list-style: none; margin: 0; padding: 0; }
+.pb-sheet a { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; color: var(--ink); text-decoration: none; }
+.pb-sheet a i { width: 7px; height: 7px; border-radius: 50%; border: 1.3px solid var(--muted); flex: none; }
+.pb-sheet li.here a { background: color-mix(in srgb, var(--c) 14%, transparent); }
+.pb-sheet li.here a i { background: var(--c); border-color: var(--c); }
+@media (hover: hover) { .pb-sheet a:hover { background: color-mix(in srgb, var(--ink) 7%, transparent); } }
+body[data-page="project"] footer.foot { padding-bottom: calc(40px + 64px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 1440px) and (hover: hover) { body[data-page="project"] footer.foot { padding-bottom: 40px; } }
+body:has(.lbx.on) .pbar, body:has(.lbx.on) .pnav { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .pbar, .pnav span, .pnav a i::before, .pnav::before, .pn-read { transition: none; } .pb-sheet { animation: none; } }
 /* An invitation with one way forward is one big button: it leans in on hover and gives under the finger */
 .invite, .jb-cta { position: relative; transform-origin: 50% 60%; transition: transform .5s cubic-bezier(.23,1,.32,1); }
 .invite a.btn::after, .jb-cta .go a:only-child::after { content: ""; position: absolute; inset: 0; }
