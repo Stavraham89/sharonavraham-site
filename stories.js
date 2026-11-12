@@ -3258,8 +3258,7 @@ const STORY = {
 "h": "Building the art department",
 "p": [
 "I started Midburn's art department and became its artistic director. In 2013 I led our first official project at Burning Man, the Hand of Inspiration: about forty of us designed and built a 20-foot hamsa of wood and light and carried it to the playa.",
-"The art group began before that, in autumn 2012. At our first meeting, a few weeks before Octoburn, people pitched whatever they dreamed of: a 'bad advice' booth with two chairs, a giant kinetic butterfly moved by the person inside it, a closet you could come out of and then burn. A month later we sat with AfricaBurn's documents to learn how a burn's art department is built, and drew our own: grants for artists, workshops, safety and placement, fire, design for the public spaces.",
-"At home, the job was to make art possible for everyone else. I found artists, curated, wrote the rules for the art grants and gave the money out, then stood in the dust at night with crews trying to finish before the burn. For the first city in 2014, the Artists' Guild gave out NIS 150,000 in grants to 20 artists. While I led the art, we funded more than 100 art projects."
+"The art group began before that, in autumn 2012. At our first meeting, a few weeks before Octoburn, people pitched whatever they dreamed of: a 'bad advice' booth with two chairs, a giant kinetic butterfly moved by the person inside it, a closet you could come out of and then burn. A month later we sat with AfricaBurn's documents to learn how a burn's art department is built, and drew our own: grants for artists, workshops, safety and placement, fire, design for the public spaces."
 ]
 },
 {
@@ -3268,6 +3267,12 @@ const STORY = {
 "st-midburn/04.jpg"
 ],
 "cap": "February 2014: the team walks the empty site in the Negev, four months before the first city."
+},
+{
+"t": "text",
+"p": [
+"At home, the job was to make art possible for everyone else. I found artists, curated, wrote the rules for the art grants and gave the money out, then stood in the dust at night with crews trying to finish before the burn. For the first city in 2014, the Artists' Guild gave out NIS 150,000 in grants to 20 artists. While I led the art, we funded more than 100 art projects."
+]
 },
 {
 "t": "steps",
@@ -3337,11 +3342,18 @@ const STORY = {
 "cap": "Forest of Creation, the Midburn temple, 2014 (my video, 5:36)."
 },
 {
+"t": "text",
+"h": "Camps, parades and fire",
+"p": [
+"A burn is made of its camps. Each one builds a small world of its own and opens it to everyone: a bar, a dance floor, a quiet corner, a parade that wanders the streets at noon. Nobody sells anything, and everything is somebody's gift."
+]
+},
+{
 "t": "photos",
 "s": [
 "midburn-story/02.jpg"
 ],
-"cap": "A food parade in the dust."
+"cap": "The Shithole camp's parade through the dust."
 },
 {
 "t": "photos",
@@ -3355,8 +3367,7 @@ const STORY = {
 "t": "text",
 "h": "A city nobody owns",
 "p": [
-"By 2017 Midburn had about 400 installations and more than 10,000 people. Those later years were not mine to lead, but I was proud to watch them. What I learned there I still practise: a community can govern itself when nobody is in charge, as long as enough people feel it is theirs.",
-"The art department grew into a standing volunteer art fund that still gives grants every year. Around it grew the things I built next: Fugara, our collective of makers, and later Spank Al Yahood, where Israelis and Palestinians camped together."
+"By 2017 Midburn had about 400 installations and more than 10,000 people. Those later years were not mine to lead, but I was proud to watch them. What I learned there I still practise: a community can govern itself when nobody is in charge, as long as enough people feel it is theirs."
 ]
 },
 {
@@ -3369,11 +3380,23 @@ const STORY = {
 "cap": "Building in the heat, a sculpture rising between cranes, and a full tent at night (2016 to 2018)."
 },
 {
+"t": "text",
+"p": [
+"The art department grew into a standing volunteer art fund that still gives grants every year. Around it grew the things I built next: Fugara, our collective of makers, and later Spank Al Yahood, where Israelis and Palestinians camped together."
+]
+},
+{
 "t": "photos",
 "s": [
 "st-midburn/11.jpg"
 ],
 "cap": "Spank Al Yahood, Midburn 2021: a camp where Israelis and Palestinians lived together for the week."
+},
+{
+"t": "text",
+"p": [
+"In 2026 I went back to the desert with my camera, to photograph the city being built again."
+]
 },
 {
 "t": "photos",
