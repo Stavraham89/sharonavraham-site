@@ -1749,6 +1749,11 @@ const STORY = {
 "cap": "Conversation with Bori at Tamera"
 },
 {
+"t": "quote",
+"q": "Where there is consciousness there is no war.",
+"by": "Sabine Lichtenfels, co-founder of Tamera, in conversation with me for ToGather"
+},
+{
 "t": "photos",
 "s": [
 "st-tamera/01.jpg",
@@ -1761,7 +1766,7 @@ const STORY = {
 "h": "The campaign",
 "p": [
 "In 2026 Tamera wanted to reach people who had never heard of it. From February to May I led its storytelling: reels, stories and posts for its own channels, and campaigns for its online courses and its Support Circle of donors.",
-"I had one rule. The people of Tamera tell the story, in their own words. Every reel script was cut only from what members said in their interviews, with the source clip and timecode noted for each line: no paraphrasing, no composite lines, no stock images. Bori, Peter and Ellen gave the voice to the reel that invited people into the Support Circle.",
+"I had one rule. The people of Tamera tell the story, in their own words. Every reel script was cut only from what members said in their interviews, with the source clip and timecode noted for each line: no paraphrasing, no composite lines. The pictures came from my own filming at Tamera and from Tamera's own film archive. Bori, Peter and Ellen gave the voice to the reel that invited people into the Support Circle.",
 "Each reel had a job: to bring people to one of Tamera's online courses, to its Summer University, or into the Support Circle of people who back its work every month. Tap a phone below to turn the sound on."
 ]
 },
@@ -1812,6 +1817,54 @@ const STORY = {
 "href": "https://www.instagram.com/tamerahealingbiotope/",
 "cap": "Recent floods across Portugal...",
 "note": "How Tamera's lakes hold the rain, posted during the March floods. The most saved and shared piece of the spring."
+}
+]
+},
+{
+"t": "phones",
+"h": "More voices from the spring",
+"items": [
+{
+"handle": "tamerahealingbiotope",
+"name": "Re-Indigenizing",
+"views": "7.2K views",
+"v": "files/tamera-reel-5.mp4",
+"poster": "files/tamera-reel-5.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "Aida, on the course about re-indigenizing.",
+"note": "Aida, for Tamera's online course on re-indigenizing, the first reel of the campaign."
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "A healing biotope",
+"v": "files/tamera-reel-6.mp4",
+"poster": "files/tamera-reel-6.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "For almost 50 years, we have been running an experiment.",
+"note": "Tamera's plan for healing biotopes: places where a culture without war can be lived and learned. March 2026.",
+"views": "163K views"
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "Come and serve",
+"v": "files/tamera-reel-7.mp4",
+"poster": "files/tamera-reel-7.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "The people need to let go the romantic ideal of community.",
+"note": "An invitation to the community service programme, April 2026."
+},
+{
+"handle": "tamerahealingbiotope",
+"name": "An introduction to Tamera",
+"v": "files/tamera-reel-8.mp4",
+"poster": "files/tamera-reel-8.jpg",
+"av": "img/t/st-tamera/03.jpg",
+"href": "https://www.instagram.com/tamerahealingbiotope/",
+"cap": "Start here: what Tamera is, and why it exists.",
+"note": "Monika, for the introduction course, the door most people walk through first."
 }
 ]
 },
