@@ -2872,10 +2872,11 @@ const STORY = {
 {
 "t": "photos",
 "s": [
+"art-installations/06.jpg",
 "midburn-story/10.jpg",
 "midburn-story/12.jpg"
 ],
-"cap": "The Hand by day on the playa, and the night it burned."
+"cap": "The Hand on the playa at dawn (photo: Oren Lederman), by day, and the night it burned."
 },
 {
 "t": "text",
@@ -3360,10 +3361,11 @@ const STORY = {
 {
 "t": "photos",
 "s": [
+"art-installations/06.jpg",
 "art-installations/04.jpg",
 "art-installations/02.jpg"
 ],
-"cap": "Lifting a hand into place with a tractor, and the burn."
+"cap": "The Hand on the playa at dawn (photo: Oren Lederman), lifting a hand into place with a tractor, and the burn."
 },
 {
 "t": "quote",
