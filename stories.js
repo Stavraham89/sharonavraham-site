@@ -3028,9 +3028,23 @@ const STORY = {
 },
 {
 "t": "text",
-"h": "A quiet village",
+"h": "A cooperative village",
 "p": [
-"Ein Vered is a small workers' village in the Sharon plain, about 35 km from Tel Aviv. My grandmother, a Dutch immigrant and a nurse, built a life there with my grandfather. My father, a quiet man, built a horse ranch next to the house.",
+"Ein Vered is a small cooperative village in the Sharon plain, about 35 km from Tel Aviv. My grandmother, a Dutch immigrant and a nurse, built a life there with my grandfather."
+]
+},
+{
+"t": "photos",
+"s": [
+"small-farm/01.jpg"
+],
+"cap": "My father and my grandmother at home, from my series HOME, David's Farm."
+},
+{
+"t": "text",
+"h": "The family farm",
+"p": [
+"This is the family farm my dad started: a horse ranch next to the house. I grew up there learning how to train horses.",
 "He raised me very left-wing. He spoke Arabic at home, here on the farm, and we had Palestinian horse-riding teachers. I think a lot of what I did later started at that kitchen table."
 ]
 },
@@ -3038,17 +3052,42 @@ const STORY = {
 "t": "photos",
 "s": [
 "farm-life/02.jpg",
-"small-farm/01.jpg"
+"st-farm/03.jpg"
 ],
-"cap": "The horses and the arena. My father and my grandmother at home, from my series HOME, David's Farm."
+"cap": "The horses, the dogs and the arena, and two horses grazing on the lawn."
+},
+{
+"t": "photos",
+"s": [
+"st-farm/01.jpg",
+"st-farm/02.jpg"
+],
+"cap": "A mare with her newborn foal in the stable, April 2014, and a portrait."
 },
 {
 "t": "text",
-"h": "Opening the gate",
+"h": "Opening the gates",
 "p": [
 "For over a decade I developed my family's farm as a community lab. People came to make art, live together, and learn how to run things themselves. Artists rented the old buildings as studios and homes, and the workshop was open to whoever was building something.",
-"It was the fertile ground that helped shape Midburn and Fugara. From 2012 the farm was the main base for Midburn's early work: meetings in the living room, art builds in the field, and a decompression week after the desert."
+"It started with Midburn. From 2012 the farm was the main base for Midburn's early work: meetings in the living room, art builds in the field, a Midburn market on the lawn, and a decompression week after the desert."
 ]
+},
+{
+"t": "photos",
+"s": [
+"st-farm/04.jpg",
+"st-farm/05.jpg"
+],
+"cap": "Drawing Midburn's 2014 effigy full size in the living room, and cutting it out in the field, April 2014."
+},
+{
+"t": "photos",
+"s": [
+"st-farm/06.jpg",
+"st-farm/07.jpg",
+"st-farm/08.jpg"
+],
+"cap": "The Midburn market on the farm lawn, April 2014, and a giant chair in the field."
 },
 {
 "t": "photos",
@@ -3061,10 +3100,32 @@ const STORY = {
 },
 {
 "t": "text",
+"h": "Then Fugara",
+"p": [
+"Slowly Fugara showed up, and the farm became its workshop too. Our build weekends happened in the field: steel, fabric and timber going up between the arena and the orchard. We cleared the dry grass with a scythe and threw the Mad Hatter, a Fugara party, under the trees."
+]
+},
+{
+"t": "photos",
+"s": [
+"st-farm/09.jpg",
+"st-farm/10.jpg"
+],
+"cap": "Fugara build weekends on the farm field, spring 2015."
+},
+{
+"t": "photos",
+"s": [
+"st-farm/12.jpg",
+"st-farm/11.jpg"
+],
+"cap": "Clearing the field, and the Mad Hatter, July 2015."
+},
+{
+"t": "text",
 "h": "Long tables and fire",
 "p": [
-"Most of what happened there happened together. Long dinners under the pergola, fire nights, music on the little stage, parties that went until morning, and slow days of planting and fixing things.",
-"It was also a place where Israelis and Palestinians met, and a gathering place for people from all walks of life. Nobody had to be anything in particular to sit at the table."
+"Most of what happened there happened together. Long dinners under the pergola, fire nights, music on the little stage, parties that went until morning, and slow days of planting and fixing things."
 ]
 },
 {
@@ -3086,6 +3147,44 @@ const STORY = {
 },
 {
 "t": "text",
+"h": "An experimental ground",
+"p": [
+"When COVID came, the farm became an experimental ground, and it stayed one in the years after. People came to live and work there, and we tried things out: building, gardening, workshops, new ways of sharing a place and deciding about it together."
+]
+},
+{
+"t": "photos",
+"s": [
+"st-farm/13.jpg",
+"st-farm/16.jpg"
+],
+"cap": "Building and woodworking at the farm, 2023."
+},
+{
+"t": "photos",
+"s": [
+"st-farm/14.jpg",
+"st-farm/15.jpg"
+],
+"cap": "The tree house and the garden, 2023."
+},
+{
+"t": "text",
+"h": "Where people met",
+"p": [
+"As more of my work went into shared life between Israelis and Palestinians, many of those gatherings happened on the farm as well: circles on the lawn, shared meals, workshops, nights around the fire. Nobody had to be anything in particular to sit at the table."
+]
+},
+{
+"t": "photos",
+"s": [
+"st-farm/17.jpg",
+"farm-more/03.jpg"
+],
+"cap": "A circle on the lawn under the dome frame, January 2023, and the long table under the pergola."
+},
+{
+"t": "text",
 "h": "What the farm taught me",
 "p": [
 "The farm was my longest experiment, and the one I learned the most from. Every time we sat down to decide something together, ownership was already in the room. It was my family's land.",
@@ -3096,14 +3195,6 @@ const STORY = {
 "t": "quote",
 "q": "You can believe in equality and still hold the deed. Good intentions do not flatten a power gradient.",
 "by": "Sharon Avraham, The uncooperative society (ToGather on Substack, June 2026)"
-},
-{
-"t": "photos",
-"s": [
-"farm-more/03.jpg",
-"farm-life/03.jpg"
-],
-"cap": "The long table under the pergola, and the dome in the yard."
 },
 {
 "t": "cta",
