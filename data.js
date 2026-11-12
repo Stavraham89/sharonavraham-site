@@ -120,7 +120,7 @@ const PROJECTS = [
     links: ["lighthouse", "elham", "substack", "farm"] },
 
   // ---- Gather
-  { id: "compass", skip: ["compass/07.jpg", "compass/08.jpg", "compass/09.jpg"], site: [["Maya Rimer", "https://www.mayarimer.com/"], ["Mira Bangel", "https://www.linkedin.com/in/mirabangel"]], title: "The Spaceholder's Compass", years: "2025", role: "Designer, facilitator", place: "The Valley, Portugal", media: ["compass"],
+  { id: "compass", hero: "img/w/st-lab/03.jpg", skip: ["compass/01.jpg", "compass/07.jpg", "compass/08.jpg", "compass/09.jpg"], site: [["Maya Rimer", "https://www.mayarimer.com/"], ["Mira Bangel", "https://www.linkedin.com/in/mirabangel"]], title: "The Spaceholder's Compass", years: "2025", role: "Designer, facilitator", place: "The Valley, Portugal", media: ["compass"],
     doors: ["gather"], img: "img/p/compass-2.jpg",
     essence: "A five-day training for facilitators and community hosts: how to hold a group openly, in service of what it is there for.",
     text: ["The Spaceholder's Compass was five days in The Valley, in central Portugal, for facilitators, retreat hosts and community managers. The question was simple and hard: how do you hold a group openly, in service of what the group is there for? We sat in circles, tried methods with our own hands and practised on each other.",
@@ -233,7 +233,7 @@ const DOOR_ITEMS = {
   tell: [["reel", "Films"], ["substack", "Writing"], ["instagram", "Social media"], ["tamera", "Campaigns"], ["arava", "Campaigns"]],
 };
 // A cover chosen by hand where the first photograph is not the best picture of the project in that door
-const DOOR_COVER = { build: { fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
+const DOOR_COVER = { build: { fugara: "img/w/fugara/01.jpg", midburn: "img/w/ev-midburn/01.jpg" }, gather: { midburn: "img/w/midburn-story/02.jpg", compass: "img/w/st-lab/03.jpg" }, tell: { arava: "img/w/ketura/02.jpg" } };
 const P = Object.fromEntries(PROJECTS.map(p => [p.id, p]));
 const THROUGHLINE = "For twenty years I have asked one question: what brings people together, and what holds them there?";
 
